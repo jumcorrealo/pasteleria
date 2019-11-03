@@ -1,4 +1,5 @@
 Decidir Branch
+    decidir responsables de los branch
 Definir fechas sprint 1
 Definir responsables sprint 1
 
@@ -11,4 +12,83 @@ Según el archivo enviado por el profesor:
     4. Despachos
     5. Estadísticas
 
-reunión 5pm
+
+Versión de NetBeans: 8.2
+Configuramos gitKraken y se creó un nuevo repo ya que el creado por nicolas no aparecía
+link del proyecto: https://github.com/jumcorrealo/pasteleria/invitations
+
+
+se presume que la gestión de clientes se debe usar para guardar los datos de cada cliente
+
+Decidir un encargado de la base de datos: por ahora no habrá ningún responsable hasta que nos reunamos todos
+
+Se divide el programa en dos grandes lineas de trabajo: ventas y administrativo
+
+Ventas: Pedidos y Despachos
+Administrativo: Gestión de insumos, Gestión de clientes y Estadísticas.
+
+En cuestión de diseño el encargado de UX hace un front inicial con paneles y el resto se encarga de agregar lo que necesite en cada panel
+
+
+
+1. Decidir nuevos branch: se hacen 2 nuevos que son Ventas y Administración y cada uno se divide según lo acordado
+
+
+responsables y consideraciones.
+    gestión de insumos: No se quiere sobrecargar al que hace los test por lo que se propone que gestión de insumos quede encargado al testing
+    Gestión de clientes: Andres.
+
+    Nombre
+    Teléfono
+    Dirección
+    Puntos
+
+    Pedidos: Debe tener acceso a gestión de insumos y gestión de clientes. Esta se considera a primera vista la parte más difícil, irlo trabajanado entre todos
+    el pedido necesita unos campos específicos...
+
+        Nombre: El nombre debe ser tomado de la clase gestión de clientes
+        Dirección: Como el nombre
+        Teléfono: Como el nombre
+        Tipo: Menú desblegable de los tipos de pasteles, el tipo de pastel tiene un valor fijo que suma al campo valor del pastel
+        Sabor: Menú desblegable con tipos de sabor a elegir
+        Decoración: Menú desplegable con valores fijos que se suman al valor del pastel
+            si se agrega el campo "leyenda" debe tomar un texto con la leyenda deseada
+        Valor del pastel: cifra claculada con tipo y decoración
+        Abono: dinero que el cliente paga antes de recibir el pastel
+        Saldo: dinero a pagar
+        Fecha de entrega: fecha estipulada (intentar hacerlo con un calendario desplegable)
+        
+
+    Despachos: debe tener acceso a clientes. (revisar entrevista para más información)
+
+        Pedidos realizados: 
+
+            Detalles: detalles del pedido con los datos de pedidos.
+            Cambiar: se pueden cambiar los detalles con un día de antelación a la entrega
+            Eliminar: opción con disclaimer para confirmar la eliminación.
+
+    Estadísticas: debe tener acceso a todas las anteriores.
+
+        calcular estadísticas mes a mes, recolección e impresión de datos.
+
+Fechas de entrega:
+    Gestión de insumos:
+        - Agregar esqueleto martes 4pm.
+        - funcional jueves 4pm.
+
+    Gestión de clietnes: 4 de noviembre 12pm.
+    Pedidos: 
+        - Agregar esqueleto para martes 4pm
+        - completo jueves 4pm.
+
+    Despachos:
+
+        - Agregar esqueleto de captura de datos componentes, botones y muestra de datos para martes 4pm.
+        - Conectar despachos a pedidos para el sábado a media noche.
+
+    Estadisticas:
+        - Agregar esqueleto para martes 4pm
+        - Conectar con lo demás lunes medio día.
+
+
+Dead line: Reunión Lunes 6pm.
