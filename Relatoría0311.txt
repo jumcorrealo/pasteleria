@@ -1,3 +1,13 @@
 Decidir Branch
 Definir fechas sprint 1
-Definir responsables sprint 1 
+Definir responsables sprint 1
+
+
+Según el archivo enviado por el profesor:
+
+    1. Gestión de insumos
+    2. Gestión de clientes
+    3. Pedidos
+    4. Despachos
+    5. Estadísticas
+
