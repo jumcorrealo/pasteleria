@@ -140,6 +140,9 @@ public class NuevoCliente extends javax.swing.JFrame {
         for(int i=0;i<sistema.getClientes().size();i++){
             System.out.println(sistema.getClientes().get(i).getNombre());
         }
+        GestionDeClientes volver = new GestionDeClientes();
+        volver.setVisible(true);
+        dispose();
     }//GEN-LAST:event_terminarActionPerformed
 
     private void direccionTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTxActionPerformed
