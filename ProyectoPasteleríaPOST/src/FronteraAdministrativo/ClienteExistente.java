@@ -26,6 +26,7 @@ public class ClienteExistente extends javax.swing.JFrame {
         modeloLista = new DefaultListModel();
         ListC.setModel(modeloLista);
         agregarDatos();
+        this.setLocationRelativeTo(null);
     }
   
     /**

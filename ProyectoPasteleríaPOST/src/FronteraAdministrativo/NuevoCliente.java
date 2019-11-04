@@ -17,6 +17,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     public Sistema sistema = GestionDeClientes.sistema;
     public NuevoCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
