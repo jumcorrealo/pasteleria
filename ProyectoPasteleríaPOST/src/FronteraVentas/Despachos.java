@@ -16,6 +16,7 @@ public class Despachos extends javax.swing.JFrame {
      */
     public Despachos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
