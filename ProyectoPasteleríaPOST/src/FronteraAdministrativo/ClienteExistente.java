@@ -49,6 +49,7 @@ public class ClienteExistente extends javax.swing.JFrame {
         puntajeS = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListC = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,13 @@ public class ClienteExistente extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ListC);
 
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,6 +106,10 @@ public class ClienteExistente extends javax.swing.JFrame {
                             .addComponent(telefonoS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +135,9 @@ public class ClienteExistente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addComponent(jButton1)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,6 +162,12 @@ public class ClienteExistente extends javax.swing.JFrame {
         int pos = ListC.getSelectedIndex();
         bNombreC.setText((String)modeloLista.get(pos));
     }//GEN-LAST:event_ListCMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        GestionDeClientes volver = new GestionDeClientes();
+        volver.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,6 +225,7 @@ public class ClienteExistente extends javax.swing.JFrame {
     private javax.swing.JList<String> ListC;
     private javax.swing.JButton bNombreC;
     private javax.swing.JLabel direccionS;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
