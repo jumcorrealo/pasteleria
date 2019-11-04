@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 package FronteraAdministrativo;
-
+import Control.*;
+import Entidad.*;
 /**
  *
  * @author Home
  */
 public class GestionDeClientes extends javax.swing.JFrame {
-
+    public static Sistema sistema = new Sistema();
     /**
      * Creates new form GestionDeClientes
      */
     public GestionDeClientes() {
         initComponents();
+        crearclientes();
     }
 
     /**
@@ -87,6 +89,11 @@ public class GestionDeClientes extends javax.swing.JFrame {
                 new GestionDeClientes().setVisible(true);
             }
         });
+    }
+    
+    public void crearclientes(){
+       
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
