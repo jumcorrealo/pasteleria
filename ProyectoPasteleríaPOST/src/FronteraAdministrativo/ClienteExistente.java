@@ -40,7 +40,6 @@ public class ClienteExistente extends javax.swing.JFrame {
 
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
-        bNombreC = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -50,17 +49,11 @@ public class ClienteExistente extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         ListC = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
+        nombreS = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre del cliente:");
-
-        bNombreC.setText("...");
-        bNombreC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNombreCActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Direccion :");
 
@@ -89,23 +82,19 @@ public class ClienteExistente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(46, 46, 46)
-                        .addComponent(bNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(direccionS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(telefonoS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(direccionS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefonoS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreS, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jButton1)
@@ -116,11 +105,11 @@ public class ClienteExistente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(bNombreC))
-                        .addGap(12, 12, 12)
+                            .addComponent(nombreS))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(direccionS, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -143,24 +132,19 @@ public class ClienteExistente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNombreCActionPerformed
+    private void ListCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCMouseClicked
         // TODO add your handling code here:
-         System.out.println("-->"+sistema.getClientes().size());
-         int i,n;
+        int pos = ListC.getSelectedIndex();
+        nombreS.setText((String)modeloLista.get(pos));
+        int i,n;
          n = sistema.getClientes().size();
          for(i=0;i<n;i++){
-             if(bNombreC.getText().equals(sistema.getClientes().get(i).getNombre())){
+             if(nombreS.getText().equals(sistema.getClientes().get(i).getNombre())){
                 direccionS.setText(sistema.getClientes().get(i).getDireccion());
                 telefonoS.setText(sistema.getClientes().get(i).getTelefono());
                 puntajeS.setText(""+sistema.getClientes().get(i).getPuntaje());
              }
          }
-    }//GEN-LAST:event_bNombreCActionPerformed
-
-    private void ListCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCMouseClicked
-        // TODO add your handling code here:
-        int pos = ListC.getSelectedIndex();
-        bNombreC.setText((String)modeloLista.get(pos));
     }//GEN-LAST:event_ListCMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -204,17 +188,7 @@ public class ClienteExistente extends javax.swing.JFrame {
         });
     }
     public void agregarDatos(){
-        System.out.println("-->"+sistema.getClientes().size());
-         Cliente cliente1 = new Cliente();
-        cliente1.setNombre("Sujeto prueba1");
-        cliente1.setDireccion("325");
-        cliente1.setTelefono("123");
-        sistema.getClientes().add(cliente1);
-        Cliente cliente2 = new Cliente();
-        cliente2.setNombre("Sujeto prueba2");
-        cliente2.setDireccion("322");
-        cliente2.setTelefono("122");
-        sistema.getClientes().add(cliente2);
+       
         int i,n;
         n = sistema.getClientes().size();
         for(i=0;i<n;i++){
@@ -223,7 +197,6 @@ public class ClienteExistente extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListC;
-    private javax.swing.JButton bNombreC;
     private javax.swing.JLabel direccionS;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -232,6 +205,7 @@ public class ClienteExistente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel nombreS;
     private javax.swing.JLabel puntajeS;
     private javax.swing.JLabel telefonoS;
     // End of variables declaration//GEN-END:variables
