@@ -94,6 +94,49 @@ public class Despachos extends javax.swing.JFrame {
 
         jButton7.setText("Aceptar");
 
+        jLabel1.setText("Nuevo Pedido:");
+
+        jLabel2.setText("Cliente:");
+
+        jButton1.setText("Nuevo Cliente");
+
+        jButton2.setText("Cliente Existente");
+
+        jLabel3.setText("Nombre:");
+
+        jLabel4.setText("Dirección:");
+
+        jLabel5.setText("Teléfono:");
+
+        jLabel6.setText("Tipo:");
+
+        jButton3.setText("Elejir el tipo de pastel");
+
+        jLabel7.setText("Sabor:");
+
+        jButton4.setText("Elejir el sabor");
+
+        jLabel8.setText("Decoración:");
+
+        jButton5.setText("Elejir la decoración");
+
+        jLabel9.setText("Valor del pastel:");
+
+        jLabel10.setText("Abono:");
+
+        jLabel11.setText("Saldo:");
+
+        jLabel12.setText("Fecha de Entrega:");
+
+        jButton6.setText("Cancelar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Aceptar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,6 +145,12 @@ public class Despachos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
+=======
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+>>>>>>> ventas
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(jButton1)
@@ -138,18 +187,28 @@ public class Despachos extends javax.swing.JFrame {
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel12))
                                 .addGap(0, 0, Short.MAX_VALUE)))
+<<<<<<< HEAD
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(157, 157, 157))))
+=======
+                        .addContainerGap())))
+>>>>>>> ventas
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+=======
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+>>>>>>> ventas
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jButton1)
