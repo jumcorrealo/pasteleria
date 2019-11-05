@@ -1,0 +1,1 @@
+cambiar nombre de despacho por pedido y siempre recordar que el depacho es la salida y el pedido el ingreso
