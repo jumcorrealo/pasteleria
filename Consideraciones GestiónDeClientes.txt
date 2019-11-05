@@ -1,0 +1,7 @@
+consideraciones:
+
+1. hay 2 frames dentro de FronteraAdministrativo: 
+    Cliente Existente: muestra los datos de los clientes que existen.
+    Nuevo Cliente: toma los datos de los nuevos clientes que se van a registrar.
+
+recuerde hacer todos los push al branch "gestion de clientes"
