@@ -29,11 +29,28 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+<<<<<<< HEAD:ProyectoPasteleríaPOST/src/Frontera/Inicio.java
+=======
+        jButton1.setText("Ventas");
+
+        jButton2.setText("Administrativo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+>>>>>>> master:ProyectoPasteleríaPOST/src/Frontera/inicio.java
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:ProyectoPasteleríaPOST/src/Frontera/Inicio.java
             .addGap(0, 400, Short.MAX_VALUE)
+=======
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> master:ProyectoPasteleríaPOST/src/Frontera/inicio.java
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
