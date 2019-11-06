@@ -14,6 +14,7 @@ public class RealizarPedidos extends javax.swing.JFrame {
    
     public RealizarPedidos() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
