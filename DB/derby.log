@@ -1,0 +1,31 @@
+Thu Nov 07 18:31:34 COT 2019 : Servidor de red Apache Derby: Se ha iniciado 10.14.2.0 - (1828579) y está listo para aceptar las conexiones en el puerto 1527
+----------------------------------------------------------------
+Thu Nov 07 18:31:35 COT 2019:
+ Iniciando instancia a816c00e-016e-4835-7b08-ffffad88a463 de Derby, versión The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): 
+en el directorio de base de datos C:\Users\enano\Documents\proyectoPasteleria\pasteleria\DB\Pasteleria con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_231/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_231-b11
+user.dir=C:\Program Files\Java\jdk1.8.0_231\db
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\enano\Documents\proyectoPasteleria\pasteleria\DB
+Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Nov 07 18:31:43 COT 2019:
+Cerrando la instancia a816c00e-016e-4835-7b08-ffffad88a463 en el directorio de base de datos C:\Users\enano\Documents\proyectoPasteleria\pasteleria\DB\Pasteleria con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Thu Nov 07 18:31:44 COT 2019 Thread[DRDAConnThread_3,5,main] (DATABASE = Pasteleria), (DRDAID = {2}), Cierre de la base de datos 'Pasteleria'.
+----------------------------------------------------------------
+Thu Nov 07 18:43:14 COT 2019:
+ Iniciando instancia 6ede40af-016e-4835-7b08-ffffad88a463 de Derby, versión The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): 
+en el directorio de base de datos C:\Users\enano\Documents\proyectoPasteleria\pasteleria\DB\Pasteleria con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_231/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_231-b11
+user.dir=C:\Program Files\Java\jdk1.8.0_231\db
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\enano\Documents\proyectoPasteleria\pasteleria\DB
+Cargador de clases de base de datos iniciado - derby.database.classpath=''

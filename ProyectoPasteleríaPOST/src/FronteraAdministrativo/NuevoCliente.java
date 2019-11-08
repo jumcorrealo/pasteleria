@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package FronteraAdministrativo;
-import Entidad.*;
-import Control.*;
+import Entidad.Cliente;
+import Control.ValidarRegistroC;
 /**
  *
  * @author Home
@@ -14,7 +14,6 @@ public class NuevoCliente extends javax.swing.JFrame {
     /**
      * Creates new form NuevoCliente
      */
-    public Sistema sistema = GestionDeClientes.sistema;
     public NuevoCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -35,7 +34,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         telefonoTx = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        direccionTx = new javax.swing.JTextField();
+        casaTx = new javax.swing.JTextField();
         salidaLb = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -54,15 +53,15 @@ public class NuevoCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Nombre Completo");
 
         jLabel2.setText("Teléfono");
 
-        jLabel3.setText("Dirección:");
+        jLabel3.setText("Casa");
 
-        direccionTx.addActionListener(new java.awt.event.ActionListener() {
+        casaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionTxActionPerformed(evt);
+                casaTxActionPerformed(evt);
             }
         });
 
@@ -90,7 +89,7 @@ public class NuevoCliente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nombreTx, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                             .addComponent(telefonoTx)
-                            .addComponent(direccionTx))
+                            .addComponent(casaTx))
                         .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,7 +112,7 @@ public class NuevoCliente extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(direccionTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(casaTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -131,23 +130,17 @@ public class NuevoCliente extends javax.swing.JFrame {
         Cliente cliente = new Cliente();
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
-        cliente.setDireccion(direccionTx.getText());
+        cliente.setCasa(casaTx.getText());
         ValidarRegistroC validarR = new ValidarRegistroC();
         salidaLb.setText(validarR.textoSalida(cliente));
-        if(validarR.usuarioUnico(cliente)==true){
-            sistema.getClientes().add(cliente);
-        }
-        for(int i=0;i<sistema.getClientes().size();i++){
-            System.out.println(sistema.getClientes().get(i).getNombre());
-        }
         GestionDeClientes volver = new GestionDeClientes();
         volver.setVisible(true);
         dispose();
     }//GEN-LAST:event_terminarActionPerformed
 
-    private void direccionTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTxActionPerformed
+    private void casaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaTxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_direccionTxActionPerformed
+    }//GEN-LAST:event_casaTxActionPerformed
 
     private void nombreTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxActionPerformed
         // TODO add your handling code here:
@@ -195,7 +188,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField direccionTx;
+    private javax.swing.JTextField casaTx;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
