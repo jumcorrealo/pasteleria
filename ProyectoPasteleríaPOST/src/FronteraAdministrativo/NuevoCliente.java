@@ -6,6 +6,9 @@
 package FronteraAdministrativo;
 import Entidad.*;
 import Control.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 /**
  *
  * @author Home
@@ -15,6 +18,8 @@ public class NuevoCliente extends javax.swing.JFrame {
      * Creates new form NuevoCliente
      */
     public Sistema sistema = GestionDeClientes.sistema;
+    private int counter = 1;
+    
     public NuevoCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -35,7 +40,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         telefonoTx = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        direccionTx = new javax.swing.JTextField();
+        casaTx = new javax.swing.JTextField();
         salidaLb = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -54,15 +59,15 @@ public class NuevoCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Nombre Completo");
 
         jLabel2.setText("Teléfono");
 
-        jLabel3.setText("Dirección:");
+        jLabel3.setText("Casa");
 
-        direccionTx.addActionListener(new java.awt.event.ActionListener() {
+        casaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionTxActionPerformed(evt);
+                casaTxActionPerformed(evt);
             }
         });
 
@@ -78,31 +83,29 @@ public class NuevoCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nombreTx, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(telefonoTx)
-                            .addComponent(direccionTx))
-                        .addGap(32, 32, 32))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(salidaLb, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(terminar)
-                        .addGap(49, 49, 49))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(salidaLb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                        .addComponent(terminar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nombreTx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(telefonoTx, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(casaTx, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -113,14 +116,14 @@ public class NuevoCliente extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(direccionTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                    .addComponent(casaTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(salidaLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(terminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jButton1))
-                .addGap(41, 41, 41))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -128,11 +131,11 @@ public class NuevoCliente extends javax.swing.JFrame {
     
     private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
         // TODO add your handling code here:
-        Cliente cliente = new Cliente();
+        Entidad.Cliente cliente = new Entidad.Cliente();
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
-        cliente.setDireccion(direccionTx.getText());
-        ValidarRegistroC validarR = new ValidarRegistroC();
+        cliente.setDireccion(casaTx.getText());
+        GestionCliente validarR = new GestionCliente();
         salidaLb.setText(validarR.textoSalida(cliente));
         if(validarR.usuarioUnico(cliente)==true){
             sistema.getClientes().add(cliente);
@@ -140,14 +143,21 @@ public class NuevoCliente extends javax.swing.JFrame {
         for(int i=0;i<sistema.getClientes().size();i++){
             System.out.println(sistema.getClientes().get(i).getNombre());
         }
-        GestionDeClientes volver = new GestionDeClientes();
-        volver.setVisible(true);
-        dispose();
+        Timer timer = new Timer(1000, (ActionEvent e) -> {
+            if(counter != 0) {
+                counter--;
+                GestionDeClientes volver = new GestionDeClientes();
+                volver.setVisible(true);
+                dispose();
+            }
+        });
+        timer.start();
+        if(counter == 0) timer.stop();
     }//GEN-LAST:event_terminarActionPerformed
 
-    private void direccionTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTxActionPerformed
+    private void casaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaTxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_direccionTxActionPerformed
+    }//GEN-LAST:event_casaTxActionPerformed
 
     private void nombreTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxActionPerformed
         // TODO add your handling code here:
@@ -195,7 +205,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField direccionTx;
+    private javax.swing.JTextField casaTx;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

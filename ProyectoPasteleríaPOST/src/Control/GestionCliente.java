@@ -5,17 +5,21 @@
  */
 package Control;
 import Entidad.*;
-import Frontera.*;
-import FronteraAdministrativo.*;
+import FronteraAdministrativo.GestionDeClientes;
 /**
  *
  * @author andre
  */
-public class ValidarRegistroC {
+public class GestionCliente {
     public static Sistema sistema = GestionDeClientes.sistema;
-    public ValidarRegistroC() {
+    public GestionCliente() {
     }
     
+    /**
+     *
+     * @param cliente
+     * @return
+     */
     public boolean usuarioUnico(Cliente cliente){
         int i,k,j,n;
         n = sistema.getClientes().size();
@@ -28,13 +32,16 @@ public class ValidarRegistroC {
     return true;
     }
     
+    /**
+     *
+     * @param cliente
+     * @return
+     */
     public String textoSalida(Cliente cliente){
         if(usuarioUnico(cliente)== false){
-        return "Este usuario ya existe";
+            return "Este usuario ya existe";
         }else{
-        return "Registro con exito";
+            return "Registro con exito";
         }
-    }
-    
-    
+    }   
 }
