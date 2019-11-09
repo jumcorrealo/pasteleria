@@ -39,7 +39,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         telefonoTx = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        direccionTx = new javax.swing.JTextField();
+        casaTx = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -90,10 +90,10 @@ public class NuevoCliente extends javax.swing.JFrame {
 
         jLabel3.setText("Dirección:");
 
-        direccionTx.setBorder(null);
-        direccionTx.addActionListener(new java.awt.event.ActionListener() {
+        casaTx.setBorder(null);
+        casaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                direccionTxActionPerformed(evt);
+                casaTxActionPerformed(evt);
             }
         });
 
@@ -135,7 +135,7 @@ public class NuevoCliente extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(terminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(direccionTx)
+                    .addComponent(casaTx)
                     .addComponent(nombreTx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(telefonoTx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jLabel2)
@@ -165,7 +165,7 @@ public class NuevoCliente extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(direccionTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(casaTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -198,9 +198,9 @@ public class NuevoCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void direccionTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionTxActionPerformed
+    private void casaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaTxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_direccionTxActionPerformed
+    }//GEN-LAST:event_casaTxActionPerformed
 
     private void nombreTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxActionPerformed
         // TODO add your handling code here:
@@ -211,7 +211,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         Cliente cliente = new Cliente();
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
-        cliente.setDireccion(direccionTx.getText());
+        cliente.setDireccion(casaTx.getText());
         ValidarRegistroC validarR = new ValidarRegistroC();
         //salidaLb.setText(validarR.textoSalida(cliente));
         if(validarR.usuarioUnico(cliente)==true){
@@ -281,7 +281,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField direccionTx;
+    private javax.swing.JTextField casaTx;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
