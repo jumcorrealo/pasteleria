@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package FronteraAdministrativo;
-import Entidad.*;
 /**
  *
  * @author Home
  */
 public class GestionDeClientes extends javax.swing.JFrame {
-    public static Sistema sistema = new Sistema();
     /**
      * Creates new form GestionDeClientes
      */

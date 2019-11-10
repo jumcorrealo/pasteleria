@@ -23,7 +23,7 @@ public class ClienteExistente extends javax.swing.JFrame {
     public ClienteExistente() {
         initComponents();
         modeloLista = new DefaultListModel();
-        ListC.setModel(modeloLista);
+        listName.setModel(modeloLista);
         agregarDatos();
         this.setLocationRelativeTo(null);
     }
@@ -37,6 +37,7 @@ public class ClienteExistente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,15 +50,10 @@ public class ClienteExistente extends javax.swing.JFrame {
         actualizarButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listName = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        ListC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ListCMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(ListC);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
@@ -176,51 +172,48 @@ public class ClienteExistente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        listName.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        listName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listNameMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listName);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(20, 20, 20)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ListCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCMouseClicked
-        String selected = ListC.getSelectedValue();
-        nombreS.setText(selected);
-         for(Cliente cliente : clientes){
-             if(selected.hashCode() == cliente.getNombre().hashCode()){
-                casaS.setText(cliente.getCasa());
-                telefonoS.setText(cliente.getTelefono());
-                puntajeS.setText(cliente.getPuntaje() + "");
-             }
-         }
-    }//GEN-LAST:event_ListCMouseClicked
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         GestionDeClientes volver = new GestionDeClientes();
@@ -249,6 +242,21 @@ public class ClienteExistente extends javax.swing.JFrame {
     private void casaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_casaSActionPerformed
+
+    private void listNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listNameMouseClicked
+        String selected = listName.getSelectedValue();
+        nombreS.setText(selected);
+        nombreS.setEditable(true);
+        casaS.setEditable(true);
+        telefonoS.setEditable(true);
+         for(Cliente cliente : clientes){
+             if(selected.hashCode() == cliente.getNombre().hashCode()){
+                casaS.setText(cliente.getCasa());
+                telefonoS.setText(cliente.getTelefono());
+                puntajeS.setText(cliente.getPuntaje() + "");
+             }
+         }
+    }//GEN-LAST:event_listNameMouseClicked
 
     /**
      * @param args the command line arguments
@@ -290,7 +298,6 @@ public class ClienteExistente extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ListC;
     private javax.swing.JButton actualizarButton;
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField casaS;
@@ -301,7 +308,8 @@ public class ClienteExistente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listName;
     private javax.swing.JTextField nombreS;
     private javax.swing.JLabel puntajeS;
     private javax.swing.JTextField telefonoS;

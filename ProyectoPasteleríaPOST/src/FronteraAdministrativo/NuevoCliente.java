@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package FronteraAdministrativo;
-import Entidad.Cliente;
 import Control.GestionCliente;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
@@ -88,10 +87,10 @@ public class NuevoCliente extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(80, 80, 80)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(salidaLb, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(salidaLb, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                         .addComponent(terminar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -135,7 +134,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         cliente.setCasa(casaTx.getText());
         GestionCliente validarR = new GestionCliente();
         salidaLb.setText(validarR.textoSalida(cliente));
-        Timer timer = new Timer(1000, (ActionEvent e) -> {
+        Timer timer = new Timer(2000, (ActionEvent e) -> {
             if(counter != 0) {
                 counter--;
                 GestionDeClientes volver = new GestionDeClientes();

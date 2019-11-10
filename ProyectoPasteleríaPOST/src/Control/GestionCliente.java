@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author andre
  */
 public class GestionCliente {
+    
     private final ClienteJpaDAO clienteJpaDAO = new ClienteJpaDAO();
     
     public GestionCliente() {
@@ -20,8 +21,9 @@ public class GestionCliente {
     public boolean usuarioUnico(Cliente cliente){
         ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
         for(Cliente c : list){
-            if(c.getNombre().hashCode() == cliente.getNombre().hashCode()){
-                if(c.getNombre().equals(cliente.getNombre())) return false;
+            if(c.getNombre().toLowerCase().hashCode() == cliente.getNombre().toLowerCase().hashCode()){
+                System.out.println(c.getNombre().toLowerCase().hashCode() + " " + cliente.getNombre().toLowerCase().hashCode());
+                if(c.getNombre().toLowerCase().equals(cliente.getNombre().toLowerCase())) return false;
             }
         }
         clienteJpaDAO.create(cliente);
