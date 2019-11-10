@@ -46,7 +46,7 @@ public class ClienteExistente extends javax.swing.JFrame {
         puntajeS = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListC = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
         nombreS = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,10 +66,10 @@ public class ClienteExistente extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ListC);
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelarActionPerformed(evt);
             }
         });
 
@@ -95,7 +95,7 @@ public class ClienteExistente extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jButton1)
+                .addComponent(cancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,7 +123,7 @@ public class ClienteExistente extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(cancelar)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -142,11 +142,11 @@ public class ClienteExistente extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_ListCMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         GestionDeClientes volver = new GestionDeClientes();
         volver.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,8 +191,8 @@ public class ClienteExistente extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListC;
+    private javax.swing.JButton cancelar;
     private javax.swing.JLabel casaS;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
