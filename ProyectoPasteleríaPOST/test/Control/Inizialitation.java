@@ -40,7 +40,7 @@ public class Inizialitation {
 
     @Test
     public void initData() {
-        ValidarRegistroC registroC = new ValidarRegistroC();
+        GestionCliente registroC = new GestionCliente();
         Cliente c = new Cliente();
         c.setNombre("Maria");
         c.setTelefono("1234");

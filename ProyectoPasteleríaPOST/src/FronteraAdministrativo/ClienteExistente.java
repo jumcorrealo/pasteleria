@@ -5,7 +5,6 @@
  */
 package FronteraAdministrativo;
 import Entidad.Cliente;
-import java.util.ArrayList;
 import DAO.ClienteJpaDAO;
 import java.util.List;
 import javax.swing.DefaultListModel;

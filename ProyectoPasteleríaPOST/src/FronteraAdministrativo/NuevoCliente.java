@@ -5,7 +5,9 @@
  */
 package FronteraAdministrativo;
 import Entidad.Cliente;
-import Control.ValidarRegistroC;
+import Control.GestionCliente;
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
 /**
  *
  * @author Home
@@ -14,6 +16,8 @@ public class NuevoCliente extends javax.swing.JFrame {
     /**
      * Creates new form NuevoCliente
      */
+    private static int counter = 1;
+    
     public NuevoCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -131,11 +135,18 @@ public class NuevoCliente extends javax.swing.JFrame {
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
         cliente.setCasa(casaTx.getText());
-        ValidarRegistroC validarR = new ValidarRegistroC();
+        GestionCliente validarR = new GestionCliente();
         salidaLb.setText(validarR.textoSalida(cliente));
-        GestionDeClientes volver = new GestionDeClientes();
-        volver.setVisible(true);
-        dispose();
+        Timer timer = new Timer(1000, (ActionEvent e) -> {
+            if(counter != 0) {
+                counter--;
+                GestionDeClientes volver = new GestionDeClientes();
+                volver.setVisible(true);
+                dispose();
+            }
+        });
+       timer.start();
+       if(counter == 0) timer.stop();
     }//GEN-LAST:event_terminarActionPerformed
 
     private void casaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaTxActionPerformed
@@ -180,10 +191,8 @@ public class NuevoCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NuevoCliente().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NuevoCliente().setVisible(true);
         });
     }
 

@@ -11,10 +11,10 @@ import java.util.ArrayList;
  *
  * @author andre
  */
-public class ValidarRegistroC {
+public class GestionCliente {
     private final ClienteJpaDAO clienteJpaDAO = new ClienteJpaDAO();
     
-    public ValidarRegistroC() {
+    public GestionCliente() {
     }
     
     public boolean usuarioUnico(Cliente cliente){
