@@ -5,7 +5,7 @@
  */
 package FronteraAdministrativo;
 import Entidad.Cliente;
-import DAO.ClienteJpaDAO;
+import DAO.ClienteDAO;
 import java.util.List;
 import javax.swing.DefaultListModel;
 /**
@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  */
 public class ClienteExistente extends javax.swing.JFrame {
     
-    private static final ClienteJpaDAO cjdao = new ClienteJpaDAO();
+    private static final ClienteDAO cjdao = new ClienteDAO();
     private static final List<Cliente> clientes = cjdao.findClienteEntities();
     private static DefaultListModel modeloLista;
     /**
@@ -156,9 +156,9 @@ public class ClienteExistente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(actualizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(actualizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(eliminarButton))
         );
         jPanel2Layout.setVerticalGroup(

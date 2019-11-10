@@ -5,7 +5,7 @@
  */
 package Control;
 import Entidad.Cliente;
-import DAO.ClienteJpaDAO;
+import DAO.ClienteDAO;
 import java.util.ArrayList;
 /**
  *
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class GestionCliente {
     
-    private final ClienteJpaDAO clienteJpaDAO = new ClienteJpaDAO();
+    private final ClienteDAO clienteJpaDAO = new ClienteDAO();
     
     public GestionCliente() {
     }

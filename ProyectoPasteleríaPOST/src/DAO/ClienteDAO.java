@@ -20,11 +20,11 @@ import javax.persistence.criteria.Root;
  *
  * @author enano
  */
-public class ClienteJpaDAO implements Serializable {
+public class ClienteDAO implements Serializable {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistence");
 
-    public ClienteJpaDAO() {
+    public ClienteDAO() {
     }
     
     public EntityManager getEntityManager() {
