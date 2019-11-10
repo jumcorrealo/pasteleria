@@ -44,7 +44,7 @@ public class GestionCliente {
     }
     
     public String upDateClient(Cliente cliente) {
-        return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se puedo Actualizar";
+        return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
     }
     
     public List<Cliente> allClients() {
