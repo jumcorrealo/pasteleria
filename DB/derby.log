@@ -1,7 +1,7 @@
-Sat Nov 09 23:07:27 COT 2019 : Servidor de red Apache Derby: Se ha iniciado 10.14.2.0 - (1828579) y está listo para aceptar las conexiones en el puerto 1527
+Sun Nov 10 11:40:58 COT 2019 : Servidor de red Apache Derby: Se ha iniciado 10.14.2.0 - (1828579) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Sat Nov 09 23:07:28 COT 2019:
- Iniciando instancia a816c00e-016e-537e-c39e-ffffad88a463 de Derby, versión The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): 
+Sun Nov 10 11:41:00 COT 2019:
+ Iniciando instancia a816c00e-016e-5630-a1f4-ffffad88a463 de Derby, versión The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): 
 en el directorio de base de datos C:\Users\enano\Documents\proyectoPasteleria\pasteleria\DB\Pasteleria con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/C:/Program%20Files/Java/jdk1.8.0_231/db/lib/derby.jar
 java.vendor=Oracle Corporation

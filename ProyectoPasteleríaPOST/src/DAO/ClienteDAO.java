@@ -45,13 +45,15 @@ public class ClienteDAO implements Serializable {
         }
     }
 
-    public void edit(Cliente cliente) {
+    public boolean edit(Cliente cliente) {
         EntityManager em = null;
+        boolean result = false;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             cliente = em.merge(cliente);
             em.getTransaction().commit();
+            result = true;
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
@@ -66,6 +68,7 @@ public class ClienteDAO implements Serializable {
                 em.close();
             }
         }
+        return result;
     }
 
     public boolean destroy(Integer id) {

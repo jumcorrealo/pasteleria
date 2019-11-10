@@ -7,6 +7,7 @@ package Control;
 import Entidad.Cliente;
 import DAO.ClienteDAO;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author andre
@@ -38,5 +39,20 @@ public class GestionCliente {
         }
     }
     
+    public String deleteClient(Cliente cliente) {
+        return clienteJpaDAO.destroy(cliente.getId())? "Cliente Eliminado" : "No se Encontro el Cliente";
+    }
     
+    public String upDateClient(Cliente cliente) {
+        return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se puedo Actualizar";
+    }
+    
+    public List<Cliente> allClients() {
+        return clienteJpaDAO.findClienteEntities();
+    }
+    
+    public void isFrequentClient(Cliente cliente) {
+        //TODO Los clientes se clasifican por medio de la cantidad de pedidos
+        //Que ha realizado por medio de un puntaje de tres estrellas recibiendo un incentivo en descuentos
+    }
 }

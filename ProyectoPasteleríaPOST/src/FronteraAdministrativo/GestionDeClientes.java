@@ -14,7 +14,6 @@ public class GestionDeClientes extends javax.swing.JFrame {
      */
     public GestionDeClientes() {
         initComponents();
-        crearclientes();
         this.setLocationRelativeTo(null);
     }
 
@@ -104,16 +103,9 @@ public class GestionDeClientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionDeClientes().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GestionDeClientes().setVisible(true);
         });
-    }
-    
-    public void crearclientes(){
-       
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

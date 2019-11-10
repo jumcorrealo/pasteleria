@@ -5,26 +5,28 @@
  */
 package FronteraAdministrativo;
 import Entidad.Cliente;
-import DAO.ClienteDAO;
+import Control.GestionCliente;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Home
  */
 public class ClienteExistente extends javax.swing.JFrame {
     
-    private static final ClienteDAO cjdao = new ClienteDAO();
-    private static final List<Cliente> clientes = cjdao.findClienteEntities();
+    private static final GestionCliente gc = new GestionCliente();
+    private static  List<Cliente> clientes = gc.allClients();
     private static DefaultListModel modeloLista;
+    private static int posList = -1;
     /**
      * Creates new form ClienteExistente
      */
     public ClienteExistente() {
         initComponents();
         modeloLista = new DefaultListModel();
-        listName.setModel(modeloLista);
         agregarDatos();
+        listName.setModel(modeloLista);
         this.setLocationRelativeTo(null);
     }
   
@@ -54,6 +56,11 @@ public class ClienteExistente extends javax.swing.JFrame {
         listName = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
@@ -100,7 +107,7 @@ public class ClienteExistente extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(nombreS)
                     .addComponent(telefonoS, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(casaS)
                     .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -113,18 +120,18 @@ public class ClienteExistente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nombreS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(casaS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(telefonoS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(11, 11, 11))
         );
 
@@ -156,9 +163,9 @@ public class ClienteExistente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(actualizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(eliminarButton))
         );
         jPanel2Layout.setVerticalGroup(
@@ -194,7 +201,7 @@ public class ClienteExistente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
@@ -222,13 +229,41 @@ public class ClienteExistente extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void actualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarButtonActionPerformed
+        if(posList == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccone un Cliente");
+        }else {
+            Cliente cliente = clientes.get(posList);
+            cliente.setNombre(nombreS.getText());
+            cliente.setCasa(casaS.getText());
+            cliente.setTelefono(telefonoS.getText());
+            JOptionPane.showMessageDialog(null, gc.upDateClient(cliente));
+            clientes = gc.allClients();
+            modeloLista.removeAllElements();
+            agregarDatos();
+            posList = -1;
+        }
         nombreS.setEditable(false);
         telefonoS.setEditable(false);
         casaS.setEditable(false);
     }//GEN-LAST:event_actualizarButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-        // TODO add your handling code here:
+        if(posList == -1){
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente");
+        }else {
+            Cliente cliente = clientes.get(posList);
+            JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
+            modeloLista.remove(posList);
+            clientes.addAll(gc.allClients());
+            nombreS.setText("");
+            casaS.setText("");
+            telefonoS.setText("");
+            puntajeS.setText("");
+            posList = -1;
+        }
+        nombreS.setEditable(false);
+        casaS.setEditable(false);
+        telefonoS.setEditable(false);
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
     private void nombreSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSActionPerformed
@@ -245,18 +280,22 @@ public class ClienteExistente extends javax.swing.JFrame {
 
     private void listNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listNameMouseClicked
         String selected = listName.getSelectedValue();
+        posList = listName.getSelectedIndex();
         nombreS.setText(selected);
         nombreS.setEditable(true);
         casaS.setEditable(true);
         telefonoS.setEditable(true);
-         for(Cliente cliente : clientes){
-             if(selected.hashCode() == cliente.getNombre().hashCode()){
-                casaS.setText(cliente.getCasa());
-                telefonoS.setText(cliente.getTelefono());
-                puntajeS.setText(cliente.getPuntaje() + "");
-             }
-         }
+        casaS.setText(clientes.get(posList).getCasa());
+        telefonoS.setText(clientes.get(posList).getTelefono());
+        puntajeS.setText(clientes.get(posList).getPuntaje() + "");
     }//GEN-LAST:event_listNameMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        clientes.clear();
+        clientes.addAll(gc.allClients());
+        modeloLista.removeAllElements();
+        agregarDatos();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
