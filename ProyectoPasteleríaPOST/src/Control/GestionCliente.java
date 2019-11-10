@@ -4,44 +4,37 @@
  * and open the template in the editor.
  */
 package Control;
-import Entidad.*;
-import FronteraAdministrativo.GestionDeClientes;
+import Entidad.Cliente;
+import DAO.ClienteJpaDAO;
+import java.util.ArrayList;
 /**
  *
  * @author andre
  */
 public class GestionCliente {
-    public static Sistema sistema = GestionDeClientes.sistema;
+    private final ClienteJpaDAO clienteJpaDAO = new ClienteJpaDAO();
+    
     public GestionCliente() {
     }
     
-    /**
-     *
-     * @param cliente
-     * @return
-     */
     public boolean usuarioUnico(Cliente cliente){
-        int i,k,j,n;
-        n = sistema.getClientes().size();
-        System.out.println("-->"+n);
-        for(i=0;i<n;i++){
-            if(cliente.getNombre().equals(sistema.getClientes().get(i).getNombre())){
-                return false;
+        ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
+        for(Cliente c : list){
+            if(c.getNombre().hashCode() == cliente.getNombre().hashCode()){
+                if(c.getNombre().equals(cliente.getNombre())) return false;
             }
-        }     
-    return true;
+        }
+        clienteJpaDAO.create(cliente);
+        return true;
     }
     
-    /**
-     *
-     * @param cliente
-     * @return
-     */
     public String textoSalida(Cliente cliente){
-        if(usuarioUnico(cliente)== false){
+        if(!usuarioUnico(cliente)){
             return "Este usuario ya existe";
         }else{
             return "Registro con exito";
         }
-    }   
+    }
+    
+    
 }

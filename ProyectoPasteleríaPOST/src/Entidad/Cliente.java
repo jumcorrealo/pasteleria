@@ -5,19 +5,37 @@
  */
 package Entidad;
 
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  *
  * @author andre
  */
-public class Cliente {
+@Entity
+@Table(name = "cliente")
+//@NamedQueries({
+//    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM cliente c")})
+public class Cliente implements Serializable {
     private String nombre; 
     private String telefono;
-    private String direccion;
+    private String Casa;
     //a mayor puntaje mayor prioridad
     private int puntaje; 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
     public Cliente() {
         this.puntaje = 0;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -36,12 +54,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getCasa() {
+        return Casa;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setCasa(String casa) {
+        this.Casa = casa;
     }
 
     public int getPuntaje() {

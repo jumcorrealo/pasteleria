@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package FronteraAdministrativo;
-import Entidad.*;
-
-import java.util.ArrayList;
+import Entidad.Cliente;
+import DAO.ClienteJpaDAO;
+import java.util.List;
 import javax.swing.DefaultListModel;
 /**
  *
@@ -14,9 +14,9 @@ import javax.swing.DefaultListModel;
  */
 public class ClienteExistente extends javax.swing.JFrame {
     
-    public Sistema sistema = GestionDeClientes.sistema;
-    public ArrayList<String> clientes = new ArrayList<>();
-    DefaultListModel modeloLista;
+    private static final ClienteJpaDAO cjdao = new ClienteJpaDAO();
+    private static final List<Cliente> clientes = cjdao.findClienteEntities();
+    private static DefaultListModel modeloLista;
     /**
      * Creates new form ClienteExistente
      */
@@ -37,9 +37,6 @@ public class ClienteExistente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ListC = new javax.swing.JList<>();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -214,19 +211,13 @@ public class ClienteExistente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCMouseClicked
-        // TODO add your handling code here:
-        int pos = ListC.getSelectedIndex();
-        nombreS.setEditable(true);
-        telefonoS.setEditable(true);
-        casaS.setEditable(true);
-        nombreS.setText((String)modeloLista.get(pos));
-        int i,n;
-         n = sistema.getClientes().size();
-         for(i=0;i<n;i++){
-             if(nombreS.getText().equals(sistema.getClientes().get(i).getNombre())){
-                casaS.setText(sistema.getClientes().get(i).getDireccion());
-                telefonoS.setText(sistema.getClientes().get(i).getTelefono());
-                puntajeS.setText("" + sistema.getClientes().get(i).getPuntaje());
+        String selected = ListC.getSelectedValue();
+        nombreS.setText(selected);
+         for(Cliente cliente : clientes){
+             if(selected.hashCode() == cliente.getNombre().hashCode()){
+                casaS.setText(cliente.getCasa());
+                telefonoS.setText(cliente.getTelefono());
+                puntajeS.setText(cliente.getPuntaje() + "");
              }
          }
     }//GEN-LAST:event_ListCMouseClicked
@@ -292,12 +283,9 @@ public class ClienteExistente extends javax.swing.JFrame {
         });
     }
     
-    public void agregarDatos(){
-       
-        int i,n;
-        n = sistema.getClientes().size();
-        for(i=0;i<n;i++){
-            modeloLista.addElement(sistema.getClientes().get(i).getNombre());
+    public static void agregarDatos() {
+        for(Cliente cliente : clientes){
+            modeloLista.addElement(cliente.getNombre());
         }
     }
     

@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package FronteraAdministrativo;
-import Entidad.*;
-import Control.*;
+import Entidad.Cliente;
+import Control.GestionCliente;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.Timer;
 /**
  *
@@ -17,8 +16,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     /**
      * Creates new form NuevoCliente
      */
-    public Sistema sistema = GestionDeClientes.sistema;
-    private int counter = 1;
+    private static int counter = 1;
     
     public NuevoCliente() {
         initComponents();
@@ -134,15 +132,9 @@ public class NuevoCliente extends javax.swing.JFrame {
         Entidad.Cliente cliente = new Entidad.Cliente();
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
-        cliente.setDireccion(casaTx.getText());
+        cliente.setCasa(casaTx.getText());
         GestionCliente validarR = new GestionCliente();
         salidaLb.setText(validarR.textoSalida(cliente));
-        if(validarR.usuarioUnico(cliente)==true){
-            sistema.getClientes().add(cliente);
-        }
-        for(int i=0;i<sistema.getClientes().size();i++){
-            System.out.println(sistema.getClientes().get(i).getNombre());
-        }
         Timer timer = new Timer(1000, (ActionEvent e) -> {
             if(counter != 0) {
                 counter--;
@@ -151,8 +143,8 @@ public class NuevoCliente extends javax.swing.JFrame {
                 dispose();
             }
         });
-        timer.start();
-        if(counter == 0) timer.stop();
+       timer.start();
+       if(counter == 0) timer.stop();
     }//GEN-LAST:event_terminarActionPerformed
 
     private void casaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaTxActionPerformed
@@ -197,10 +189,8 @@ public class NuevoCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NuevoCliente().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NuevoCliente().setVisible(true);
         });
     }
 
