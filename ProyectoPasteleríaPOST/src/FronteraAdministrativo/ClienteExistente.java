@@ -78,6 +78,11 @@ public class ClienteExistente extends javax.swing.JFrame {
                 telefonoSActionPerformed(evt);
             }
         });
+        telefonoS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoSKeyTyped(evt);
+            }
+        });
 
         casaS.setEditable(false);
         casaS.addActionListener(new java.awt.event.ActionListener() {
@@ -85,11 +90,21 @@ public class ClienteExistente extends javax.swing.JFrame {
                 casaSActionPerformed(evt);
             }
         });
+        casaS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                casaSKeyTyped(evt);
+            }
+        });
 
         nombreS.setEditable(false);
         nombreS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreSActionPerformed(evt);
+            }
+        });
+        nombreS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreSKeyTyped(evt);
             }
         });
 
@@ -296,6 +311,21 @@ public class ClienteExistente extends javax.swing.JFrame {
         modeloLista.removeAllElements();
         agregarDatos();
     }//GEN-LAST:event_formWindowActivated
+
+    private void nombreSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreSKeyTyped
+        char c = evt.getKeyChar();
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();
+    }//GEN-LAST:event_nombreSKeyTyped
+
+    private void casaSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaSKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_casaSKeyTyped
+
+    private void telefonoSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoSKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_telefonoSKeyTyped
 
     /**
      * @param args the command line arguments

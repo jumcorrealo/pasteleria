@@ -93,6 +93,7 @@
     <Component class="javax.swing.JTextField" name="nombreTx">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nombreTxActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreTxKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -106,6 +107,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="telefonoTx">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telefonoTxKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -115,6 +119,7 @@
     <Component class="javax.swing.JTextField" name="casaTx">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="casaTxActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="casaTxKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="salidaLb">

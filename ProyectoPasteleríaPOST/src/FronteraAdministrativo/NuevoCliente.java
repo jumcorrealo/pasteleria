@@ -55,16 +55,32 @@ public class NuevoCliente extends javax.swing.JFrame {
                 nombreTxActionPerformed(evt);
             }
         });
+        nombreTx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTxKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Nombre Completo");
 
         jLabel2.setText("Teléfono");
+
+        telefonoTx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoTxKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Casa");
 
         casaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 casaTxActionPerformed(evt);
+            }
+        });
+        casaTx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                casaTxKeyTyped(evt);
             }
         });
 
@@ -159,6 +175,21 @@ public class NuevoCliente extends javax.swing.JFrame {
         volver.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void telefonoTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTxKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_telefonoTxKeyTyped
+
+    private void nombreTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTxKeyTyped
+        char c = evt.getKeyChar();
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();
+    }//GEN-LAST:event_nombreTxKeyTyped
+
+    private void casaTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaTxKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_casaTxKeyTyped
 
     /**
      * @param args the command line arguments

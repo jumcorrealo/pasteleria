@@ -15,24 +15,23 @@ import java.util.List;
 public class GestionCliente {
     
     private final ClienteDAO clienteJpaDAO = new ClienteDAO();
+    private ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
     
     public GestionCliente() {
     }
     
     public boolean usuarioUnico(Cliente cliente){
-        ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
         for(Cliente c : list){
             if(c.getNombre().toLowerCase().hashCode() == cliente.getNombre().toLowerCase().hashCode()){
-                System.out.println(c.getNombre().toLowerCase().hashCode() + " " + cliente.getNombre().toLowerCase().hashCode());
                 if(c.getNombre().toLowerCase().equals(cliente.getNombre().toLowerCase())) return false;
             }
         }
-        clienteJpaDAO.create(cliente);
         return true;
     }
     
     public String textoSalida(Cliente cliente){
         if(!usuarioUnico(cliente)){
+            clienteJpaDAO.create(cliente);
             return "Este usuario ya existe";
         }else{
             return "Registro con exito";
@@ -44,7 +43,10 @@ public class GestionCliente {
     }
     
     public String upDateClient(Cliente cliente) {
-        return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
+        if(usuarioUnico(cliente)){
+            return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
+        }
+        return "Nombre de Usuario Exixtente";
     }
     
     public List<Cliente> allClients() {

@@ -8,8 +8,6 @@ package Test;
 import Control.GestionCliente;
 import DAO.ClienteDAO;
 import Entidad.Cliente;
-import Entidad.Sistema;
-import FronteraAdministrativo.GestionDeClientes;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,12 +21,12 @@ import static org.junit.Assert.*;
  * @author Nicolas
  */
 public class JTest {
-    private GestionCliente validar = new GestionCliente();
-    private final String NOMBRES_REPETIDOS="Este usuario ya existe";
-    private final String CLIENTE_ACEPTADO="Registro con exito";
-    private final String CLIENTE_ELIMINADO="Cliente Eliminado";
-    private final String CLIENTE_ACTUALIZADO="Datos Actualizado";
-    private final String CLIENTE_NO_ACTUALIZADO="No se pudo Actualizar";
+    private final GestionCliente validar = new GestionCliente();
+    private final String NOMBRES_REPETIDOS = "Este usuario ya existe";
+    private final String CLIENTE_ACEPTADO = "Registro con exito";
+    private final String CLIENTE_ELIMINADO = "Cliente Eliminado";
+    private final String CLIENTE_ACTUALIZADO = "Datos Actualizado";
+    private final String NOMBRE_EXISTENTE = "Nombre de Usuario Exixtente";
 
     
     public JTest() {
@@ -79,27 +77,28 @@ public class JTest {
     }
 
     @Test
-     public void NombreRepetido() {
-         Cliente u= new Cliente();
+    public void NombreRepetido() {
+         Cliente u = new Cliente();
          u.setNombre("Juan Jose");
          u.setCasa("12");
          u.setTelefono("33");
          assertEquals(validar.textoSalida(u),NOMBRES_REPETIDOS);
          
-     }
-     @Test
-     public void Eliminar() {
-         Cliente u= new Cliente();
+    }
+    @Test
+    public void Eliminar() {
+         ClienteDAO cdao = new ClienteDAO();
+         Cliente u = new Cliente();
          u.setNombre("Juan");
          u.setCasa("12");
          u.setTelefono("33");
-         validar.usuarioUnico(u);
+         cdao.create(u);
          assertEquals(validar.deleteClient(u),CLIENTE_ELIMINADO);
          
-     }
-     @Test
-     public void Actualizar() {
-         Cliente u= new Cliente();
+    }
+    @Test
+    public void Actualizar() {
+         Cliente u = new Cliente();
          u.setNombre("Juan");
          u.setCasa("12");
          u.setTelefono("33");
@@ -107,25 +106,25 @@ public class JTest {
          u.setNombre("Eduardo");
          u.setTelefono("432");
          assertEquals(validar.upDateClient(u),CLIENTE_ACTUALIZADO);
-         /*
-         Cliente v= new Cliente();
+         
+         Cliente v = new Cliente();
          v.setNombre("Veronica");
          v.setCasa("12");
          v.setTelefono("33");
-         validar.usuarioUnico(v);
+         validar.textoSalida(v);
          v.setNombre("Sara");
          v.setTelefono("047");
-         assertEquals(validar.upDateClient(v),CLIENTE_NO_ACTUALIZADO);
-         */
-     }
-     @Test
-     public void DatosCorrectos() {
-         Cliente u= new Cliente();
+         assertEquals(validar.upDateClient(v),NOMBRE_EXISTENTE);
+         
+    }
+    @Test
+    public void DatosCorrectos() {
+         Cliente u = new Cliente();
          u.setNombre("Nicolas");
          u.setCasa("567");
          u.setTelefono("934");
          assertEquals(validar.textoSalida(u),CLIENTE_ACEPTADO);
-         Cliente v= new Cliente();
+         Cliente v = new Cliente();
          v.setNombre("Alejandra");
          v.setCasa("234");
          v.setTelefono("2348");
