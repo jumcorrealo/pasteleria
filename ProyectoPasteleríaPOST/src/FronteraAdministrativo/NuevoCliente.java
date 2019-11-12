@@ -6,6 +6,7 @@
 package FronteraAdministrativo;
 import Control.GestionCliente;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 /**
  *
@@ -88,6 +89,11 @@ public class NuevoCliente extends javax.swing.JFrame {
                 telefonoTxActionPerformed(evt);
             }
         });
+        telefonoTx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoTxKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Dirección:");
 
@@ -95,6 +101,11 @@ public class NuevoCliente extends javax.swing.JFrame {
         casaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 casaTxActionPerformed(evt);
+            }
+        });
+        casaTx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                casaTxKeyTyped(evt);
             }
         });
 
@@ -206,8 +217,8 @@ public class NuevoCliente extends javax.swing.JFrame {
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
         cliente.setCasa(casaTx.getText());
-        GestionCliente validarR = new GestionCliente();
-        //salidaLb.setText(validarR.textoSalida(cliente));
+        GestionCliente gestionC = new GestionCliente();
+        JOptionPane.showMessageDialog(null, gestionC.textoSalida(cliente));
         Timer timer = new Timer(2000, (ActionEvent e) -> {
             if(counter != 0) {
                 counter--;
@@ -244,11 +255,6 @@ public class NuevoCliente extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_telefonoTxKeyTyped
-
-    private void nombreTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTxKeyTyped
-        char c = evt.getKeyChar();
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) evt.consume();
-    }//GEN-LAST:event_nombreTxKeyTyped
 
     private void casaTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaTxKeyTyped
         char c = evt.getKeyChar();

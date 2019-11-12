@@ -8,6 +8,7 @@ import Entidad.Cliente;
 import DAO.ClienteDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 /**
  *
  * @author andre
@@ -15,26 +16,39 @@ import java.util.List;
 public class GestionCliente {
     
     private final ClienteDAO clienteJpaDAO = new ClienteDAO();
-    private ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
+    private final ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
     
     public GestionCliente() {
     }
     
-    public boolean usuarioUnico(Cliente cliente){
+    public boolean usuarioUnicoUpDate(Cliente cliente){
         for(Cliente c : list){
             if(c.getNombre().toLowerCase().hashCode() == cliente.getNombre().toLowerCase().hashCode()){
-                if(c.getNombre().toLowerCase().equals(cliente.getNombre().toLowerCase())) return false;
+                if(c.getNombre().toLowerCase().equals(cliente.getNombre().toLowerCase())) {
+                    if (!Objects.equals(c.getId(), cliente.getId())) {
+                        return false;
+                    }
+                }
             }
         }
         return true;
     }
     
+    public boolean usuarioUnico(Cliente cliente){
+        for(Cliente c : list){
+            if(c.getNombre().toLowerCase().hashCode() == cliente.getNombre().toLowerCase().hashCode()){
+                if(c.getNombre().toLowerCase().equals(cliente.getNombre().toLowerCase())) return true;
+            }
+        }
+        return false;
+    }
+    
     public String textoSalida(Cliente cliente){
         if(!usuarioUnico(cliente)){
             clienteJpaDAO.create(cliente);
-            return "Este usuario ya existe";
-        }else{
             return "Registro con exito";
+        }else{
+            return "Este usuario ya existe";
         }
     }
     
@@ -43,7 +57,7 @@ public class GestionCliente {
     }
     
     public String upDateClient(Cliente cliente) {
-        if(usuarioUnico(cliente)){
+        if(usuarioUnicoUpDate(cliente)){
             return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
         }
         return "Nombre de Usuario Exixtente";
