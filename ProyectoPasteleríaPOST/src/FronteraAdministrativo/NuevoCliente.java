@@ -78,33 +78,24 @@ public class NuevoCliente extends javax.swing.JFrame {
                 nombreTxActionPerformed(evt);
             }
         });
-        nombreTx.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombreTxKeyTyped(evt);
-            }
-        });
 
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Teléfono");
 
         telefonoTx.setBorder(null);
-        telefonoTx.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                telefonoTxKeyTyped(evt);
+        telefonoTx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonoTxActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Casa");
+        jLabel3.setText("Dirección:");
+
         casaTx.setBorder(null);
         casaTx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 casaTxActionPerformed(evt);
-            }
-        });
-        casaTx.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                casaTxKeyTyped(evt);
             }
         });
 
