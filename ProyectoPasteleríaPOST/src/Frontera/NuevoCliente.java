@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FronteraAdministrativo;
+package Frontera;
 import Control.GestionCliente;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;

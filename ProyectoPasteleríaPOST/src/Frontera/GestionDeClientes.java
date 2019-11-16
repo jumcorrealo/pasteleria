@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FronteraAdministrativo;
+package Frontera;
 import Control.*;
 import Entidad.*;
 import Frontera.Inicio;
-import administrativoFrontera.*;
 /**
  *
  * @author Home

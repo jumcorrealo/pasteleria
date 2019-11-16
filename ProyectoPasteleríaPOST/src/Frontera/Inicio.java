@@ -5,8 +5,6 @@
  */
 package Frontera;
 
-import administrativoFrontera.Administrativo;
-
 /**
  *
  * @author Home
