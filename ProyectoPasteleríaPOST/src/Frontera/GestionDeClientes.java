@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Frontera;
-import Control.*;
-import Entidad.*;
-import Frontera.Inicio;
 /**
  *
  * @author Home
