@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Frontera;
-
-import Frontera.Inicio;
-import Frontera.GestionDeClientes;
 /**
  *
  * @author Home
@@ -166,10 +163,8 @@ public class Administrativo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Administrativo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Administrativo().setVisible(true);
         });
     }
 
