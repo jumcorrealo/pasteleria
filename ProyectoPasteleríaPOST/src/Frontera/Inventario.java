@@ -38,6 +38,7 @@ public class Inventario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(40, 43, 40));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setLayout(null);
