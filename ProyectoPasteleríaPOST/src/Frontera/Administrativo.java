@@ -9,15 +9,24 @@ package Frontera;
  * @author Home
  */
 public class Administrativo extends javax.swing.JFrame {
-
+    public GestionDeCliente clientes = new GestionDeCliente();
+    private AdministrativoPanel adm = new AdministrativoPanel();
+  
     /**
      * Creates new form Administrativo
      */
     public Administrativo() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+            panelAdministrativoPrincipal.setVisible(false);
+            panelAdministrativoPrincipal.removeAll();
+            panelAdministrativoPrincipal.add(adm);
+            panelAdministrativoPrincipal.setVisible(true);
+        
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,25 +35,21 @@ public class Administrativo extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panelAdministrativoPrincipal1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        panelAdministrativoPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(40, 43, 40));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(null);
+        panelAdministrativoPrincipal1.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdministrativoPrincipal1.setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(77, 126, 168));
         jButton1.setText("Clientes");
@@ -53,8 +58,8 @@ public class Administrativo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
-        jButton1.setBounds(10, 574, 200, 113);
+        panelAdministrativoPrincipal1.add(jButton1);
+        jButton1.setBounds(180, 170, 200, 113);
 
         jButton2.setBackground(new java.awt.Color(77, 126, 168));
         jButton2.setText("Inventario");
@@ -63,13 +68,13 @@ public class Administrativo extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
-        jButton2.setBounds(216, 574, 200, 113);
+        panelAdministrativoPrincipal1.add(jButton2);
+        jButton2.setBounds(180, 330, 200, 113);
 
         jButton3.setBackground(new java.awt.Color(77, 126, 168));
         jButton3.setText("Estadísticas");
-        jPanel2.add(jButton3);
-        jButton3.setBounds(422, 574, 200, 113);
+        panelAdministrativoPrincipal1.add(jButton3);
+        jButton3.setBounds(180, 490, 200, 113);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +82,7 @@ public class Administrativo extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4);
+        panelAdministrativoPrincipal1.add(jButton4);
         jButton4.setBounds(10, 10, 80, 65);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
@@ -86,58 +91,58 @@ public class Administrativo extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5);
-        jButton5.setBounds(1040, 11, 80, 65);
+        panelAdministrativoPrincipal1.add(jButton5);
+        jButton5.setBounds(450, 10, 80, 65);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/stock-1863880_1280.jpg"))); // NOI18N
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1130, 700);
+        panelAdministrativoPrincipal1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 540, 720);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 1129;
-        gridBagConstraints.ipady = 697;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 10, 11, 10);
-        jPanel1.add(jPanel2, gridBagConstraints);
+        panelAdministrativoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdministrativoPrincipal.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelAdministrativoPrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelAdministrativoPrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GestionDeClientes clientes = new GestionDeClientes();
-        clientes.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Inicio volver = new Inicio();
-        volver.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Inventario inv = new Inventario();
         inv.setVisible(true);
-        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -178,7 +183,7 @@ public class Administrativo extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel panelAdministrativoPrincipal;
+    private javax.swing.JPanel panelAdministrativoPrincipal1;
     // End of variables declaration//GEN-END:variables
 }
