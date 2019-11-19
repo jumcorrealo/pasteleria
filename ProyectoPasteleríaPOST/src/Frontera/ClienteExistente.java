@@ -237,7 +237,16 @@ public class ClienteExistente extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setText("Buscar");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
@@ -377,6 +386,15 @@ public class ClienteExistente extends javax.swing.JFrame {
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_telefonoSKeyTyped
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        modeloLista.clear();
+        agregarDatos(gc.dynoSerch(jTextField1.getText()));
+    }//GEN-LAST:event_jTextField1KeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -408,6 +426,13 @@ public class ClienteExistente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new ClienteExistente().setVisible(true);
         });
+    }
+    
+    public static void agregarDatos(List<Cliente> clientes) {
+        for(Cliente cliente : clientes){
+            System.out.println(cliente.getNombre());
+            modeloLista.addElement(cliente.getNombre());
+        }
     }
     
     public static void agregarDatos() {
