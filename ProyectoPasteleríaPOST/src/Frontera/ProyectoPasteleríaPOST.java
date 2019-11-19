@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package Frontera;
-
+import Control.GestionCliente;
+import Entidad.Cliente;
+import java.util.List;
+        
 /**
  *
  * @author Home
@@ -16,6 +19,11 @@ public class ProyectoPasteleríaPOST {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        GestionCliente gc = new GestionCliente();
+        List<Cliente> list = gc.dynoSerch("an");
+        for (Cliente cliente : list) {
+            System.out.println(cliente.getNombre());
+        }
     }
     
 }

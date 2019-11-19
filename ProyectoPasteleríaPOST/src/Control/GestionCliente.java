@@ -15,8 +15,8 @@ import java.util.Objects;
  */
 public class GestionCliente {
     
-    private final ClienteDAO clienteJpaDAO = new ClienteDAO();
-    private final ArrayList<Cliente> list = new ArrayList<>(clienteJpaDAO.findClienteEntities());
+    private final ClienteDAO clienteDAO = new ClienteDAO();
+    private final ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
     public GestionCliente() {
     }
@@ -45,7 +45,7 @@ public class GestionCliente {
     
     public String textoSalida(Cliente cliente){
         if(!usuarioUnico(cliente)){
-            clienteJpaDAO.create(cliente);
+            clienteDAO.create(cliente);
             return "Registro con exito";
         }else{
             return "Este usuario ya existe";
@@ -53,22 +53,26 @@ public class GestionCliente {
     }
     
     public String deleteClient(Cliente cliente) {
-        return clienteJpaDAO.destroy(cliente.getId())? "Cliente Eliminado" : "No se Encontro el Cliente";
+        return clienteDAO.destroy(cliente.getId())? "Cliente Eliminado" : "No se Encontro el Cliente";
     }
     
     public String upDateClient(Cliente cliente) {
         if(usuarioUnicoUpDate(cliente)){
-            return clienteJpaDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
+            return clienteDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
         }
         return "Nombre de Usuario Exixtente";
     }
     
     public List<Cliente> allClients() {
-        return clienteJpaDAO.findClienteEntities();
+        return clienteDAO.findClienteEntities();
     }
     
     public void isFrequentClient(Cliente cliente) {
         //TODO Los clientes se clasifican por medio de la cantidad de pedidos
         //Que ha realizado por medio de un puntaje de tres estrellas recibiendo un incentivo en descuentos
+    }
+    
+    public List<Cliente> dynoSerch(String keyTyped){
+        return clienteDAO.dynoSerch(keyTyped);
     }
 }

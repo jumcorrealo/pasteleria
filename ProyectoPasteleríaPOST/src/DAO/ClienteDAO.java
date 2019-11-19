@@ -8,14 +8,8 @@ package DAO;
 import Entidad.Cliente;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
+import javax.persistence.*;
+import javax.persistence.criteria.*;
 /**
  *
  * @author enano
@@ -139,4 +133,18 @@ public class ClienteDAO implements Serializable {
         }
     }
     
+    public List<Cliente> dynoSerch(String key) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            StoredProcedureQuery procedureQuery =  em.createStoredProcedureQuery("dynoserch", Cliente.class);
+            procedureQuery.registerStoredProcedureParameter("_name", String.class, ParameterMode.IN);
+            procedureQuery.setParameter("_name", "%" + key + "%");
+            procedureQuery.execute();
+            em.getTransaction().commit();
+            return procedureQuery.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

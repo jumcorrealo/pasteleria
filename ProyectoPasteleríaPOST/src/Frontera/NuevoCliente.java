@@ -239,7 +239,7 @@ public class NuevoCliente extends javax.swing.JFrame {
         cliente.setCasa(casaTx.getText());
         GestionCliente gestionC = new GestionCliente();
         JOptionPane.showMessageDialog(null, gestionC.textoSalida(cliente));
-        Timer timer = new Timer(2000, (ActionEvent e) -> {
+        Timer timer = new Timer(100, (ActionEvent e) -> {
             if(counter != 0) {
                 counter--;
                 GestionDeClientes volver = new GestionDeClientes();
