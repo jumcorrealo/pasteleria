@@ -35,10 +35,11 @@ public class GestionDeCliente extends javax.swing.JPanel {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        GestionDeClienteReemplazo = new javax.swing.JPanel();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/sacher-cake-1280575_1280.jpg"))); // NOI18N
 
-        setLayout(new java.awt.GridLayout(1, 0));
+        setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(40, 43, 40));
         jPanel2.setLayout(null);
@@ -91,6 +92,9 @@ public class GestionDeCliente extends javax.swing.JPanel {
         jButton3.setBounds(120, 10, 80, 65);
 
         add(jPanel2);
+        jPanel2.setBounds(0, 0, 540, 720);
+        add(GestionDeClienteReemplazo);
+        GestionDeClienteReemplazo.setBounds(540, 0, 540, 720);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -120,6 +124,7 @@ public class GestionDeCliente extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel GestionDeClienteReemplazo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
