@@ -33,20 +33,20 @@ public class Administrativo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelAdministrativoReemplazo = new javax.swing.JPanel();
         panelAdministrativoPrincipal = new javax.swing.JPanel();
-        ClienteButton = new javax.swing.JButton();
-        InventarioButton = new javax.swing.JButton();
-        EstadisticasButton = new javax.swing.JButton();
-        VolverButton = new javax.swing.JButton();
-        CerrarButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        panelAdministrativoReemplazo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelAdministrativoReemplazo.setBackground(new java.awt.Color(255, 255, 255));
-        panelAdministrativoReemplazo.setLayout(new java.awt.BorderLayout());
+        panelAdministrativoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdministrativoPrincipal.setLayout(null);
 
         panelAdministrativoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         panelAdministrativoPrincipal.setLayout(null);
@@ -58,8 +58,8 @@ public class Administrativo extends javax.swing.JFrame {
                 ClienteButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(ClienteButton);
-        ClienteButton.setBounds(180, 170, 200, 113);
+        panelAdministrativoPrincipal.add(jButton1);
+        jButton1.setBounds(180, 170, 200, 113);
 
         InventarioButton.setBackground(new java.awt.Color(77, 126, 168));
         InventarioButton.setText("Inventario");
@@ -68,13 +68,13 @@ public class Administrativo extends javax.swing.JFrame {
                 InventarioButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(InventarioButton);
-        InventarioButton.setBounds(180, 330, 200, 113);
+        panelAdministrativoPrincipal.add(jButton2);
+        jButton2.setBounds(180, 330, 200, 113);
 
-        EstadisticasButton.setBackground(new java.awt.Color(77, 126, 168));
-        EstadisticasButton.setText("Estadísticas");
-        panelAdministrativoPrincipal.add(EstadisticasButton);
-        EstadisticasButton.setBounds(180, 490, 200, 113);
+        jButton3.setBackground(new java.awt.Color(77, 126, 168));
+        jButton3.setText("Estadísticas");
+        panelAdministrativoPrincipal.add(jButton3);
+        jButton3.setBounds(180, 490, 200, 113);
 
         VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         VolverButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +82,8 @@ public class Administrativo extends javax.swing.JFrame {
                 VolverButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(VolverButton);
-        VolverButton.setBounds(10, 10, 80, 65);
+        panelAdministrativoPrincipal.add(jButton4);
+        jButton4.setBounds(10, 10, 80, 65);
 
         CerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
         CerrarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -91,45 +91,49 @@ public class Administrativo extends javax.swing.JFrame {
                 CerrarButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(CerrarButton);
-        CerrarButton.setBounds(450, 10, 80, 65);
+        panelAdministrativoPrincipal.add(jButton5);
+        jButton5.setBounds(450, 10, 80, 65);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/stock-1863880_1280.jpg"))); // NOI18N
         panelAdministrativoPrincipal.add(jLabel1);
         jLabel1.setBounds(0, 0, 540, 720);
 
+        panelAdministrativoReemplazo.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdministrativoReemplazo.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 540, Short.MAX_VALUE))
+            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteButtonActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         panelAdministrativoPrincipal.setVisible(false);
         
         panelAdministrativoReemplazo.removeAll();
         panelAdministrativoReemplazo.add(clientes);
         panelAdministrativoReemplazo.setVisible(true);
-    }//GEN-LAST:event_ClienteButtonActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void InventarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Inventario inv = new Inventario();
         inv.setVisible(true);
     }//GEN-LAST:event_InventarioButtonActionPerformed
