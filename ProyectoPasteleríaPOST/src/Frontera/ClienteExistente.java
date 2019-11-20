@@ -19,6 +19,7 @@ public class ClienteExistente extends javax.swing.JFrame {
     private static  List<Cliente> clientes = gc.allClients();
     private static DefaultListModel modeloLista;
     private static int posList = -1;
+    
     /**
      * Creates new form ClienteExistente
      */
@@ -237,19 +238,20 @@ public class ClienteExistente extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+        jTextField1.setText("Buscar");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
             }
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -386,14 +388,18 @@ public class ClienteExistente extends javax.swing.JFrame {
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_telefonoSKeyTyped
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         modeloLista.clear();
-        agregarDatos(gc.dynoSerch(jTextField1.getText()));
-    }//GEN-LAST:event_jTextField1KeyTyped
+        if(jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un Nombre");
+            jTextField1.setText("Buscar");
+        }else
+            agregarDatos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,14 +434,12 @@ public class ClienteExistente extends javax.swing.JFrame {
         });
     }
     
-    public static void agregarDatos(List<Cliente> clientes) {
-        for(Cliente cliente : clientes){
-            System.out.println(cliente.getNombre());
-            modeloLista.addElement(cliente.getNombre());
+    public void agregarDatos() {
+        if(jTextField1.getText().equals("") || jTextField1.getText().equals("Buscar")) {
+            clientes = gc.allClients();
+        }else {
+            clientes = gc.dynoSerch(jTextField1.getText());
         }
-    }
-    
-    public static void agregarDatos() {
         for(Cliente cliente : clientes){
             modeloLista.addElement(cliente.getNombre());
         }
