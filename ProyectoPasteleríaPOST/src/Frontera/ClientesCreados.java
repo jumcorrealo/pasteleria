@@ -6,7 +6,6 @@
 package Frontera;
 import Control.GestionCliente;
 import Entidad.Cliente;
-import static Frontera.ClienteExistente.agregarDatos;
 import static Frontera.ClientesCreados.agregarDatos;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -350,6 +349,7 @@ public class ClientesCreados extends javax.swing.JPanel {
         telefonoS.setText(clientes.get(posList).getTelefono());
         puntajeS.setText(clientes.get(posList).getPuntaje() + "");
     }//GEN-LAST:event_listNameMouseClicked
+    
     private void formWindowActivated(java.awt.event.WindowEvent evt){
         clientes.clear();
         clientes.addAll(gc.allClients());
@@ -387,7 +387,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         agregarDatos(gc.dynoSerch(jTextField1.getText()));
     }//GEN-LAST:event_jTextField1KeyTyped
     
-    
     /**
      * @param args the command line arguments
      */
@@ -405,19 +404,19 @@ public class ClientesCreados extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteExistente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientesCreados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteExistente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientesCreados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteExistente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientesCreados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteExistente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientesCreados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ClienteExistente().setVisible(true);
+            new ClientesCreados().setVisible(true);
         });
     }
     
