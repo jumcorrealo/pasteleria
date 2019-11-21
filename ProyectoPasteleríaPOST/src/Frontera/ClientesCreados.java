@@ -330,8 +330,7 @@ public class ClientesCreados extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        GestionDeClientes volver = new GestionDeClientes();
-        volver.setVisible(true);
+        
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void listNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listNameMouseClicked

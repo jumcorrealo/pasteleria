@@ -240,21 +240,19 @@ public class NuevoCliente extends javax.swing.JFrame {
         GestionCliente gestionC = new GestionCliente();
         JOptionPane.showMessageDialog(null, gestionC.textoSalida(cliente));
         Timer timer = new Timer(100, (ActionEvent e) -> {
-            if(counter != 0) {
+            /*if(counter != 0) {
                 counter--;
                 GestionDeClientes volver = new GestionDeClientes();
                 volver.setVisible(true);
                 dispose();
-            }
+            }*/
         });
        timer.start();
        if(counter == 0) timer.stop();
     }//GEN-LAST:event_terminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GestionDeClientes volver = new GestionDeClientes();
-        volver.setVisible(true);
-        dispose();
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void telefonoTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTxActionPerformed
@@ -266,9 +264,7 @@ public class NuevoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        GestionDeClientes volver = new GestionDeClientes();
-        volver.setVisible(true);
-        dispose();
+        
     }                                        
 
     private void telefonoTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTxKeyTyped

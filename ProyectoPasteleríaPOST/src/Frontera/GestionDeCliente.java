@@ -10,7 +10,7 @@ package Frontera;
  * @author Home
  */
 public class GestionDeCliente extends javax.swing.JPanel {
-    private ClientesCreados clientes = new ClientesCreados();
+    //private ClientesCreados clientes = new ClientesCreados();
     /**
      * Creates new form GestionDeCliente
      */
@@ -39,7 +39,7 @@ public class GestionDeCliente extends javax.swing.JPanel {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/sacher-cake-1280575_1280.jpg"))); // NOI18N
 
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(40, 43, 40));
         jPanel2.setLayout(null);
@@ -91,10 +91,8 @@ public class GestionDeCliente extends javax.swing.JPanel {
         jPanel2.add(jButton3);
         jButton3.setBounds(120, 10, 80, 65);
 
-        add(jPanel2);
-        jPanel2.setBounds(0, 0, 540, 720);
-        add(GestionDeClienteReemplazo);
-        GestionDeClienteReemplazo.setBounds(540, 0, 540, 720);
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 720));
+        add(GestionDeClienteReemplazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 540, 720));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -104,10 +102,10 @@ public class GestionDeCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        GestionDeClienteReemplazo.setVisible(false);
-        GestionDeClienteReemplazo.removeAll();
-        GestionDeClienteReemplazo.add(clientes);
-        GestionDeClienteReemplazo.setVisible(true);
+        //GestionDeClienteReemplazo.setVisible(false);
+        //GestionDeClienteReemplazo.removeAll();
+        //GestionDeClienteReemplazo.add(clientes);
+        //GestionDeClienteReemplazo.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
