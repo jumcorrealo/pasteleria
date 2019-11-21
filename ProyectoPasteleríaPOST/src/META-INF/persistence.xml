@@ -3,6 +3,7 @@
   <persistence-unit name="Persistence" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidad.Cliente</class>
+    <class>Entidad.Postres</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db4free.net:3306/ingesoft2019?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="useringesoft"/>
