@@ -11,6 +11,7 @@ package Frontera;
  */
 public class GestionDeCliente extends javax.swing.JPanel {
     private ClientesCreados clientes = new ClientesCreados();
+    private AgregarCliente nuevo = new AgregarCliente();
     /**
      * Creates new form GestionDeCliente
      */
@@ -96,9 +97,10 @@ public class GestionDeCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NuevoCliente nuevo = new NuevoCliente();
-        nuevo.setVisible(true);
-        //dispose();
+        GestionDeClienteReemplazo.setVisible(false);
+        GestionDeClienteReemplazo.removeAll();
+        GestionDeClienteReemplazo.add(nuevo);
+        GestionDeClienteReemplazo.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
