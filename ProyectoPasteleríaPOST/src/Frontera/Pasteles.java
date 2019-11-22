@@ -38,7 +38,7 @@ public class Pasteles extends javax.swing.JFrame {
         PanelPasteles = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel2.setLayout(null);
 
