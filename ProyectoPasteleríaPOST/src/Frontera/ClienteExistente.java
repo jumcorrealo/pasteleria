@@ -346,12 +346,12 @@ public class ClienteExistente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         }else {
             Cliente cliente = clientes.get(posList);
-            JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
             if(cliente.getActivo() == true){
                 cliente.setActivo(false);
             }else{
                 cliente.setActivo(true);
             }
+            JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
             clientes = gc.allClients();
             modeloLista.removeAllElements();
             agregarDatos();

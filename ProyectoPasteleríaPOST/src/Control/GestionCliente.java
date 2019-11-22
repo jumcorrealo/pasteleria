@@ -53,6 +53,7 @@ public class GestionCliente {
     }
     
     public String deleteClient(Cliente cliente) {
+        clienteDAO.edit(cliente);
         if(cliente.getActivo() == false){
         return "cliente ahora es activo";
         }
