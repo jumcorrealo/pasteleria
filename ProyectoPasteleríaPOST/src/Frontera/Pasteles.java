@@ -11,6 +11,7 @@ package Frontera;
  */
 public class Pasteles extends javax.swing.JFrame {
     private AgregarPastel agregar = new AgregarPastel();
+    private PastelesExistentes existentes = new PastelesExistentes();
     
     /**
      * Creates new form Pasteles
@@ -38,7 +39,7 @@ public class Pasteles extends javax.swing.JFrame {
         PanelPasteles = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel2.setLayout(null);
 
@@ -52,6 +53,11 @@ public class Pasteles extends javax.swing.JFrame {
         jButton1.setBounds(170, 200, 200, 113);
 
         jButton2.setText("Existencia");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
         jButton2.setBounds(170, 420, 200, 113);
 
@@ -99,6 +105,13 @@ public class Pasteles extends javax.swing.JFrame {
         PanelPasteles.add(agregar);
         PanelPasteles.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PanelPasteles.setVisible(false);
+        PanelPasteles.removeAll();
+        PanelPasteles.add(existentes);
+        PanelPasteles.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

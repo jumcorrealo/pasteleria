@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -20,12 +21,12 @@ import javax.persistence.criteria.Root;
  *
  * @author enano
  */
-public class PostresJpaController implements Serializable {
-
-    public PostresJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
+public class PostresDAO implements Serializable {
+    private final EntityManagerFactory emf;
+    
+    public PostresDAO() {
+        this.emf = Persistence.createEntityManagerFactory("Persistence");
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
