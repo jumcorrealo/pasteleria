@@ -39,10 +39,10 @@ public class NuevoPedido extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(40, 43, 40));
         setLayout(null);
 
-        panelGeneral.setBackground(new java.awt.Color(0, 0, 0));
+        panelGeneral.setBackground(new java.awt.Color(40, 43, 40));
         panelGeneral.setLayout(new java.awt.BorderLayout());
         add(panelGeneral);
         panelGeneral.setBounds(0, 80, 540, 520);
