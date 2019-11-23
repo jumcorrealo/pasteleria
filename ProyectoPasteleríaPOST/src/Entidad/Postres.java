@@ -5,6 +5,8 @@
  */
 package Entidad;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Basic;
@@ -16,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -35,6 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Postres.findByPrice", query = "SELECT p FROM Postres p WHERE p.price = :price")
     , @NamedQuery(name = "Postres.findByDiscontinued", query = "SELECT p FROM Postres p WHERE p.discontinued = :discontinued")})
 public class Postres implements Serializable {
+
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -79,7 +85,9 @@ public class Postres implements Serializable {
     }
 
     public void setId(Integer id) {
+        Integer oldId = this.id;
         this.id = id;
+        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public String getTipo() {
@@ -87,7 +95,9 @@ public class Postres implements Serializable {
     }
 
     public void setTipo(String tipo) {
+        String oldTipo = this.tipo;
         this.tipo = tipo;
+        changeSupport.firePropertyChange("tipo", oldTipo, tipo);
     }
 
     public String getFlavor() {
@@ -95,7 +105,9 @@ public class Postres implements Serializable {
     }
 
     public void setFlavor(String flavor) {
+        String oldFlavor = this.flavor;
         this.flavor = flavor;
+        changeSupport.firePropertyChange("flavor", oldFlavor, flavor);
     }
 
     public Integer getSize() {
@@ -103,7 +115,9 @@ public class Postres implements Serializable {
     }
 
     public void setSize(Integer size) {
+        Integer oldSize = this.size;
         this.size = size;
+        changeSupport.firePropertyChange("size", oldSize, size);
     }
 
     public String getForm() {
@@ -111,7 +125,9 @@ public class Postres implements Serializable {
     }
 
     public void setForm(String form) {
+        String oldForm = this.form;
         this.form = form;
+        changeSupport.firePropertyChange("form", oldForm, form);
     }
 
     public int getPrice() {
@@ -119,7 +135,9 @@ public class Postres implements Serializable {
     }
 
     public void setPrice(int price) {
+        int oldPrice = this.price;
         this.price = price;
+        changeSupport.firePropertyChange("price", oldPrice, price);
     }
 
     public boolean getDiscontinued() {
@@ -127,7 +145,9 @@ public class Postres implements Serializable {
     }
 
     public void setDiscontinued(boolean discontinued) {
+        boolean oldDiscontinued = this.discontinued;
         this.discontinued = discontinued;
+        changeSupport.firePropertyChange("discontinued", oldDiscontinued, discontinued);
     }
 
 
@@ -140,6 +160,14 @@ public class Postres implements Serializable {
     @Override
     public String toString() {
         return "Entidad.Postres[ id=" + id + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
