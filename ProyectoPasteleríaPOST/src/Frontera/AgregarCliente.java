@@ -75,9 +75,9 @@ public class AgregarCliente extends javax.swing.JPanel {
         });
 
         nombreTx.setBorder(null);
-        nombreTx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreTxActionPerformed(evt);
+        nombreTx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTxKeyTyped(evt);
             }
         });
 
@@ -88,11 +88,6 @@ public class AgregarCliente extends javax.swing.JPanel {
         jLabel2.setText("Teléfono");
 
         telefonoTx.setBorder(null);
-        telefonoTx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefonoTxActionPerformed(evt);
-            }
-        });
         telefonoTx.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoTxKeyTyped(evt);
@@ -103,11 +98,6 @@ public class AgregarCliente extends javax.swing.JPanel {
         jLabel3.setText("Dirección:");
 
         casaTx.setBorder(null);
-        casaTx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                casaTxActionPerformed(evt);
-            }
-        });
         casaTx.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 casaTxKeyTyped(evt);
@@ -229,7 +219,9 @@ public class AgregarCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        nombreTx.setText("");
+        telefonoTx.setText("");
+        casaTx.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
@@ -248,26 +240,17 @@ public class AgregarCliente extends javax.swing.JPanel {
                 dispose();
             }*/
         });
+        nombreTx.setText("");
+        telefonoTx.setText("");
+        casaTx.setText("");
         timer.start();
         if(counter == 0) timer.stop();
     }//GEN-LAST:event_terminarActionPerformed
-
-    private void nombreTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTxActionPerformed
-
-    private void telefonoTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonoTxActionPerformed
 
     private void telefonoTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTxKeyTyped
         char c = evt.getKeyChar();
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_telefonoTxKeyTyped
-
-    private void casaTxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaTxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_casaTxActionPerformed
 
     private void casaTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaTxKeyTyped
         char c = evt.getKeyChar();
@@ -281,6 +264,13 @@ public class AgregarCliente extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void nombreTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTxKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreTxKeyTyped
     /**
      * @param args the command line arguments
      */

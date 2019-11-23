@@ -5,6 +5,8 @@
  */
 package Frontera;
 
+import java.awt.Component;
+
 /**
  *
  * @author Home
@@ -41,6 +43,11 @@ public class GestionDeClientes extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        GestionDeClienteReemplazo.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                GestionDeClienteReemplazoComponentAdded(evt);
+            }
+        });
         GestionDeClienteReemplazo.setLayout(new java.awt.BorderLayout());
         jPanel1.add(GestionDeClienteReemplazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 540, 770));
 
@@ -140,6 +147,13 @@ public class GestionDeClientes extends javax.swing.JFrame {
         home.setVisible(true);
         //dispose();
     }//GEN-LAST:event_HomeButtonActionPerformed
+
+    private void GestionDeClienteReemplazoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_GestionDeClienteReemplazoComponentAdded
+        Component child = evt.getChild();
+        if(clientes.equals(child)){
+            clientes.agregarDatos();
+        }
+    }//GEN-LAST:event_GestionDeClienteReemplazoComponentAdded
 
     /**
      * @param args the command line arguments

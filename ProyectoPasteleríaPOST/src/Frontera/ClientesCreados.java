@@ -6,7 +6,6 @@
 package Frontera;
 import Control.GestionCliente;
 import Entidad.Cliente;
-import static Frontera.ClientesCreados.agregarDatos;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class ClientesCreados extends javax.swing.JPanel {
     private static final GestionCliente gc = new GestionCliente();
-    private static  List<Cliente> clientes = gc.allClients();
+    private static  List<Cliente> clientes;
     private static DefaultListModel modeloLista;
     private static int posList = -1;
     /**
@@ -26,7 +25,6 @@ public class ClientesCreados extends javax.swing.JPanel {
     public ClientesCreados() {
         initComponents();
         modeloLista = new DefaultListModel();
-        agregarDatos();
         listName.setModel(modeloLista);
     }
 
@@ -126,6 +124,11 @@ public class ClientesCreados extends javax.swing.JPanel {
                 nombreSActionPerformed(evt);
             }
         });
+        nombreS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreSKeyTyped(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -134,11 +137,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         casaS.setEditable(false);
         casaS.setBackground(new java.awt.Color(255, 255, 255));
         casaS.setBorder(null);
-        casaS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                casaSActionPerformed(evt);
-            }
-        });
         casaS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 casaSKeyTyped(evt);
@@ -152,11 +150,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         telefonoS.setEditable(false);
         telefonoS.setBackground(new java.awt.Color(255, 255, 255));
         telefonoS.setBorder(null);
-        telefonoS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefonoSActionPerformed(evt);
-            }
-        });
         telefonoS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoSKeyTyped(evt);
@@ -227,19 +220,20 @@ public class ClientesCreados extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+        jTextField1.setText("Buscar");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
             }
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -345,42 +339,38 @@ public class ClientesCreados extends javax.swing.JPanel {
         puntajeS.setText(clientes.get(posList).getPuntaje() + "");
     }//GEN-LAST:event_listNameMouseClicked
     
-    private void formWindowActivated(java.awt.event.WindowEvent evt){
-        clientes.clear();
-        clientes.addAll(gc.allClients());
-        modeloLista.removeAllElements();
-        agregarDatos();
-    }
     private void nombreSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreSActionPerformed
-
-    private void casaSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casaSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_casaSActionPerformed
 
     private void casaSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaSKeyTyped
         char c = evt.getKeyChar();
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_casaSKeyTyped
 
-    private void telefonoSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telefonoSActionPerformed
-
     private void telefonoSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoSKeyTyped
         char c = evt.getKeyChar();
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_telefonoSKeyTyped
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese un Nombre");
+            jTextField1.setText("Buscar");
+        }else
+            agregarDatos();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        modeloLista.clear();
-        agregarDatos(gc.dynoSerch(jTextField1.getText()));
-    }//GEN-LAST:event_jTextField1KeyTyped
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void nombreSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreSKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreSKeyTyped
     
     /**
      * @param args the command line arguments
@@ -422,7 +412,13 @@ public class ClientesCreados extends javax.swing.JPanel {
         }
     }
     
-    public static void agregarDatos() {
+    public void agregarDatos() {
+        modeloLista.clear();
+        if(jTextField1.getText().equals("") || jTextField1.getText().equals("Buscar")) {
+            clientes = gc.allClients();
+        }else {
+            clientes = gc.dynoSerch(jTextField1.getText());
+        }
         for(Cliente cliente : clientes){
             modeloLista.addElement(cliente.getNombre());
         }
