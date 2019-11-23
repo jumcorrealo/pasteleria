@@ -318,7 +318,7 @@ public class ClientesCreados extends javax.swing.JPanel {
     }//GEN-LAST:event_actualizarButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-            if(posList == -1){
+        if(posList == -1){
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         }else {
             Cliente cliente = clientes.get(posList);
