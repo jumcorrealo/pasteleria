@@ -57,6 +57,8 @@ public class ClientesCreados extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         puntajeS = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        estadolbs = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -76,16 +78,16 @@ public class ClientesCreados extends javax.swing.JPanel {
             }
         });
         jPanel2.add(actualizarButton);
-        actualizarButton.setBounds(140, 590, 85, 85);
+        actualizarButton.setBounds(60, 610, 85, 85);
 
-        eliminarButton.setText("Eliminar");
+        eliminarButton.setText("Actualizar Estado");
         eliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarButtonActionPerformed(evt);
             }
         });
         jPanel2.add(eliminarButton);
-        eliminarButton.setBounds(310, 590, 85, 85);
+        eliminarButton.setBounds(310, 610, 140, 85);
 
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,25 +166,32 @@ public class ClientesCreados extends javax.swing.JPanel {
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel6.setText("Estado del Cliente");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .addComponent(jSeparator1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(casaS)
-                    .addComponent(jSeparator2)
-                    .addComponent(jLabel3)
-                    .addComponent(telefonoS)
-                    .addComponent(jSeparator3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator4))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                        .addComponent(jSeparator1)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(casaS)
+                        .addComponent(jSeparator2)
+                        .addComponent(jLabel3)
+                        .addComponent(telefonoS)
+                        .addComponent(jSeparator3)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(110, 110, 110)
+                        .addComponent(estadolbs)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -212,11 +221,15 @@ public class ClientesCreados extends javax.swing.JPanel {
                 .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(estadolbs))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(60, 330, 390, 250);
+        jPanel3.setBounds(60, 330, 390, 270);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -305,18 +318,21 @@ public class ClientesCreados extends javax.swing.JPanel {
     }//GEN-LAST:event_actualizarButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-        if(posList == -1){
+            if(posList == -1){
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         }else {
             Cliente cliente = clientes.get(posList);
+            if(cliente.getActivo() == true){
+                cliente.setActivo(false);
+            }else{
+                cliente.setActivo(true);
+            }
             JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
-            modeloLista.remove(posList);
-            clientes.addAll(gc.allClients());
-            nombreS.setText("");
-            casaS.setText("");
-            telefonoS.setText("");
-            puntajeS.setText("");
+            clientes = gc.allClients();
+            modeloLista.removeAllElements();
+            agregarDatos();
             posList = -1;
+            
         }
         nombreS.setEditable(false);
         casaS.setEditable(false);
@@ -337,6 +353,11 @@ public class ClientesCreados extends javax.swing.JPanel {
         casaS.setText(clientes.get(posList).getCasa());
         telefonoS.setText(clientes.get(posList).getTelefono());
         puntajeS.setText(clientes.get(posList).getPuntaje() + "");
+        if(clientes.get(posList).getActivo()== true){
+            estadolbs.setText("Activo");
+        }else{
+            estadolbs.setText("Inactivo");
+        }
     }//GEN-LAST:event_listNameMouseClicked
     
     private void nombreSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSActionPerformed
@@ -429,12 +450,14 @@ public class ClientesCreados extends javax.swing.JPanel {
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField casaS;
     private javax.swing.JButton eliminarButton;
+    private javax.swing.JLabel estadolbs;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

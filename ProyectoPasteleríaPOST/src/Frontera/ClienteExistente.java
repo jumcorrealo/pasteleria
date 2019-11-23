@@ -61,6 +61,8 @@ public class ClienteExistente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         puntajeS = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        estadolb = new javax.swing.JLabel();
+        estadolbs = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -89,16 +91,16 @@ public class ClienteExistente extends javax.swing.JFrame {
             }
         });
         jPanel2.add(actualizarButton);
-        actualizarButton.setBounds(670, 330, 85, 85);
+        actualizarButton.setBounds(660, 330, 110, 85);
 
-        eliminarButton.setText("Eliminar");
+        eliminarButton.setText("Cambiar estado");
         eliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarButtonActionPerformed(evt);
             }
         });
         jPanel2.add(eliminarButton);
-        eliminarButton.setBounds(670, 450, 85, 85);
+        eliminarButton.setBounds(660, 450, 110, 85);
 
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,25 +184,34 @@ public class ClienteExistente extends javax.swing.JFrame {
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
 
+        estadolb.setText("Estado del Usuario :");
+
+        estadolbs.setText("Activo");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .addComponent(jSeparator1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(casaS)
-                    .addComponent(jSeparator2)
-                    .addComponent(jLabel3)
-                    .addComponent(telefonoS)
-                    .addComponent(jSeparator3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator4))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                        .addComponent(jSeparator1)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(casaS)
+                        .addComponent(jSeparator2)
+                        .addComponent(jLabel3)
+                        .addComponent(telefonoS)
+                        .addComponent(jSeparator3)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(estadolb)
+                        .addGap(18, 18, 18)
+                        .addComponent(estadolbs, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -229,12 +240,16 @@ public class ClienteExistente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estadolb)
+                    .addComponent(estadolbs))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(140, 310, 390, 240);
+        jPanel3.setBounds(140, 310, 390, 290);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -327,24 +342,9 @@ public class ClienteExistente extends javax.swing.JFrame {
         telefonoS.setEditable(false);
         casaS.setEditable(false);
     }//GEN-LAST:event_actualizarButtonActionPerformed
-
+//deje lo mismo que habia en actualizar pero solo se supone que solo cambie el estado
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-        if(posList == -1){
-            JOptionPane.showMessageDialog(null, "Seleccione un cliente");
-        }else {
-            Cliente cliente = clientes.get(posList);
-            JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
-            modeloLista.remove(posList);
-            clientes.addAll(gc.allClients());
-            nombreS.setText("");
-            casaS.setText("");
-            telefonoS.setText("");
-            puntajeS.setText("");
-            posList = -1;
-        }
-        nombreS.setEditable(false);
-        casaS.setEditable(false);
-        telefonoS.setEditable(false);
+   
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
     private void nombreSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSActionPerformed
@@ -369,6 +369,12 @@ public class ClienteExistente extends javax.swing.JFrame {
         casaS.setText(clientes.get(posList).getCasa());
         telefonoS.setText(clientes.get(posList).getTelefono());
         puntajeS.setText(clientes.get(posList).getPuntaje() + "");
+        if(clientes.get(posList).getActivo()== true){
+            estadolbs.setText("Activo");
+        }else{
+            estadolbs.setText("Inactivo");
+        }
+        
     }//GEN-LAST:event_listNameMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -450,6 +456,8 @@ public class ClienteExistente extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField casaS;
     private javax.swing.JButton eliminarButton;
+    private javax.swing.JLabel estadolb;
+    private javax.swing.JLabel estadolbs;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -53,7 +53,12 @@ public class GestionCliente {
     }
     
     public String deleteClient(Cliente cliente) {
-        return clienteDAO.destroy(cliente.getId())? "Cliente Eliminado" : "No se Encontro el Cliente";
+        clienteDAO.edit(cliente);
+        if(cliente.getActivo() == false){
+        return "cliente ahora es activo";
+        }
+        return "cliente ahora es inactivo";
+        
     }
     
     public String upDateClient(Cliente cliente) {
