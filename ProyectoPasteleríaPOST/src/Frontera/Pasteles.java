@@ -5,6 +5,8 @@
  */
 package Frontera;
 
+import java.awt.Component;
+
 /**
  *
  * @author Home
@@ -52,7 +54,7 @@ public class Pasteles extends javax.swing.JFrame {
         jPanel2.add(jButton1);
         jButton1.setBounds(170, 200, 200, 113);
 
-        jButton2.setText("Existencia");
+        jButton2.setText("Catalogo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -87,6 +89,11 @@ public class Pasteles extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
 
+        PanelPasteles.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                PanelPastelesComponentAdded(evt);
+            }
+        });
         PanelPasteles.setLayout(new java.awt.BorderLayout());
         getContentPane().add(PanelPasteles);
 
@@ -112,6 +119,13 @@ public class Pasteles extends javax.swing.JFrame {
         PanelPasteles.add(existentes);
         PanelPasteles.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void PanelPastelesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_PanelPastelesComponentAdded
+        Component child = evt.getChild();
+        if(existentes.equals(child)) {
+            existentes.fillTable();
+        }
+    }//GEN-LAST:event_PanelPastelesComponentAdded
 
     /**
      * @param args the command line arguments

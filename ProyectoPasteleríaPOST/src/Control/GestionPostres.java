@@ -49,7 +49,7 @@ public class GestionPostres {
     }
     
     public String upDatePostre(Postres postres) throws Exception {
-        if(upDateSamePostre(postres)) {
+        if(!upDateSamePostre(postres)) {
             PDAO.edit(postres);
             return "Datos Actualizado";
         }else {
