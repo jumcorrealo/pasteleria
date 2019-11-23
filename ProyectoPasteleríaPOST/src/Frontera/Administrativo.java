@@ -9,19 +9,16 @@ package Frontera;
  * @author Home
  */
 public class Administrativo extends javax.swing.JFrame {
-    private GestionDeCliente clientes = new GestionDeCliente();
-    private AdministrativoPanel adm = new AdministrativoPanel();
+    private GestionDeClientes clientes = new GestionDeClientes();
+    private Inicio volver = new Inicio();
   
     /**
      * Creates new form Administrativo
      */
     public Administrativo() {
         initComponents();
-        this.setLocationRelativeTo(null);
-            panelAdministrativoReemplazo.setVisible(false);
-            
-        
-        
+        this.setLocationRelativeTo(null);          
+               
     }
     
     /**
@@ -34,7 +31,6 @@ public class Administrativo extends javax.swing.JFrame {
     private void initComponents() {
 
         panelAdministrativoReemplazo = new javax.swing.JPanel();
-        panelAdministrativoPrincipal = new javax.swing.JPanel();
         ClienteButton = new javax.swing.JButton();
         InventarioButton = new javax.swing.JButton();
         EstadisticasButton = new javax.swing.JButton();
@@ -46,10 +42,6 @@ public class Administrativo extends javax.swing.JFrame {
         setUndecorated(true);
 
         panelAdministrativoReemplazo.setBackground(new java.awt.Color(255, 255, 255));
-        panelAdministrativoReemplazo.setLayout(new java.awt.BorderLayout());
-
-        panelAdministrativoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-        panelAdministrativoPrincipal.setLayout(null);
 
         ClienteButton.setBackground(new java.awt.Color(77, 126, 168));
         ClienteButton.setText("Clientes");
@@ -58,8 +50,6 @@ public class Administrativo extends javax.swing.JFrame {
                 ClienteButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(ClienteButton);
-        ClienteButton.setBounds(180, 170, 200, 113);
 
         InventarioButton.setBackground(new java.awt.Color(77, 126, 168));
         InventarioButton.setText("Inventario");
@@ -68,13 +58,9 @@ public class Administrativo extends javax.swing.JFrame {
                 InventarioButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(InventarioButton);
-        InventarioButton.setBounds(180, 330, 200, 113);
 
         EstadisticasButton.setBackground(new java.awt.Color(77, 126, 168));
         EstadisticasButton.setText("Estadísticas");
-        panelAdministrativoPrincipal.add(EstadisticasButton);
-        EstadisticasButton.setBounds(180, 490, 200, 113);
 
         VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         VolverButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +68,6 @@ public class Administrativo extends javax.swing.JFrame {
                 VolverButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(VolverButton);
-        VolverButton.setBounds(10, 10, 80, 65);
 
         CerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
         CerrarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -91,51 +75,80 @@ public class Administrativo extends javax.swing.JFrame {
                 CerrarButtonActionPerformed(evt);
             }
         });
-        panelAdministrativoPrincipal.add(CerrarButton);
-        CerrarButton.setBounds(450, 10, 80, 65);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/stock-1863880_1280.jpg"))); // NOI18N
-        panelAdministrativoPrincipal.add(jLabel1);
-        jLabel1.setBounds(0, 0, 540, 720);
+
+        javax.swing.GroupLayout panelAdministrativoReemplazoLayout = new javax.swing.GroupLayout(panelAdministrativoReemplazo);
+        panelAdministrativoReemplazo.setLayout(panelAdministrativoReemplazoLayout);
+        panelAdministrativoReemplazoLayout.setHorizontalGroup(
+            panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(VolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CerrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
+                .addGap(416, 416, 416)
+                .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ClienteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(InventarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EstadisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addContainerGap(454, Short.MAX_VALUE))
+            .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, Short.MAX_VALUE))
+        );
+        panelAdministrativoReemplazoLayout.setVerticalGroup(
+            panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
+                .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(CerrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(VolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(ClienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62)
+                .addComponent(InventarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(EstadisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
+            .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 540, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE))
+            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelAdministrativoPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE))
+            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteButtonActionPerformed
-        panelAdministrativoPrincipal.setVisible(false);
-        
-        panelAdministrativoReemplazo.removeAll();
-        panelAdministrativoReemplazo.add(clientes);
-        panelAdministrativoReemplazo.setVisible(true);
+        clientes.setVisible(true);
+        dispose();
     }//GEN-LAST:event_ClienteButtonActionPerformed
 
     private void InventarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioButtonActionPerformed
         Inventario inv = new Inventario();
         inv.setVisible(true);
+        dispose();
     }//GEN-LAST:event_InventarioButtonActionPerformed
 
     private void VolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverButtonActionPerformed
-
+        volver.setVisible(true);
+        dispose();
     }//GEN-LAST:event_VolverButtonActionPerformed
 
     private void CerrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarButtonActionPerformed
@@ -183,7 +196,6 @@ public class Administrativo extends javax.swing.JFrame {
     private javax.swing.JButton InventarioButton;
     private javax.swing.JButton VolverButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel panelAdministrativoPrincipal;
-    public javax.swing.JPanel panelAdministrativoReemplazo;
+    private javax.swing.JPanel panelAdministrativoReemplazo;
     // End of variables declaration//GEN-END:variables
 }
