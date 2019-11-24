@@ -41,7 +41,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         actualizarButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
-        cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listName = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
@@ -88,15 +87,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         });
         jPanel2.add(eliminarButton);
         eliminarButton.setBounds(310, 610, 140, 85);
-
-        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
-        cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cancelar);
-        cancelar.setBounds(10, 10, 80, 64);
 
         listName.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -339,10 +329,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         telefonoS.setEditable(false);
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
-    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        
-    }//GEN-LAST:event_cancelarActionPerformed
-
     private void listNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listNameMouseClicked
         String selected = listName.getSelectedValue();
         posList = listName.getSelectedIndex();
@@ -447,7 +433,6 @@ public class ClientesCreados extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarButton;
-    private javax.swing.JButton cancelar;
     private javax.swing.JTextField casaS;
     private javax.swing.JButton eliminarButton;
     private javax.swing.JLabel estadolbs;

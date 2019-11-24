@@ -14,6 +14,7 @@ import java.awt.Component;
 public class GestionDeClientes extends javax.swing.JFrame {
     private ClientesCreados clientes = new ClientesCreados();
     private AgregarCliente nuevo = new AgregarCliente();
+    private Administrativo adm = new Administrativo();
     /**
      * Creates new form GestionDeClientes
      */
@@ -134,7 +135,8 @@ public class GestionDeClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteExistenteButtonActionPerformed
 
     private void VolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverButtonActionPerformed
-
+        adm.setVisible(true);
+        dispose();
         //dispose();
     }//GEN-LAST:event_VolverButtonActionPerformed
 
@@ -145,7 +147,7 @@ public class GestionDeClientes extends javax.swing.JFrame {
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         Inicio home = new Inicio();
         home.setVisible(true);
-        //dispose();
+        dispose();
     }//GEN-LAST:event_HomeButtonActionPerformed
 
     private void GestionDeClienteReemplazoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_GestionDeClienteReemplazoComponentAdded
