@@ -43,7 +43,7 @@ public class Inventario extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        jButton1.setText("Pasteles");
+        jButton1.setText("Postres");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

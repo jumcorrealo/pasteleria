@@ -57,18 +57,11 @@ public class GestionPostres {
         }
     }
     
-    public String discontinuePostre(Postres postres) throws Exception {
-        postres.setDiscontinued(postres.getDiscontinued());
-        PDAO.edit(postres);
-        return postres.getDiscontinued()? "Postre Descontinuado" : "Postre Reintegrado";
-    }
-    
     public List<Postres> allPostres(){
         return PDAO.findPostresEntities();
     }
     
-    public List<Postres> dynoSerch(Postres postres){
-        //TODO Por hacer el procedimiento almacenado en la DB y la funcion en PostresDAO
-        return null;
+    public List<Postres> dynoSerch(String data){
+        return PDAO.dynoSerch(data);
     }
 }

@@ -13,7 +13,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -136,4 +138,22 @@ public class PostresDAO implements Serializable {
         }
     }
     
+    public List<Postres> dynoSerch(String data) {
+        EntityManager em = getEntityManager();
+        List<Postres> list = null;
+        try {
+            em.getTransaction().begin();
+            StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery("dynoserch", Postres.class);
+            procedureQuery.registerStoredProcedureParameter("_data", String.class, ParameterMode.IN);
+            procedureQuery.registerStoredProcedureParameter("_table", Integer.class, ParameterMode.IN);
+            procedureQuery.setParameter("_data", "%" + data + "%");
+            procedureQuery.setParameter("_table", 2);
+            procedureQuery.execute();
+            em.getTransaction().commit();
+            list = procedureQuery.getResultList();
+        }finally {
+            em.close();
+        }
+        return list;
+    }
 }

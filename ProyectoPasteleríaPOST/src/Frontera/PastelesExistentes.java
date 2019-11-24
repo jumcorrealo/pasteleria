@@ -105,6 +105,11 @@ public class PastelesExistentes extends javax.swing.JPanel {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jButton1.setText("Actualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -181,11 +186,31 @@ public class PastelesExistentes extends javax.swing.JPanel {
         cellSelected = jTable1.getSelectedRow();
     }//GEN-LAST:event_jTable1MousePressed
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        if(jTextField1.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese un Tipo");
+        }else {
+            fillTable();
+        }
+        jTextField1.setText("Buscar");
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     public void fillTable(){
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         if(!jTextField1.getText().isEmpty() && !jTextField1.getText().equals("Buscar")) {
-            //TODO Busqueda Dinamica
+            list = GP.dynoSerch(jTextField1.getText());
+            Object[] row = new Object[6];
+            for(Postres p : list) {
+                System.out.println(p.getTipo());
+                row[0] = (Object) p.getTipo();
+                row[1] = (Object) p.getFlavor();
+                row[2] = p.getForm() == null? "" : (Object) p.getForm();
+                row[3] = p.getSize() == null? "" : p.getSize();
+                row[4] = (Object) p.getPrice();
+                row[5] = (Object) p.getDiscontinued();
+                dtm.addRow(row);
+            }
         }else {
             list = GP.allPostres();
             Object[] row = new Object[6];
