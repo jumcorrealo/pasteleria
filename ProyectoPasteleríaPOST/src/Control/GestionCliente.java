@@ -57,7 +57,7 @@ public class GestionCliente {
         if(cliente.getActivo() == false){
             return "cliente ahora es inactivo";
         }
-            return "cliente ahora es activo";
+        return "cliente ahora es activo";
     }
     
     public String upDateClient(Cliente cliente) {
