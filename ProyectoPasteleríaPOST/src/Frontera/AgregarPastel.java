@@ -49,7 +49,7 @@ public class AgregarPastel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Agregar Nuevo Pastel");
+        jLabel1.setText("Agregar Nuevo Postre");
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
