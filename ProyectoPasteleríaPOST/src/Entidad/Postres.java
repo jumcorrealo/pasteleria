@@ -152,6 +152,10 @@ public class Postres implements Serializable {
 
 
     public boolean isSame(Postres other) {
+        if((this.form == null || other.form == null) && (this.size == null || other.size == null)){
+            return  this.tipo.toLowerCase().equals(other.tipo.toLowerCase()) &&
+                    this.flavor.toLowerCase().equals(other.flavor.toLowerCase());
+        }
         return  this.tipo.toLowerCase().equals(other.tipo.toLowerCase()) &&
                 this.flavor.toLowerCase().equals(other.flavor.toLowerCase()) &&
                 this.form.toLowerCase().equals(other.form.toLowerCase()) &&
