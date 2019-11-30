@@ -12,9 +12,9 @@ import java.awt.Component;
  * @author Home
  */
 public class Pasteles extends javax.swing.JFrame {
-    private AgregarPastel agregar = new AgregarPastel();
-    private PastelesExistentes existentes = new PastelesExistentes();
-    
+    private static final AgregarPastel agregar = new AgregarPastel();
+    private static final PastelesExistentes existentes = new PastelesExistentes();
+    private static final Inventario volver = new Inventario();
     /**
      * Creates new form Pasteles
      */
@@ -101,7 +101,6 @@ public class Pasteles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Inventario volver = new Inventario();
         volver.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed

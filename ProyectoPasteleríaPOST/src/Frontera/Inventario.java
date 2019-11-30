@@ -10,7 +10,8 @@ package Frontera;
  * @author Home
  */
 public class Inventario extends javax.swing.JFrame {
-
+    private static final Administrativo volver = new Administrativo();
+    private static final Pasteles past = new Pasteles();
     /**
      * Creates new form Inventario
      */
@@ -94,13 +95,11 @@ public class Inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Administrativo volver = new Administrativo();
         volver.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Pasteles past = new Pasteles();
         past.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

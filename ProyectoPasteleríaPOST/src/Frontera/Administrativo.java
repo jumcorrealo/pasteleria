@@ -9,8 +9,8 @@ package Frontera;
  * @author Home
  */
 public class Administrativo extends javax.swing.JFrame {
-    private GestionDeClientes clientes = new GestionDeClientes();
-    private Inicio volver = new Inicio();
+    private static GestionDeClientes clientes = new GestionDeClientes();
+    private static Inicio volver = new Inicio();
   
     /**
      * Creates new form Administrativo
