@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class ClientesCreados extends javax.swing.JPanel {
     private static final GestionCliente gc = new GestionCliente();
-    private static  List<Cliente> clientes;
+    private static List<Cliente> clientes;
     private static DefaultListModel modeloLista;
     private static int posList = -1;
     /**
