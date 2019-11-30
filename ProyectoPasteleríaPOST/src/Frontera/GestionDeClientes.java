@@ -12,9 +12,9 @@ import java.awt.Component;
  * @author Home
  */
 public class GestionDeClientes extends javax.swing.JFrame {
-    private ClientesCreados clientes = new ClientesCreados();
-    private AgregarCliente nuevo = new AgregarCliente();
-    private Administrativo adm = new Administrativo();
+    private static final ClientesCreados clientes = new ClientesCreados();
+    private static final AgregarCliente nuevo = new AgregarCliente();
+    private static final Administrativo adm = new Administrativo();
     /**
      * Creates new form GestionDeClientes
      */
@@ -185,10 +185,8 @@ public class GestionDeClientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionDeClientes().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GestionDeClientes().setVisible(true);
         });
     }
 

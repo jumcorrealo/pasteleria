@@ -5,20 +5,18 @@
  */
 package Frontera;
 import Control.GestionCliente;
-import java.awt.event.ActionEvent;
+import Entidad.Cliente;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 /**
 /**
  *
  * @author Home
  */
 public class AgregarCliente extends javax.swing.JPanel {
-
+    private static final GestionCliente gestionC = new GestionCliente();
     /**
      * Creates new form AgregarCliente
      */
-    private static int counter = 1;
 
     public AgregarCliente() {
         initComponents();
@@ -225,26 +223,14 @@ public class AgregarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
-        // TODO add your handling code here:
-        Entidad.Cliente cliente = new Entidad.Cliente();
+        Cliente cliente = new Cliente();
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
         cliente.setCasa(casaTx.getText());
-        GestionCliente gestionC = new GestionCliente();
         JOptionPane.showMessageDialog(null, gestionC.textoSalida(cliente));
-        Timer timer = new Timer(100, (ActionEvent e) -> {
-            /*if(counter != 0) {
-                counter--;
-                GestionDeClientes volver = new GestionDeClientes();
-                volver.setVisible(true);
-                dispose();
-            }*/
-        });
         nombreTx.setText("");
         telefonoTx.setText("");
         casaTx.setText("");
-        timer.start();
-        if(counter == 0) timer.stop();
     }//GEN-LAST:event_terminarActionPerformed
 
     private void telefonoTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTxKeyTyped
