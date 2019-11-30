@@ -15,8 +15,8 @@ import java.util.Objects;
  */
 public class GestionCliente {
     
-    private final ClienteDAO clienteDAO = new ClienteDAO();
-    private final ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
+    private static final ClienteDAO clienteDAO = new ClienteDAO();
+    private static ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
     public GestionCliente() {
     }

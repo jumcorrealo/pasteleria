@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public class GestionPostres {
     private static final PostresDAO PDAO = new PostresDAO();
-    private static  List<Postres> list;
+    private static List<Postres> list;
 
     public GestionPostres() {
     }

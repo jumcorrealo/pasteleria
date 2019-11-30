@@ -10,7 +10,9 @@ package Frontera;
  * @author Home
  */
 public class Inicio extends javax.swing.JFrame {
-    
+    private static final Administrativo adm = new Administrativo();
+    private static final Ventas ventas = new Ventas();
+        
     /**
      * Creates new form Inicio
      */
@@ -98,7 +100,6 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Administrativo adm = new Administrativo();
         adm.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -108,7 +109,6 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ventas ventas = new Ventas();
         ventas.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
