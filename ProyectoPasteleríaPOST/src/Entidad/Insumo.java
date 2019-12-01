@@ -43,6 +43,11 @@ public class Insumo implements Serializable {
         freq=0;
     }
     
+    public Insumo(Long id,String n, String u){
+        this(n,u);
+        this.id=id;
+    }
+    
     public Long getId() {
         return id;
     }

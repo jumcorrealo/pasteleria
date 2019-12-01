@@ -85,6 +85,11 @@ public class Agregar_insumo extends javax.swing.JFrame {
                 tx_nombre_insumoMouseClicked(evt);
             }
         });
+        tx_nombre_insumo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tx_nombre_insumoFocusGained(evt);
+            }
+        });
         tx_nombre_insumo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tx_nombre_insumoActionPerformed(evt);
@@ -128,7 +133,7 @@ public class Agregar_insumo extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_titulo_Insumos, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(panel_titulo_Insumos, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +147,7 @@ public class Agregar_insumo extends javax.swing.JFrame {
                         .addComponent(button_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tx_nombre_insumo, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                     .addComponent(tx_unidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,17 +184,19 @@ public class Agregar_insumo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tx_unidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_unidadActionPerformed
-        System.out.println("asd");        // TODO add your handling code here:
+        System.out.println("enter pressed");        // TODO add your handling code here:
         button_aceptarActionPerformed(evt);
     }//GEN-LAST:event_tx_unidadActionPerformed
 
     private void button_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_aceptarActionPerformed
-        Insumo ins=new Insumo(tx_nombre_insumo.getText(),tx_unidad.getText());
+        Long id=new Long( gi.getInsumoList().size()+1);
+        Insumo ins=new Insumo(id,tx_nombre_insumo.getText(),tx_unidad.getText());
         if(gi.addInsumo(ins)){
-             JOptionPane.showMessageDialog(null, "Exito");
+             JOptionPane.showMessageDialog(null, "Exito al crear insumo " + ins.getNombre());
             dispose();
-        }
+        }else{
             JOptionPane.showMessageDialog(null, "Algo salió mal");
+        }
     }//GEN-LAST:event_button_aceptarActionPerformed
 
     private void button_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelarActionPerformed
@@ -218,40 +225,13 @@ public class Agregar_insumo extends javax.swing.JFrame {
              }
     }//GEN-LAST:event_tx_unidadFocusGained
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agregar_insumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agregar_insumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agregar_insumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agregar_insumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void tx_nombre_insumoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tx_nombre_insumoFocusGained
+        if(tx_nombre_insumo.getText().equals("Ingrese el nombre del nuevo insumo")){
+            tx_nombre_insumo.setText("");
         }
-        //</editor-fold>
+    }//GEN-LAST:event_tx_nombre_insumoFocusGained
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Agregar_insumo(new GestionInsumos()).setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_aceptar;

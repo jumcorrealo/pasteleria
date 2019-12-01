@@ -28,7 +28,7 @@ public class InfoInsumo extends javax.swing.JPanel {
    
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Dimension arcs = new Dimension(30,30); //Border corners arcs {width,height}, change this to whatever you want
+        Dimension arcs = new Dimension(60,60); //Border corners arcs {width,height}, change this to whatever you want
         int width = getWidth();
         int height = getHeight();
         Graphics2D graphics = (Graphics2D) g;
@@ -55,20 +55,18 @@ public class InfoInsumo extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(217, 17, 200));
         setForeground(new java.awt.Color(200, 17, 200));
-        setPreferredSize(new java.awt.Dimension(388, 100));
+        setPreferredSize(new java.awt.Dimension(388, 70));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
             }
         });
 
-        titulo_insumo_subPanel.setFont(new java.awt.Font("Trajan Pro", 1, 23)); // NOI18N
+        titulo_insumo_subPanel.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         titulo_insumo_subPanel.setText(""+insumo.getNombre());
 
         jButton1.setText("jButton1");
         jButton1.setLabel(""+insumo.getUnidad());
-        jButton1.setMaximumSize(new java.awt.Dimension(45, 45));
-        jButton1.setMinimumSize(new java.awt.Dimension(45, 45));
         jButton1.setPreferredSize(new java.awt.Dimension(45, 45));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,21 +78,21 @@ public class InfoInsumo extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addComponent(titulo_insumo_subPanel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(titulo_insumo_subPanel))
-                .addContainerGap())
+                    .addComponent(titulo_insumo_subPanel)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
