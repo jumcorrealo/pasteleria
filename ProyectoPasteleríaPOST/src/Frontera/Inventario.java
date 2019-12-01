@@ -12,7 +12,11 @@ package Frontera;
 public class Inventario extends javax.swing.JFrame {
     private static final Administrativo volver = new Administrativo();
     private static final Pasteles past = new Pasteles();
+    private static final Gestion_Insumos frame_insumos= new Gestion_Insumos();
+    
+    
     /**
+     * 
      * Creates new form Inventario
      */
     public Inventario() {
@@ -54,6 +58,11 @@ public class Inventario extends javax.swing.JFrame {
         jButton1.setBounds(20, 570, 200, 113);
 
         jButton2.setText("Insumos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
         jButton2.setBounds(250, 570, 200, 113);
 
@@ -103,6 +112,11 @@ public class Inventario extends javax.swing.JFrame {
         past.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        frame_insumos.setVisible(true);  
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
