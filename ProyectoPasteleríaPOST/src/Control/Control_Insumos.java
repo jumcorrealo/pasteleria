@@ -6,6 +6,7 @@
 package Control;
 
 import DAO.InsumoDAO;
+import Entidad.Cliente;
 import Entidad.Insumo;
 import java.util.Collections;
 import java.util.List;
@@ -51,5 +52,22 @@ public class Control_Insumos {
     
     public List<Insumo> getInsumoList(){
         return lista_insumos;
+    }
+    public String persistInsumo(Insumo insumo){
+        if(!exist(insumo)){
+            i_dao.create(insumo);
+            return "Registro Exitoso"; 
+        }else {
+            return "Insumo Existente";
+        }
+    }
+    
+    public String EInsumo(Insumo insumo) throws Exception {
+        if(editInsumo(insumo)) {
+            i_dao.edit(insumo);
+            return "Datos Actualizado";
+        }else {
+            return "Información invalida";
+        }
     }
 }

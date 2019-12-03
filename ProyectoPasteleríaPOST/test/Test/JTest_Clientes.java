@@ -20,16 +20,16 @@ import static org.junit.Assert.*;
  *
  * @author Nicolas
  */
-public class JTest {
+public class JTest_Clientes {
     private final GestionCliente validar = new GestionCliente();
     private final String NOMBRES_REPETIDOS = "Este usuario ya existe";
     private final String CLIENTE_ACEPTADO = "Registro con exito";
-    private final String CLIENTE_ELIMINADO = "Cliente Eliminado";
+    //private final String CLIENTE_ELIMINADO = "Cliente Eliminado";
     private final String CLIENTE_ACTUALIZADO = "Datos Actualizado";
     private final String NOMBRE_EXISTENTE = "Nombre de Usuario Exixtente";
 
     
-    public JTest() {
+    public JTest_Clientes() {
         
     }
     
@@ -85,7 +85,9 @@ public class JTest {
          assertEquals(validar.textoSalida(u),NOMBRES_REPETIDOS);
          
     }
+    /*
     @Test
+    
     public void Eliminar() {
          ClienteDAO cdao = new ClienteDAO();
          Cliente u = new Cliente();
@@ -96,6 +98,7 @@ public class JTest {
          assertEquals(validar.deleteClient(u),CLIENTE_ELIMINADO);
          
     }
+*/
     @Test
     public void Actualizar() {
          Cliente u = new Cliente();

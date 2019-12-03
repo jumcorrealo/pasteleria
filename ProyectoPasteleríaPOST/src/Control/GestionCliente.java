@@ -64,7 +64,7 @@ public class GestionCliente {
         if(usuarioUnicoUpDate(cliente)){
             return clienteDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
         }
-        return "Nombre de Usuario Exixtente";
+        return "Nombre de Usuario Existente";
     }
     
     public List<Cliente> allClients() {
