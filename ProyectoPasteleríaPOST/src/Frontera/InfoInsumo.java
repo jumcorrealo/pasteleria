@@ -51,11 +51,11 @@ public class InfoInsumo extends javax.swing.JPanel {
     private void initComponents() {
 
         titulo_insumo_subPanel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        button_crear_recordatorio = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(217, 17, 200));
         setForeground(new java.awt.Color(200, 17, 200));
-        setPreferredSize(new java.awt.Dimension(388, 70));
+        setPreferredSize(new java.awt.Dimension(388, 80));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
@@ -65,12 +65,21 @@ public class InfoInsumo extends javax.swing.JPanel {
         titulo_insumo_subPanel.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         titulo_insumo_subPanel.setText(""+insumo.getNombre());
 
-        jButton1.setText("jButton1");
-        jButton1.setLabel(""+insumo.getUnidad());
-        jButton1.setPreferredSize(new java.awt.Dimension(45, 45));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        java.awt.Color butColor;
+        javax.swing.ImageIcon icono;
+        if(insumo.getRecordatorio()==null){
+            butColor=new java.awt.Color(153,255,153);
+            icono= new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_done-01_186405.png"));
+        }else{
+            butColor=new java.awt.Color(19,157,236);
+            icono= new javax.swing.ImageIcon(getClass().getResource("/Img/clock.png"));
+        }
+        button_crear_recordatorio.setBackground(butColor);
+        button_crear_recordatorio.setIcon(icono);
+        button_crear_recordatorio.setPreferredSize(new java.awt.Dimension(45, 45));
+        button_crear_recordatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_crear_recordatorioActionPerformed(evt);
             }
         });
 
@@ -79,20 +88,20 @@ public class InfoInsumo extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(23, 23, 23)
                 .addComponent(titulo_insumo_subPanel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addComponent(button_crear_recordatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(titulo_insumo_subPanel)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(button_crear_recordatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titulo_insumo_subPanel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,14 +109,16 @@ public class InfoInsumo extends javax.swing.JPanel {
     // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_crear_recordatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_crear_recordatorioActionPerformed
         Recordatorio_insumo recordatorio= new Recordatorio_insumo(insumo);
         recordatorio.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_button_crear_recordatorioActionPerformed
 
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton button_crear_recordatorio;
     private javax.swing.JLabel titulo_insumo_subPanel;
     // End of variables declaration//GEN-END:variables
 }

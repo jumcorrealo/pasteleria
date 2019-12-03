@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Frontera;
 
-import Control.GestionInsumos;
+import Control.Control_Insumos;
 import Entidad.Insumo;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,18 +12,25 @@ import javax.swing.JOptionPane;
  */
 public class Gestion_Insumos extends javax.swing.JFrame {
 
-    static GestionInsumos gi=new GestionInsumos();
+    
+    
+    public static Control_Insumos gi=new Control_Insumos();
+    private static final Inventario volver = new Inventario();
+    private static String busqueda;
     /**
      * Creates new form Gestion_Insumos
-     * @param gi
      */
     public Gestion_Insumos() {
-     
+        
         initComponents();
         setLocationRelativeTo(null);
         System.out.println("List size: "+gi.getInsumoList().size());
+        busqueda=new String("");
+        System.out.println("busqueda:"+busqueda.length());
+        addSubPanels();
+       
     }
-
+    
     
     
     /**
@@ -42,8 +45,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         panel_principal_Insumos = new javax.swing.JPanel();
         panel_titulo_Insumos = new javax.swing.JPanel();
         titulo_insumos = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        button_volver = new javax.swing.JButton();
         label_buscar = new javax.swing.JLabel();
         tx_buscar = new javax.swing.JTextField();
         boton_agregar_Insumo = new javax.swing.JButton();
@@ -65,15 +67,10 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         titulo_insumos.setText("Insumos");
         titulo_insumos.setToolTipText("");
 
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
+        button_volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button_volverActionPerformed(evt);
             }
         });
 
@@ -85,18 +82,14 @@ public class Gestion_Insumos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(titulo_insumos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(button_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         panel_titulo_InsumosLayout.setVerticalGroup(
             panel_titulo_InsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_titulo_InsumosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_titulo_InsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(button_volver, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panel_titulo_InsumosLayout.createSequentialGroup()
                 .addComponent(titulo_insumos)
@@ -107,15 +100,25 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         label_buscar.setText("Buscar");
 
         tx_buscar.setToolTipText("Ingrese el nombre del insumo que desea buscar");
+        tx_buscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tx_buscarFocusGained(evt);
+            }
+        });
         tx_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tx_buscarActionPerformed(evt);
             }
         });
+        tx_buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tx_buscarKeyTyped(evt);
+            }
+        });
 
         boton_agregar_Insumo.setBackground(new java.awt.Color(217, 17, 200));
         boton_agregar_Insumo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        boton_agregar_Insumo.setForeground(new java.awt.Color(217, 17, 200));
+        boton_agregar_Insumo.setForeground(new java.awt.Color(255, 255, 255));
         boton_agregar_Insumo.setText("+");
         boton_agregar_Insumo.setToolTipText("Añada un nuevo insumo");
         boton_agregar_Insumo.setPreferredSize(new java.awt.Dimension(80, 80));
@@ -129,8 +132,10 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         panel_scroll.setForeground(new java.awt.Color(217, 17, 200));
         panel_scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         panel_scroll.setAutoscrolls(true);
+        panel_scroll.setPreferredSize(new java.awt.Dimension(480, 420));
 
         panel_lista.setBackground(new java.awt.Color(180, 19, 180));
+        panel_lista.setPreferredSize(new java.awt.Dimension(480, 418));
         panel_lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 panel_listaMouseEntered(evt);
@@ -141,7 +146,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         panel_lista.setLayout(panel_listaLayout);
         panel_listaLayout.setHorizontalGroup(
             panel_listaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
         panel_listaLayout.setVerticalGroup(
             panel_listaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +163,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_principal_InsumosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(panel_principal_InsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panel_scroll)
+                    .addComponent(panel_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addGroup(panel_principal_InsumosLayout.createSequentialGroup()
                         .addComponent(label_buscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -181,7 +186,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
                             .addComponent(label_buscar)
                             .addComponent(tx_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20)
-                .addComponent(panel_scroll)
+                .addComponent(panel_scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -208,33 +213,53 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         ag.setVisible(true); 
     }//GEN-LAST:event_boton_agregar_InsumoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void button_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_volverActionPerformed
+        volver.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button_volverActionPerformed
 
     private void panel_listaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_listaMouseEntered
-        System.out.println(panel_lista.getComponentCount()+","+gi.getInsumoList().size());
-        if(panel_lista.getComponentCount()!=gi.getInsumoList().size()){
+
+        //if(panel_lista.getComponentCount()!=gi.getInsumoList().size()){
             panel_lista.removeAll();
             addSubPanels();
-            panel_scroll.setViewportView(panel_lista);
-        }
+           
+        //}
     }//GEN-LAST:event_panel_listaMouseEntered
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("size:"+gi.getInsumoList().size());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void tx_buscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tx_buscarKeyTyped
+        
+        if(evt.getKeyChar()!=KeyEvent.VK_ENTER){
+            busqueda=(busqueda+evt.getKeyChar()).toLowerCase();
+        }
+        addSubPanels();
+        System.out.println(busqueda);
+    }//GEN-LAST:event_tx_buscarKeyTyped
+
+    private void tx_buscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tx_buscarFocusGained
+        busqueda=tx_buscar.getText().toLowerCase();
+        System.out.println(busqueda);
+    }//GEN-LAST:event_tx_buscarFocusGained
 
     private void addSubPanels(){
-        int altura=70;
+        int altura=80;
+        
         for(int i=0; i< gi.getInsumoList().size();i++ ){
-                InfoInsumo subPanel = new InfoInsumo(gi.getInsumoList().get(i));
-                
-                subPanel.setBounds(10, 10+altura*i,368,altura-10);
+            Insumo insumo_temp=gi.getInsumoList().get(i);
+            boolean flag=true;
+            for(int j=0;j< busqueda.length() && flag;j++){
+                flag&=insumo_temp.getNombre().charAt(j)==busqueda.charAt(j);
+            }
+            if(flag){
+                InfoInsumo subPanel = new InfoInsumo(insumo_temp);
+
+                subPanel.setBounds(10, 10+altura*i,430,altura-10);
                 subPanel.setOpaque(false);
                 panel_lista.add(subPanel);
+            }
            }
         panel_lista.setPreferredSize(new java.awt.Dimension(panel_lista.getWidth(), panel_lista.getComponentCount()*altura+10));
+        panel_scroll.setViewportView(panel_lista);
     }
     
   
@@ -275,8 +300,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_agregar_Insumo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton button_volver;
     private javax.swing.JLabel label_buscar;
     private javax.swing.JPanel panel_lista;
     private javax.swing.JPanel panel_principal_Insumos;
@@ -295,7 +319,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
     
     */
     class Agregar_insumo extends javax.swing.JFrame {
-
+        
        
 
 

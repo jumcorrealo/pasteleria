@@ -5,7 +5,7 @@
  */
 package Frontera;
 
-import Control.GestionInsumos;
+import Control.Control_Insumos;
 import Entidad.Insumo;
 import javax.swing.JOptionPane;
 
@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class Agregar_insumo extends javax.swing.JFrame {
 
-    GestionInsumos gi;
+    Control_Insumos gi;
     
     
-    public Agregar_insumo(GestionInsumos gi) {
+    public Agregar_insumo(Control_Insumos gi) {
         this.gi=gi;
         initComponents();
     }
