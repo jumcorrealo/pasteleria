@@ -4,6 +4,7 @@ import Control.Control_Insumos;
 import Entidad.Insumo;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.time.Clock;
 import javax.swing.JOptionPane;
 
 /**
@@ -220,42 +221,47 @@ public class Gestion_Insumos extends javax.swing.JFrame {
 
     private void panel_listaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_listaMouseEntered
 
-        //if(panel_lista.getComponentCount()!=gi.getInsumoList().size()){
-            panel_lista.removeAll();
             addSubPanels();
-           
-        //}
     }//GEN-LAST:event_panel_listaMouseEntered
 
     private void tx_buscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tx_buscarKeyTyped
         
         if(evt.getKeyChar()!=KeyEvent.VK_ENTER){
-            busqueda=(busqueda+evt.getKeyChar()).toLowerCase();
+            busqueda=tx_buscar.getText().toLowerCase();
         }
         addSubPanels();
-        System.out.println(busqueda);
     }//GEN-LAST:event_tx_buscarKeyTyped
 
     private void tx_buscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tx_buscarFocusGained
         busqueda=tx_buscar.getText().toLowerCase();
-        System.out.println(busqueda);
     }//GEN-LAST:event_tx_buscarFocusGained
 
     private void addSubPanels(){
+        panel_lista.removeAll();
         int altura=80;
-        
+        int count=0;
         for(int i=0; i< gi.getInsumoList().size();i++ ){
             Insumo insumo_temp=gi.getInsumoList().get(i);
             boolean flag=true;
-            for(int j=0;j< busqueda.length() && flag;j++){
+            int j=0;
+            String nombre=insumo_temp.getNombre();
+            
+            if(busqueda.length()>0)
+            while(flag && j<busqueda.length() && j<nombre.length()){
                 flag&=insumo_temp.getNombre().charAt(j)==busqueda.charAt(j);
+                if(busqueda.length()>nombre.length())flag=false;
+            
+                j++;
             }
+            
+            
             if(flag){
                 InfoInsumo subPanel = new InfoInsumo(insumo_temp);
 
-                subPanel.setBounds(10, 10+altura*i,430,altura-10);
+                subPanel.setBounds(10, 10+altura*count,430,altura-10);
                 subPanel.setOpaque(false);
                 panel_lista.add(subPanel);
+                count++;
             }
            }
         panel_lista.setPreferredSize(new java.awt.Dimension(panel_lista.getWidth(), panel_lista.getComponentCount()*altura+10));
