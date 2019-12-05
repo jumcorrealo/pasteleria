@@ -15,8 +15,8 @@ import java.util.Objects;
  */
 public class GestionCliente {
     
-    private final ClienteDAO clienteDAO = new ClienteDAO();
-    private final ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
+    private static final ClienteDAO clienteDAO = new ClienteDAO();
+    private static ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
     public GestionCliente() {
     }
@@ -64,7 +64,7 @@ public class GestionCliente {
         if(usuarioUnicoUpDate(cliente)){
             return clienteDAO.edit(cliente)? "Datos Actualizado" : "No se pudo Actualizar";
         }
-        return "Nombre de Usuario Exixtente";
+        return "Nombre de Usuario Existente";
     }
     
     public List<Cliente> allClients() {

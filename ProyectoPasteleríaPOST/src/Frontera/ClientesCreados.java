@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class ClientesCreados extends javax.swing.JPanel {
     private static final GestionCliente gc = new GestionCliente();
-    private static  List<Cliente> clientes;
+    private static List<Cliente> clientes;
     private static DefaultListModel modeloLista;
     private static int posList = -1;
     /**
@@ -41,7 +41,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         actualizarButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
-        cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listName = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
@@ -88,15 +87,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         });
         jPanel2.add(eliminarButton);
         eliminarButton.setBounds(310, 610, 140, 85);
-
-        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
-        cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cancelar);
-        cancelar.setBounds(10, 10, 80, 64);
 
         listName.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -190,8 +180,8 @@ public class ClientesCreados extends javax.swing.JPanel {
                         .addComponent(jSeparator4))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(110, 110, 110)
-                        .addComponent(estadolbs)))
+                        .addGap(18, 18, 18)
+                        .addComponent(estadolbs, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -216,16 +206,20 @@ public class ClientesCreados extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(estadolbs))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(estadolbs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel2.add(jPanel3);
@@ -241,7 +235,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -269,9 +262,7 @@ public class ClientesCreados extends javax.swing.JPanel {
         );
 
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(80, 80, 360, 60);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/bar-1846137_1280.jpg"))); // NOI18N
+        jPanel4.setBounds(70, 50, 360, 60);
         jPanel2.add(jLabel5);
         jLabel5.setBounds(0, 0, 540, 730);
 
@@ -338,10 +329,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         casaS.setEditable(false);
         telefonoS.setEditable(false);
     }//GEN-LAST:event_eliminarButtonActionPerformed
-
-    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        
-    }//GEN-LAST:event_cancelarActionPerformed
 
     private void listNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listNameMouseClicked
         String selected = listName.getSelectedValue();
@@ -447,7 +434,6 @@ public class ClientesCreados extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarButton;
-    private javax.swing.JButton cancelar;
     private javax.swing.JTextField casaS;
     private javax.swing.JButton eliminarButton;
     private javax.swing.JLabel estadolbs;

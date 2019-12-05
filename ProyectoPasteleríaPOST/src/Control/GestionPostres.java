@@ -14,12 +14,13 @@ import java.util.Objects;
  */
 public class GestionPostres {
     private static final PostresDAO PDAO = new PostresDAO();
-    private static final List<Postres> list = PDAO.findPostresEntities();
+    private static List<Postres> list;
 
     public GestionPostres() {
     }
     
     private boolean upDateSamePostre(Postres p) {
+        list = PDAO.findPostresEntities();
         for (Postres postres : list) {
             if(p.isSame(postres)) {
                 if(Objects.equals(p.getId(), postres.getId())){
@@ -31,6 +32,7 @@ public class GestionPostres {
     }
     
     private boolean postreUnico(Postres p) {
+        list = PDAO.findPostresEntities();
         for (Postres postres : list) {
             if(p.isSame(postres)) {
                 return true;
@@ -49,18 +51,12 @@ public class GestionPostres {
     }
     
     public String upDatePostre(Postres postres) throws Exception {
-        if(!upDateSamePostre(postres)) {
+        if(upDateSamePostre(postres)) {
             PDAO.edit(postres);
             return "Datos Actualizado";
         }else {
             return "Información invalida";
         }
-    }
-    
-    public String discontinuePostre(Postres postres) throws Exception {
-        postres.setDiscontinued(postres.getDiscontinued());
-        PDAO.edit(postres);
-        return postres.getDiscontinued()? "Postre Descontinuado" : "Postre Reintegrado";
     }
     
     public List<Postres> allPostres(){

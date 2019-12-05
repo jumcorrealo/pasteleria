@@ -12,8 +12,9 @@ import java.awt.Component;
  * @author Home
  */
 public class GestionDeClientes extends javax.swing.JFrame {
-    private ClientesCreados clientes = new ClientesCreados();
-    private AgregarCliente nuevo = new AgregarCliente();
+    private static final ClientesCreados clientes = new ClientesCreados();
+    private static final AgregarCliente nuevo = new AgregarCliente();
+    private static final Administrativo adm = new Administrativo();
     /**
      * Creates new form GestionDeClientes
      */
@@ -134,7 +135,8 @@ public class GestionDeClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteExistenteButtonActionPerformed
 
     private void VolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverButtonActionPerformed
-
+        adm.setVisible(true);
+        dispose();
         //dispose();
     }//GEN-LAST:event_VolverButtonActionPerformed
 
@@ -145,7 +147,7 @@ public class GestionDeClientes extends javax.swing.JFrame {
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         Inicio home = new Inicio();
         home.setVisible(true);
-        //dispose();
+        dispose();
     }//GEN-LAST:event_HomeButtonActionPerformed
 
     private void GestionDeClienteReemplazoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_GestionDeClienteReemplazoComponentAdded
@@ -183,10 +185,8 @@ public class GestionDeClientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionDeClientes().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GestionDeClientes().setVisible(true);
         });
     }
 

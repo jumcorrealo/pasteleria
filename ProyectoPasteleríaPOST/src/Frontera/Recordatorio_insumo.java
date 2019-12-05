@@ -6,6 +6,10 @@
 package Frontera;
 
 import Entidad.Insumo;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +26,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         
         initComponents();
         setSize(new java.awt.Dimension(450, 300));
+        
     }
 
     /**
@@ -99,6 +104,12 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         label_proximo.setText("Fecha:");
         label_proximo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        tx_cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tx_cantidadKeyTyped(evt);
+            }
+        });
+
         label_unidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         label_unidad.setText(insumo.getUnidad());
         label_unidad.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -173,12 +184,33 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
 
     private void button_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelarActionPerformed
         dispose();
-        
     }//GEN-LAST:event_button_cancelarActionPerformed
 
     private void button_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_aceptarActionPerformed
+        Date date=selector_fecha.getDate();
+        String fecha=(date.getYear()+1900)+"-"+(date.getMonth()+1)+"-"+date.getDate();
+       
+        int cantidad=Integer.parseInt(tx_cantidad.getText());
+        insumo.setRecordatorio(fecha, cantidad);
+        insumo.upFreq();
+         System.out.println(insumo);
+        
+            if(Gestion_Insumos.gi.editInsumo(insumo)){
+                     JOptionPane.showMessageDialog(null, "Exito al crear recordatorio " + insumo);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Algo salió mal");
+                }
+            for (Insumo i: Gestion_Insumos.gi.getInsumoList()){
+                System.out.println(i);
+            }
 
     }//GEN-LAST:event_button_aceptarActionPerformed
+
+    private void tx_cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tx_cantidadKeyTyped
+        char c = evt.getKeyChar();
+        if(c < '0' || c > '9') evt.consume();
+    }//GEN-LAST:event_tx_cantidadKeyTyped
 
     /**
      * @param args the command line arguments
@@ -210,7 +242,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Recordatorio_insumo(new Insumo("Harina","lb")).setVisible(true);
+                new Recordatorio_insumo(new Insumo(new Long(2),"Harina","lb")).setVisible(true);
             }
         });
     }

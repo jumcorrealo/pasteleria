@@ -10,8 +10,13 @@ package Frontera;
  * @author Home
  */
 public class Inventario extends javax.swing.JFrame {
-
+    private static final Administrativo volver = new Administrativo();
+    private static final Pasteles past = new Pasteles();
+    private static final Gestion_Insumos frame_insumos= new Gestion_Insumos();
+    
+    
     /**
+     * 
      * Creates new form Inventario
      */
     public Inventario() {
@@ -43,7 +48,7 @@ public class Inventario extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        jButton1.setText("Pasteles");
+        jButton1.setText("Postres");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -53,6 +58,11 @@ public class Inventario extends javax.swing.JFrame {
         jButton1.setBounds(20, 570, 200, 113);
 
         jButton2.setText("Insumos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
         jButton2.setBounds(250, 570, 200, 113);
 
@@ -94,16 +104,19 @@ public class Inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Administrativo volver = new Administrativo();
         volver.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Pasteles past = new Pasteles();
         past.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        frame_insumos.setVisible(true);  
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

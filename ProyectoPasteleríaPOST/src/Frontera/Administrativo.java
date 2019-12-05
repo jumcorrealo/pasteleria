@@ -9,8 +9,8 @@ package Frontera;
  * @author Home
  */
 public class Administrativo extends javax.swing.JFrame {
-    private GestionDeClientes clientes = new GestionDeClientes();
-    private Inicio volver = new Inicio();
+    private static GestionDeClientes clientes = new GestionDeClientes();
+    private static Inicio volver = new Inicio();
   
     /**
      * Creates new form Administrativo
@@ -110,11 +110,11 @@ public class Administrativo extends javax.swing.JFrame {
                         .addComponent(VolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(ClienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62)
+                .addGap(97, 97, 97)
                 .addComponent(InventarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(98, 98, 98)
                 .addComponent(EstadisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
             .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,6 +196,6 @@ public class Administrativo extends javax.swing.JFrame {
     private javax.swing.JButton InventarioButton;
     private javax.swing.JButton VolverButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel panelAdministrativoReemplazo;
+    public javax.swing.JPanel panelAdministrativoReemplazo;
     // End of variables declaration//GEN-END:variables
 }

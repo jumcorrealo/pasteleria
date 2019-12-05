@@ -6,6 +6,7 @@
 package Entidad;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.*;
 
 
@@ -15,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "insumo")
-public class Insumo implements Serializable {
+public class Insumo implements Serializable, Comparable<Insumo> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,6 +33,12 @@ public class Insumo implements Serializable {
     
     @Column(name="FRECUENCIA")
     private int freq;
+    
+    @Column(name="FECHA_RECORDATORIO")
+    private String fecha;
+    
+    @Column(name="CANTIDAD")
+    private int cantidad;
     
     public Insumo(){
         this("","");
@@ -80,6 +87,21 @@ public class Insumo implements Serializable {
         this.freq = freq;
     }
     
+    public void setRecordatorio(String fecha, int cantidad){
+        this.fecha=fecha;
+        this.cantidad=cantidad;
+    }
+    
+    public String getRecordatorio(){
+        return fecha;
+    }
+    
+    public void suprRecordatorio(){
+        this.fecha=null;
+        this.cantidad=0;
+    }
+    
+    
     public void upFreq(){
         this.freq++;
     }
@@ -98,15 +120,33 @@ public class Insumo implements Serializable {
             return false;
         }
         Insumo other = (Insumo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
-        return "Insumo:"+nombre+", unidad:"+unidad+", frecuencia:"+freq;
+        return "id:"+id+",Insumo:"+nombre+", unidad:"+unidad+", frecuencia:"+freq+
+                ", fecha próximo recordatorio:"+fecha+",cantidad:"+cantidad;
+    }
+
+    @Override
+    public int compareTo(Insumo ins) {
+        
+        if(fecha==null && ins.getRecordatorio()==null){
+            return compare(ins);
+        }else if(fecha==null && ins.getRecordatorio()!=null){
+            return 1;
+        }else if (fecha!=null && ins.getRecordatorio()==null){
+            return -1;
+        }else{
+            return compare(ins);
+        }
+    }
+    
+    private int compare(Insumo ins){
+        if (freq-ins.getFreq()<0) return 1;
+        else if(freq-ins.getFreq()==0) return 0;
+        else return -1;
     }
     
 }
