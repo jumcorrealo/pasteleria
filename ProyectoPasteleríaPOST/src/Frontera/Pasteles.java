@@ -5,16 +5,20 @@
  */
 package Frontera;
 
+import java.awt.Component;
+
 /**
  *
  * @author Home
  */
-public class Inicio extends javax.swing.JFrame {
+public class Pasteles extends javax.swing.JFrame {
+    private AgregarPastel agregar = new AgregarPastel();
+    private PastelesExistentes existentes = new PastelesExistentes();
     
     /**
-     * Creates new form Inicio
+     * Creates new form Pasteles
      */
-    public Inicio() {
+    public Pasteles() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -31,87 +35,97 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        PanelPasteles = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
-        setUndecorated(true);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setBackground(new java.awt.Color(40, 43, 40));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(124, 198, 254));
-        jButton1.setText("Ventas");
+        jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(430, 420, 200, 113);
+        jButton1.setBounds(170, 200, 200, 113);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton3);
-        jButton3.setBounds(990, 10, 80, 65);
-
-        jButton2.setBackground(new java.awt.Color(124, 198, 254));
-        jButton2.setText("Administrativo");
+        jButton2.setText("Catalogo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(430, 240, 200, 113);
+        jButton2.setBounds(170, 420, 200, 113);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/bun-268237_1920.jpg"))); // NOI18N
-        jLabel1.setToolTipText("");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3);
+        jButton3.setBounds(20, 20, 80, 65);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/birthday-cake-380178_1280.jpg"))); // NOI18N
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1080, 720);
+        jLabel1.setBounds(0, 0, 540, 720);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
 
+        PanelPasteles.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                PanelPastelesComponentAdded(evt);
+            }
+        });
+        PanelPasteles.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(PanelPasteles);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Administrativo adm = new Administrativo();
-        adm.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.exit(0);
+        Inventario volver = new Inventario();
+        volver.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ventas ventas = new Ventas();
-        ventas.setVisible(true);
-        dispose();
+        PanelPasteles.setVisible(false);
+        PanelPasteles.removeAll();
+        PanelPasteles.add(agregar);
+        PanelPasteles.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PanelPasteles.setVisible(false);
+        PanelPasteles.removeAll();
+        PanelPasteles.add(existentes);
+        PanelPasteles.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void PanelPastelesComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_PanelPastelesComponentAdded
+        Component child = evt.getChild();
+        if(existentes.equals(child)) {
+            existentes.fillTable();
+        }
+    }//GEN-LAST:event_PanelPastelesComponentAdded
 
     /**
      * @param args the command line arguments
@@ -130,23 +144,26 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pasteles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pasteles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pasteles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pasteles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Inicio().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Pasteles().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelPasteles;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

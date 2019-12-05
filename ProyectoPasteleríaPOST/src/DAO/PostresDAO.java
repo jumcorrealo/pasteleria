@@ -5,32 +5,41 @@
  */
 package DAO;
 
-import Entidad.Cliente;
+import DAO.exceptions.NonexistentEntityException;
+import Entidad.Postres;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
-import javax.persistence.criteria.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.ParameterMode;
+import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 /**
  *
  * @author enano
  */
-public class ClienteDAO implements Serializable {
-
-    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistence");
-
-    public ClienteDAO() {
-    }
+public class PostresDAO implements Serializable {
+    private final EntityManagerFactory emf;
     
+    public PostresDAO() {
+        this.emf = Persistence.createEntityManagerFactory("Persistence");
+    }
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
-    public void create(Cliente cliente) {
+    public void create(Postres postres) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(cliente);
+            em.persist(postres);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -39,21 +48,19 @@ public class ClienteDAO implements Serializable {
         }
     }
 
-    public boolean edit(Cliente cliente) {
+    public void edit(Postres postres) throws NonexistentEntityException, Exception {
         EntityManager em = null;
-        boolean result = false;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            cliente = em.merge(cliente);
+            postres = em.merge(postres);
             em.getTransaction().commit();
-            result = true;
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = cliente.getId();
-                if (findCliente(id) == null) {
-                    System.out.println("The cliente with id " + id + " no longer exists.");
+                Integer id = postres.getId();
+                if (findPostres(id) == null) {
+                    throw new NonexistentEntityException("The postres with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -62,44 +69,42 @@ public class ClienteDAO implements Serializable {
                 em.close();
             }
         }
-        return result;
     }
 
-    public boolean destroy(Integer id) {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
-        boolean result = false;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Cliente cliente = null;
+            Postres postres;
             try {
-                cliente = em.getReference(Cliente.class, id);
-                cliente.getId();
-            } catch (EntityNotFoundException enfe) { }
-            em.remove(cliente);
+                postres = em.getReference(Postres.class, id);
+                postres.getId();
+            } catch (EntityNotFoundException enfe) {
+                throw new NonexistentEntityException("The postres with id " + id + " no longer exists.", enfe);
+            }
+            em.remove(postres);
             em.getTransaction().commit();
-            result = true;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
-        return result;
     }
 
-    public List<Cliente> findClienteEntities() {
-        return findClienteEntities(true, -1, -1);
+    public List<Postres> findPostresEntities() {
+        return findPostresEntities(true, -1, -1);
     }
 
-    public List<Cliente> findClienteEntities(int maxResults, int firstResult) {
-        return findClienteEntities(false, maxResults, firstResult);
+    public List<Postres> findPostresEntities(int maxResults, int firstResult) {
+        return findPostresEntities(false, maxResults, firstResult);
     }
 
-    private List<Cliente> findClienteEntities(boolean all, int maxResults, int firstResult) {
+    private List<Postres> findPostresEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Cliente.class));
+            cq.select(cq.from(Postres.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -111,20 +116,20 @@ public class ClienteDAO implements Serializable {
         }
     }
 
-    public Cliente findCliente(Integer id) {
+    public Postres findPostres(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Cliente.class, id);
+            return em.find(Postres.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getClienteCount() {
+    public int getPostresCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Cliente> rt = cq.from(Cliente.class);
+            Root<Postres> rt = cq.from(Postres.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -133,20 +138,20 @@ public class ClienteDAO implements Serializable {
         }
     }
     
-    public List<Cliente> dynoSerch(String key) {
+    public List<Postres> dynoSerch(String data) {
         EntityManager em = getEntityManager();
-        List<Cliente> list = null;
+        List<Postres> list = null;
         try {
             em.getTransaction().begin();
-            StoredProcedureQuery procedureQuery =  em.createStoredProcedureQuery("dynoserch", Cliente.class);
+            StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery("dynoserch", Postres.class);
             procedureQuery.registerStoredProcedureParameter("_data", String.class, ParameterMode.IN);
             procedureQuery.registerStoredProcedureParameter("_table", Integer.class, ParameterMode.IN);
-            procedureQuery.setParameter("_table", 1);
-            procedureQuery.setParameter("_data", "%" + key + "%");
+            procedureQuery.setParameter("_data", "%" + data + "%");
+            procedureQuery.setParameter("_table", 2);
             procedureQuery.execute();
             em.getTransaction().commit();
             list = procedureQuery.getResultList();
-        } finally {
+        }finally {
             em.close();
         }
         return list;
