@@ -18,7 +18,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
     private static final GestionPostres GP = new GestionPostres();
     private static List<Postres> list;
     private static DefaultTableModel dtm;
-    private static int cellSelected = -1;
     /**
      * Creates new form PastelesExistentes
      */
@@ -40,7 +39,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(40, 43, 40));
 
@@ -55,14 +53,14 @@ public class PastelesExistentes extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tipo", "Sabor", "Forma", "Porciones", "Precio", "Descontinuado"
+                "Tipo", "Sabor", "Precio"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -75,11 +73,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
         });
         jTable1.setColumnSelectionAllowed(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTable1MousePressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -88,13 +81,7 @@ public class PastelesExistentes extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(80);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(75);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(30);
         }
 
         jTextField1.setText("Buscar");
@@ -111,13 +98,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,14 +108,12 @@ public class PastelesExistentes extends javax.swing.JPanel {
                 .addGap(127, 127, 127))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -152,39 +130,13 @@ public class PastelesExistentes extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dtm = (DefaultTableModel) jTable1.getModel();
-        Postres postres = list.get(cellSelected);
-        postres.setPrice((int)dtm.getValueAt(cellSelected, 4));
-        postres.setDiscontinued((boolean)dtm.getValueAt(cellSelected, 5) );
-        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Desea Actualizar");
-        try {
-            switch(showConfirmDialog){
-                case JOptionPane.YES_OPTION :
-                    JOptionPane.showMessageDialog(null, GP.upDatePostre(postres));
-                    fillTable();
-                    break;
-                case JOptionPane.NO_OPTION :
-                    JOptionPane.showMessageDialog(null, "Cancelado");
-                    fillTable();
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
-        cellSelected = jTable1.getSelectedRow();
-    }//GEN-LAST:event_jTable1MousePressed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         if(jTextField1.getText().equals("")){
@@ -200,27 +152,21 @@ public class PastelesExistentes extends javax.swing.JPanel {
         dtm.setRowCount(0);
         if(!jTextField1.getText().isEmpty() && !jTextField1.getText().equals("Buscar")) {
             list = GP.dynoSerch(jTextField1.getText());
-            Object[] row = new Object[6];
+            Object[] row = new Object[3];
             for(Postres p : list) {
                 System.out.println(p.getTipo());
                 row[0] = (Object) p.getTipo();
                 row[1] = (Object) p.getFlavor();
-                row[2] = p.getForm() == null? "" : (Object) p.getForm();
-                row[3] = p.getSize() == null? "" : p.getSize();
-                row[4] = (Object) p.getPrice();
-                row[5] = (Object) p.getDiscontinued();
+                row[2] = (Object) p.getPrice();
                 dtm.addRow(row);
             }
         }else {
             list = GP.allPostres();
-            Object[] row = new Object[6];
+            Object[] row = new Object[3];
             for(Postres p : list) {
                 row[0] = (Object) p.getTipo();
                 row[1] = (Object) p.getFlavor();
-                row[2] = p.getForm() == null? "" : (Object) p.getForm();
-                row[3] = p.getSize() == null? "" : p.getSize();
-                row[4] = (Object) p.getPrice();
-                row[5] = (Object) p.getDiscontinued();
+                row[2] = (Object) p.getPrice();
                 dtm.addRow(row);
             }
         }
@@ -228,7 +174,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
