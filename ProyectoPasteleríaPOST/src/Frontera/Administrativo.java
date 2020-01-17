@@ -61,6 +61,11 @@ public class Administrativo extends javax.swing.JFrame {
 
         EstadisticasButton.setBackground(new java.awt.Color(77, 126, 168));
         EstadisticasButton.setText("Estadísticas");
+        EstadisticasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstadisticasButtonActionPerformed(evt);
+            }
+        });
 
         VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         VolverButton.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +159,10 @@ public class Administrativo extends javax.swing.JFrame {
     private void CerrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_CerrarButtonActionPerformed
+
+    private void EstadisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadisticasButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstadisticasButtonActionPerformed
 
     
     /**

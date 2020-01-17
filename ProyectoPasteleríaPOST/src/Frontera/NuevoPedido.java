@@ -38,6 +38,8 @@ public class NuevoPedido extends javax.swing.JPanel {
         panelGeneral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(40, 43, 40));
         setLayout(null);
@@ -61,6 +63,14 @@ public class NuevoPedido extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(390, 640, 100, 50);
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Subtotal:");
+        add(jLabel2);
+        jLabel2.setBounds(20, 650, 90, 40);
+        add(jTextField1);
+        jTextField1.setBounds(110, 660, 120, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -85,6 +95,8 @@ public class NuevoPedido extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panelGeneral;
     // End of variables declaration//GEN-END:variables
 }
