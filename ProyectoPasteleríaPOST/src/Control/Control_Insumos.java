@@ -38,8 +38,6 @@ public class Control_Insumos {
     public boolean editInsumo(Insumo ins){
         boolean res=false;
         if(exist(ins))res=i_dao.edit(ins);
-        int i=ins.getId().intValue();
-        lista_insumos.set(i, ins);
         return res;
     }
     
