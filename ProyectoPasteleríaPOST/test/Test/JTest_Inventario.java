@@ -43,13 +43,13 @@ public class JTest_Inventario {
         e.setFlavor("Vino");
         f.setFlavor("Fresa");
         
-        e.setForm("Cuadrado");
+  
         
         d.setPrice(2000);
         e.setPrice(12000);
         f.setPrice(1500);
         
-        e.setSize(16);
+
         
         d.setTipo("Cupcake");
         e.setTipo("Torta");

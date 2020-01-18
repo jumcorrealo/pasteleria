@@ -5,8 +5,11 @@
  */
 package Entidad;
 
+import DAO.exceptions.Pedidos;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author andre
@@ -16,6 +19,11 @@ import javax.persistence.*;
 //@NamedQueries({
 //    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM cliente c")})
 public class Cliente implements Serializable {
+
+    @Column(name = "ACTIVO")
+    private Boolean activo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iDCliente")
+    private Collection<Pedidos> pedidosCollection;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +38,6 @@ public class Cliente implements Serializable {
     private Integer puntaje;
     @Column(name = "TELEFONO")
     private String telefono;
-    @Basic(optional = false)
-    @Column(name = "ACTIVO")
-    private boolean activo;
-     
-   //a mayor puntaje mayor prioridad
    
 
    
@@ -103,13 +106,6 @@ public class Cliente implements Serializable {
 
 
     
-    public boolean getActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
 
     @Override
     public int hashCode() {
@@ -134,6 +130,23 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "Entidad.Cliente[ id=" + id + " ]";
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    @XmlTransient
+    public Collection<Pedidos> getPedidosCollection() {
+        return pedidosCollection;
+    }
+
+    public void setPedidosCollection(Collection<Pedidos> pedidosCollection) {
+        this.pedidosCollection = pedidosCollection;
     }
     
     
