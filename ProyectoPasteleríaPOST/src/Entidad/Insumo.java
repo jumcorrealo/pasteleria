@@ -96,6 +96,10 @@ public class Insumo implements Serializable, Comparable<Insumo> {
         return fecha;
     }
     
+    public int getCantidad(){
+        return this.cantidad;
+    }
+    
     public void suprRecordatorio(){
         this.fecha=null;
         this.cantidad=0;

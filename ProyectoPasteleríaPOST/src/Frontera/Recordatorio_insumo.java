@@ -6,9 +6,13 @@
 package Frontera;
 
 import Entidad.Insumo;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,14 +52,15 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         tx_cantidad = new javax.swing.JTextField();
         label_unidad = new javax.swing.JLabel();
         selector_fecha = new com.toedter.calendar.JDateChooser();
+        jButton_eliminar_recordatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         setPreferredSize(new java.awt.Dimension(450, 300));
 
-        jPanel1.setBackground(new java.awt.Color(241, 198, 241));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(212, 17, 200));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(0, 153, 153));
         panel_titulo_Insumos.setPreferredSize(new java.awt.Dimension(300, 89));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 55)); // NOI18N
@@ -88,7 +93,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
             }
         });
 
-        button_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_Delete_1493279.png"))); // NOI18N
+        button_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
         button_cancelar.setBorder(null);
         button_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +109,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         label_proximo.setText("Fecha:");
         label_proximo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        if(insumo.getCantidad()>0)tx_cantidad.setText(""+insumo.getCantidad());
         tx_cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tx_cantidadKeyTyped(evt);
@@ -113,6 +119,22 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         label_unidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         label_unidad.setText(insumo.getUnidad());
         label_unidad.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        String fecha_inicial=insumo.getRecordatorio();
+        if(fecha_inicial!=null){
+            try{
+                selector_fecha.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(fecha_inicial));
+            }catch(Exception e ){
+                e.printStackTrace();
+            }
+        }
+
+        jButton_eliminar_recordatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/trash_can.png"))); // NOI18N
+        jButton_eliminar_recordatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_eliminar_recordatorioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,17 +150,21 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
                             .addComponent(label_cantidad))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tx_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selector_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tx_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(button_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16)))
                                 .addGap(10, 10, 10)
-                                .addComponent(label_unidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(selector_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(label_unidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_eliminar_recordatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addComponent(button_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(button_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(button_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +183,10 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(label_cantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(button_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(button_aceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(button_cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(jButton_eliminar_recordatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
@@ -188,7 +215,11 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
 
     private void button_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_aceptarActionPerformed
         Date date=selector_fecha.getDate();
-        String fecha=(date.getYear()+1900)+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        System.out.println(date.getDate());
+        System.out.println((date.getMonth()+1));
+        System.out.println((date.getYear()+1900));
+        
+        String fecha=date.getDate()+"/"+(date.getMonth()+1)+"/"+(date.getYear()+1900);
        
         int cantidad=Integer.parseInt(tx_cantidad.getText());
         insumo.setRecordatorio(fecha, cantidad);
@@ -201,16 +232,26 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
                 }else{
                     JOptionPane.showMessageDialog(null, "Algo salió mal");
                 }
-            for (Insumo i: Gestion_Insumos.gi.getInsumoList()){
-                System.out.println(i);
-            }
-
     }//GEN-LAST:event_button_aceptarActionPerformed
 
     private void tx_cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tx_cantidadKeyTyped
         char c = evt.getKeyChar();
         if(c < '0' || c > '9') evt.consume();
     }//GEN-LAST:event_tx_cantidadKeyTyped
+
+    private void jButton_eliminar_recordatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminar_recordatorioActionPerformed
+        int input = JOptionPane.showConfirmDialog(null, "Desea eliminar el recordatorio?");
+        if(input==0){
+            insumo.setRecordatorio(null, 0);
+            if(Gestion_Insumos.gi.editInsumo(insumo)){
+                     JOptionPane.showMessageDialog(null, "Exito al eliminar recordatorio " + insumo);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Algo salió mal");
+                }
+        }
+        // 0=yes, 1=no, 2=cancel
+    }//GEN-LAST:event_jButton_eliminar_recordatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +291,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_aceptar;
     private javax.swing.JButton button_cancelar;
+    private javax.swing.JButton jButton_eliminar_recordatorio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_cantidad;
     private javax.swing.JLabel label_proximo;

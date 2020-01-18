@@ -58,9 +58,9 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setLocationByPlatform(true);
 
-        panel_principal_Insumos.setBackground(new java.awt.Color(241, 198, 241));
+        panel_principal_Insumos.setBackground(new java.awt.Color(221, 221, 221));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(212, 17, 200));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(0, 153, 153));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 72)); // NOI18N
         titulo_insumos.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,7 +117,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
             }
         });
 
-        boton_agregar_Insumo.setBackground(new java.awt.Color(217, 17, 200));
+        boton_agregar_Insumo.setBackground(new java.awt.Color(51, 102, 255));
         boton_agregar_Insumo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         boton_agregar_Insumo.setForeground(new java.awt.Color(255, 255, 255));
         boton_agregar_Insumo.setText("+");
@@ -135,7 +135,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         panel_scroll.setAutoscrolls(true);
         panel_scroll.setPreferredSize(new java.awt.Dimension(480, 420));
 
-        panel_lista.setBackground(new java.awt.Color(180, 19, 180));
+        panel_lista.setBackground(new java.awt.Color(255, 255, 255));
         panel_lista.setPreferredSize(new java.awt.Dimension(480, 418));
         panel_lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -355,9 +355,9 @@ public class Gestion_Insumos extends javax.swing.JFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-            jPanel1.setBackground(new java.awt.Color(241, 198, 241));
+            jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-            panel_titulo_Insumos.setBackground(new java.awt.Color(212, 17, 200));
+            panel_titulo_Insumos.setBackground(new java.awt.Color(0, 153, 153));
             panel_titulo_Insumos.setPreferredSize(new java.awt.Dimension(300, 89));
 
             titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 66)); // NOI18N

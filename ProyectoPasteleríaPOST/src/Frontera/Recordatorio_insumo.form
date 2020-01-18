@@ -45,7 +45,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f1" green="c6" red="f1" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -63,22 +63,29 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="tx_cantidad" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="label_unidad" min="-2" pref="80" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="selector_fecha" min="-2" pref="220" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="tx_cantidad" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="button_cancelar" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="label_unidad" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="jButton_eliminar_recordatorio" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="button_aceptar" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="button_cancelar" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,9 +110,10 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="button_aceptar" min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="button_cancelar" min="-2" pref="65" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="button_aceptar" pref="65" max="32767" attributes="0"/>
+                      <Component id="button_cancelar" pref="65" max="32767" attributes="0"/>
+                      <Component id="jButton_eliminar_recordatorio" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
@@ -116,7 +124,7 @@
         <Container class="javax.swing.JPanel" name="panel_titulo_Insumos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="c8" green="11" red="d4" type="rgb"/>
+              <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[300, 89]"/>
@@ -176,7 +184,7 @@
         <Component class="javax.swing.JButton" name="button_cancelar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Img/iconfinder_Delete_1493279.png"/>
+              <Image iconType="3" name="/Img/iconfinder_arrow-back_216437.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -208,6 +216,9 @@
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tx_cantidadKeyTyped"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(insumo.getCantidad()&gt;0)tx_cantidad.setText(&quot;&quot;+insumo.getCantidad());&#xd;&#xa;"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="label_unidad">
           <Properties>
@@ -224,6 +235,19 @@
           </AccessibilityProperties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="selector_fecha">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="String fecha_inicial=insumo.getRecordatorio();&#xd;&#xa;if(fecha_inicial!=null){&#xd;&#xa;    try{&#xd;&#xa;        selector_fecha.setDate(new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).parse(fecha_inicial));&#xd;&#xa;    }catch(Exception e ){&#xd;&#xa;        e.printStackTrace();&#xd;&#xa;    }&#xd;&#xa;}"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_eliminar_recordatorio">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Img/trash_can.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_eliminar_recordatorioActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
