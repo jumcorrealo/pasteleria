@@ -5,6 +5,7 @@
     <class>Entidad.Cliente</class>
     <class>Entidad.Postres</class>
     <class>Entidad.Insumo</class>
+    <class>Entidad.Pedidos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db4free.net:3306/ingesoft2019?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="useringesoft"/>
