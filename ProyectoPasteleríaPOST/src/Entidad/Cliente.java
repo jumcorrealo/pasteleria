@@ -5,7 +5,6 @@
  */
 package Entidad;
 
-import DAO.exceptions.Pedidos;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;

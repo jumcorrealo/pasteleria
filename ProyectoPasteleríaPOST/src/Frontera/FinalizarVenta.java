@@ -40,7 +40,7 @@ public class FinalizarVenta extends javax.swing.JPanel {
         txtDecoracion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAditivos = new javax.swing.JTextArea();
-        txtPrecioA = new javax.swing.JTextField<>();
+        txtPrecioA = new javax.swing.JTextField();
         aditivos1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(40, 43, 40));
@@ -194,7 +194,7 @@ public class FinalizarVenta extends javax.swing.JPanel {
     private javax.swing.JTextField txtAbono;
     private javax.swing.JTextArea txtAditivos;
     private javax.swing.JTextArea txtDecoracion;
-    private javax.swing.JTextField<Int> txtPrecioA;
+    private javax.swing.JTextField txtPrecioA;
     private javax.swing.JTextField txtSaldo;
     // End of variables declaration//GEN-END:variables
 }
