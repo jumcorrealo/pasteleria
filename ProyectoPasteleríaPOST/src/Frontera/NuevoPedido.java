@@ -13,8 +13,9 @@ public class NuevoPedido extends javax.swing.JPanel {
     private static ClientePedido clienteinfo = new ClientePedido();
     private static DetallesVenta detalles = new DetallesVenta();
     private static FinalizarVenta finalizar = new FinalizarVenta();
+    
     int contador = 0;
-    int subTotal;
+    public int subTotal;
 
     /**
      * Creates new form NuevoPedido
@@ -45,7 +46,7 @@ public class NuevoPedido extends javax.swing.JPanel {
         setBackground(new java.awt.Color(40, 43, 40));
         setLayout(null);
 
-        panelGeneral.setBackground(new java.awt.Color(40, 43, 40));
+        panelGeneral.setBackground(new java.awt.Color(255, 255, 0));
         panelGeneral.setLayout(new java.awt.BorderLayout());
         add(panelGeneral);
         panelGeneral.setBounds(0, 80, 540, 520);
@@ -54,7 +55,7 @@ public class NuevoPedido extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nuevo Pedido");
         add(jLabel1);
-        jLabel1.setBounds(160, 0, 230, 80);
+        jLabel1.setBounds(50, 0, 440, 80);
 
         jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +79,7 @@ public class NuevoPedido extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         contador ++;
+        
         if(contador==1){
             panelGeneral.setVisible(false);
             panelGeneral.removeAll();

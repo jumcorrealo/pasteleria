@@ -248,6 +248,7 @@ public class ClientesCreados extends javax.swing.JPanel {
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -277,7 +278,7 @@ public class ClientesCreados extends javax.swing.JPanel {
         jPanel2.add(jPanel4);
         jPanel4.setBounds(70, 50, 360, 60);
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(0, 0, 540, 730);
+        jLabel5.setBounds(20, -20, 540, 730);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
