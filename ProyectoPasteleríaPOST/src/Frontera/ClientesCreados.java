@@ -315,6 +315,7 @@ public class ClientesCreados extends javax.swing.JPanel {
             clientes = gc.allClients();
             agregarDatos();
             itemSelected = -1;
+            
         }
         nombreS.setText("");
         nombreS.setEditable(false);
@@ -333,7 +334,9 @@ public class ClientesCreados extends javax.swing.JPanel {
             Cliente cliente = clientes.get(itemSelected);
             if(cliente.getActivo() == true){
                 cliente.setActivo(false);
+                eliminarButton.setText("Inactivar");
             }else{
+                eliminarButton.setText("Acticar");
                 cliente.setActivo(true);
             }
             JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
@@ -392,6 +395,11 @@ public class ClientesCreados extends javax.swing.JPanel {
        telefonoS.setText(c.getTelefono());
        telefonoS.setEditable(true);
        puntajeS.setText(String.valueOf(c.getPuntaje()));
+       if(c.getActivo()==true){
+       eliminarButton.setText("Inactivar");
+       }else{
+       eliminarButton.setText("Acticar");
+       }
     }//GEN-LAST:event_jTable1MouseClicked
     
     /**
