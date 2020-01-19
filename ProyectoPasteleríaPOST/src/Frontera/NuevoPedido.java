@@ -10,10 +10,11 @@ package Frontera;
  * @author Home
  */
 public class NuevoPedido extends javax.swing.JPanel {
-    private ClientePedido clienteinfo = new ClientePedido();
-    private DetallesVenta detalles = new DetallesVenta();
-    private FinalizarVenta finalizar = new FinalizarVenta();
+    private static ClientePedido clienteinfo = new ClientePedido();
+    private static DetallesVenta detalles = new DetallesVenta();
+    private static FinalizarVenta finalizar = new FinalizarVenta();
     int contador = 0;
+    int subTotal;
 
     /**
      * Creates new form NuevoPedido
@@ -66,11 +67,13 @@ public class NuevoPedido extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Subtotal:");
+        jLabel2.setText("Subtotal $");
         add(jLabel2);
-        jLabel2.setBounds(20, 650, 90, 40);
+        jLabel2.setBounds(20, 650, 110, 40);
+
+        jTextField1.setEditable(false);
         add(jTextField1);
-        jTextField1.setBounds(110, 660, 120, 20);
+        jTextField1.setBounds(130, 660, 120, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -91,6 +94,14 @@ public class NuevoPedido extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void upDateSubTotal(int upDate){
+        subTotal = upDate;
+        jTextField1.setText(String.valueOf(subTotal));
+    }
+    
+    public int getSubTotal(){
+        return subTotal;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

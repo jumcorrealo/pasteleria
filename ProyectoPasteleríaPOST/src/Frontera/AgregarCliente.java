@@ -235,12 +235,14 @@ public class AgregarCliente extends javax.swing.JPanel {
 
     private void telefonoTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTxKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' || c > '9') evt.consume();
+        if(Character.isAlphabetic(c))
+            evt.consume();
     }//GEN-LAST:event_telefonoTxKeyTyped
 
     private void casaTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaTxKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' || c > '9') evt.consume();
+        if(Character.isAlphabetic(c)) 
+            evt.consume();
     }//GEN-LAST:event_casaTxKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

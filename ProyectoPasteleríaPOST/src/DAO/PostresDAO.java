@@ -156,4 +156,28 @@ public class PostresDAO implements Serializable {
         }
         return list;
     }
+    
+    public List<String> selectDistinct(){
+        EntityManager em = getEntityManager();
+        List<String> tipo = null;
+        try {
+            Query query = em.createQuery("SELECT DISTINCT p.tipo FROM Postres p");
+            tipo = query.getResultList();
+        } finally {
+            em.close();
+        }
+        return tipo;
+    }
+    
+    public List<Postres> selectByTipo(String tipo) {
+        EntityManager em = getEntityManager();
+        List<Postres> list = null;
+        try {
+            Query query = em.createNamedQuery("Postres.findByTipo").setParameter("tipo", tipo);
+            list = query.getResultList();
+        } finally {
+            em.close();
+        }
+        return list;
+    }
 }
