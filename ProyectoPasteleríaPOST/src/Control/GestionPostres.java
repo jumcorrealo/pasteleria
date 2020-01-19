@@ -66,4 +66,12 @@ public class GestionPostres {
     public List<Postres> dynoSerch(String data){
         return PDAO.dynoSerch(data);
     }
+    
+    public List<String> distincTipo(){
+        return PDAO.selectDistinct();
+    }
+    
+    public List<Postres> byTipo(String tipo){
+        return PDAO.selectByTipo(tipo);
+    }
 }

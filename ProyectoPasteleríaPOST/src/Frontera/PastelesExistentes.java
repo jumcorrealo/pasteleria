@@ -109,12 +109,12 @@ public class PastelesExistentes extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,8 +129,8 @@ public class PastelesExistentes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,25 +151,18 @@ public class PastelesExistentes extends javax.swing.JPanel {
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         if(!jTextField1.getText().isEmpty() && !jTextField1.getText().equals("Buscar")) {
-            list = GP.dynoSerch(jTextField1.getText());
-            Object[] row = new Object[3];
-            for(Postres p : list) {
-                System.out.println(p.getTipo());
-                row[0] = (Object) p.getTipo();
-                row[1] = (Object) p.getFlavor();
-                row[2] = (Object) p.getPrice();
-                dtm.addRow(row);
-            }
+            list = GP.dynoSerch(jTextField1.getText());    
         }else {
             list = GP.allPostres();
-            Object[] row = new Object[3];
-            for(Postres p : list) {
-                row[0] = (Object) p.getTipo();
-                row[1] = (Object) p.getFlavor();
-                row[2] = (Object) p.getPrice();
-                dtm.addRow(row);
-            }
         }
+        Object[] row = new Object[3];
+        for(Postres p : list) {
+            System.out.println(p.getTipo());
+            row[0] = (Object) p.getTipo();
+            row[1] = (Object) p.getFlavor();
+            row[2] = (Object) p.getPrice();
+            dtm.addRow(row);
+            }
         jTable1.setModel(dtm);
     }
 

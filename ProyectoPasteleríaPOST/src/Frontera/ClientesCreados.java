@@ -7,8 +7,10 @@ package Frontera;
 import Control.GestionCliente;
 import Entidad.Cliente;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,16 +18,20 @@ import javax.swing.JOptionPane;
  */
 public class ClientesCreados extends javax.swing.JPanel {
     private static final GestionCliente gc = new GestionCliente();
+    private static DefaultTableModel dtm;
     private static List<Cliente> clientes;
-    private static DefaultListModel modeloLista;
-    private static int posList = -1;
+    private static int itemSelected = -1;
+    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    
     /**
      * Creates new form ClientesCreados
      */
     public ClientesCreados() {
         initComponents();
-        modeloLista = new DefaultListModel();
-        listName.setModel(modeloLista);
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
     /**
@@ -41,8 +47,8 @@ public class ClientesCreados extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         actualizarButton = new javax.swing.JButton();
         eliminarButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listName = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nombreS = new javax.swing.JTextField();
@@ -56,8 +62,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         puntajeS = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
-        estadolbs = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -88,21 +92,50 @@ public class ClientesCreados extends javax.swing.JPanel {
         jPanel2.add(eliminarButton);
         eliminarButton.setBounds(310, 610, 140, 85);
 
-        listName.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listName.setSelectionBackground(new java.awt.Color(124, 198, 254));
-        listName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listNameMouseClicked(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Casa", "Telefono", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(listName);
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(4);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(40);
+        }
 
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 140, 390, 178);
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(50, 120, 420, 210);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,11 +144,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         nombreS.setEditable(false);
         nombreS.setBackground(new java.awt.Color(255, 255, 255));
         nombreS.setBorder(null);
-        nombreS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreSActionPerformed(evt);
-            }
-        });
         nombreS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nombreSKeyTyped(evt);
@@ -156,32 +184,25 @@ public class ClientesCreados extends javax.swing.JPanel {
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel6.setText("Estado del Cliente");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                        .addComponent(jSeparator1)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(casaS)
-                        .addComponent(jSeparator2)
-                        .addComponent(jLabel3)
-                        .addComponent(telefonoS)
-                        .addComponent(jSeparator3)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator4))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(estadolbs, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreS, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(casaS)
+                    .addComponent(jSeparator2)
+                    .addComponent(jLabel3)
+                    .addComponent(telefonoS)
+                    .addComponent(jSeparator3)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(puntajeS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator4))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -206,20 +227,12 @@ public class ClientesCreados extends javax.swing.JPanel {
                 .addGap(1, 1, 1)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(estadolbs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(puntajeS, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel3);
@@ -290,29 +303,33 @@ public class ClientesCreados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarButtonActionPerformed
-        if(posList == -1) {
+        if(itemSelected == -1) {
             JOptionPane.showMessageDialog(null, "Seleccone un Cliente");
         }else {
-            Cliente cliente = clientes.get(posList);
+            Cliente cliente = clientes.get(itemSelected);
             cliente.setNombre(nombreS.getText());
             cliente.setCasa(casaS.getText());
             cliente.setTelefono(telefonoS.getText());
             JOptionPane.showMessageDialog(null, gc.upDateClient(cliente));
             clientes = gc.allClients();
-            modeloLista.removeAllElements();
             agregarDatos();
-            posList = -1;
+            itemSelected = -1;
         }
+        nombreS.setText("");
         nombreS.setEditable(false);
+        telefonoS.setText("");
         telefonoS.setEditable(false);
+        casaS.setText("");
         casaS.setEditable(false);
+        puntajeS.setText("");
     }//GEN-LAST:event_actualizarButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
-        if(posList == -1){
+        //Actualizar estado del cliente 
+        if(itemSelected == -1){
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         }else {
-            Cliente cliente = clientes.get(posList);
+            Cliente cliente = clientes.get(itemSelected);
             if(cliente.getActivo() == true){
                 cliente.setActivo(false);
             }else{
@@ -320,49 +337,33 @@ public class ClientesCreados extends javax.swing.JPanel {
             }
             JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
             clientes = gc.allClients();
-            modeloLista.removeAllElements();
             agregarDatos();
-            posList = -1;
+            itemSelected = -1;
             
         }
+        nombreS.setText("");
         nombreS.setEditable(false);
-        casaS.setEditable(false);
+        telefonoS.setText("");
         telefonoS.setEditable(false);
+        casaS.setText("");
+        casaS.setEditable(false);
+        puntajeS.setText("");
     }//GEN-LAST:event_eliminarButtonActionPerformed
-
-    private void listNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listNameMouseClicked
-        String selected = listName.getSelectedValue();
-        posList = listName.getSelectedIndex();
-        nombreS.setText(selected);
-        nombreS.setEditable(true);
-        casaS.setEditable(true);
-        telefonoS.setEditable(true);
-        casaS.setText(clientes.get(posList).getCasa());
-        telefonoS.setText(clientes.get(posList).getTelefono());
-        puntajeS.setText(clientes.get(posList).getPuntaje() + "");
-        if(clientes.get(posList).getActivo()== true){
-            estadolbs.setText("Activo");
-        }else{
-            estadolbs.setText("Inactivo");
-        }
-    }//GEN-LAST:event_listNameMouseClicked
-    
-    private void nombreSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreSActionPerformed
 
     private void casaSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaSKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' || c > '9') evt.consume();
+        if(Character.isAlphabetic(c))
+            evt.consume();
     }//GEN-LAST:event_casaSKeyTyped
 
     private void telefonoSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoSKeyTyped
         char c = evt.getKeyChar();
-        if(c < '0' || c > '9') evt.consume();
+        if(Character.isAlphabetic(c)) 
+            evt.consume();
     }//GEN-LAST:event_telefonoSKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jTextField1.getText().equals("")) {
+        if(jTextField1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un Nombre");
             jTextField1.setText("Buscar");
         }else
@@ -379,6 +380,18 @@ public class ClientesCreados extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_nombreSKeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       itemSelected = jTable1.getSelectedRow();
+       Cliente c = clientes.get(itemSelected);
+       nombreS.setText(c.getNombre());
+       nombreS.setEditable(true);
+       casaS.setText(c.getCasa());
+       casaS.setEditable(true);
+       telefonoS.setText(c.getTelefono());
+       telefonoS.setEditable(true);
+       puntajeS.setText(String.valueOf(c.getPuntaje()));
+    }//GEN-LAST:event_jTable1MouseClicked
     
     /**
      * @param args the command line arguments
@@ -413,48 +426,46 @@ public class ClientesCreados extends javax.swing.JPanel {
         });
     }
     
-    public static void agregarDatos(List<Cliente> clientes) {
-        for(Cliente cliente : clientes){
-            System.out.println(cliente.getNombre());
-            modeloLista.addElement(cliente.getNombre());
-        }
-    }
-    
     public void agregarDatos() {
-        modeloLista.clear();
+        dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
         if(jTextField1.getText().equals("") || jTextField1.getText().equals("Buscar")) {
             clientes = gc.allClients();
         }else {
             clientes = gc.dynoSerch(jTextField1.getText());
         }
+        String[] rows = new String[4];
         for(Cliente cliente : clientes){
-            modeloLista.addElement(cliente.getNombre());
+            rows[0] = cliente.getNombre();
+            rows[1] = cliente.getCasa();
+            rows[2] = cliente.getTelefono();
+            rows[3] = cliente.getActivo()? "Activo" : "Inactivo";
+            dtm.addRow(rows);
         }
+        jTable1.setModel(dtm);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarButton;
     private javax.swing.JTextField casaS;
     private javax.swing.JButton eliminarButton;
-    private javax.swing.JLabel estadolbs;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JList<String> listName;
     private javax.swing.JTextField nombreS;
     private javax.swing.JLabel puntajeS;
     private javax.swing.JTextField telefonoS;
