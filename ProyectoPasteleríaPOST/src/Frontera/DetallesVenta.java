@@ -93,6 +93,11 @@ public class DetallesVenta extends javax.swing.JPanel {
                 jTextField1FocusLost(evt);
             }
         });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
@@ -285,6 +290,10 @@ public class DetallesVenta extends javax.swing.JPanel {
             subTotal /= aux;
         }
     }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     
     private void loadDB(){
         List<String> list = gp.distincTipo();

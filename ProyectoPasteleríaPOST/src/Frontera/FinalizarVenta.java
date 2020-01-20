@@ -10,14 +10,24 @@ package Frontera;
  * @author Home
  */
 public class FinalizarVenta extends javax.swing.JPanel {
-
+    public NuevoPedido np;
+    int abono,precio,saldo;
+    int subTotal = 0;
     /**
      * Creates new form FinalizarVenta
      */
     public FinalizarVenta() {
         initComponents();
+        iniSaldo();
     }
-
+    public void iniSaldo(){
+    try{
+        subTotal = np.getSubTotal();
+        lbSaldoS.setText(Integer.toString(subTotal));
+    }catch(NullPointerException e){
+        lbSaldoS.setText("0");
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,54 +38,70 @@ public class FinalizarVenta extends javax.swing.JPanel {
     private void initComponents() {
 
         detallesFinales = new javax.swing.JLabel();
-        abono = new javax.swing.JLabel();
+        lbabono = new javax.swing.JLabel();
         txtAbono = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        saldo = new javax.swing.JLabel();
-        txtSaldo = new javax.swing.JTextField();
+        lbsaldo = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        precioA = new javax.swing.JLabel();
-        Decoracion = new javax.swing.JLabel();
+        lbprecioA = new javax.swing.JLabel();
+        lbDecoracion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDecoracion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAditivos = new javax.swing.JTextArea();
         txtPrecioA = new javax.swing.JTextField();
-        aditivos1 = new javax.swing.JLabel();
+        lbaditivos1 = new javax.swing.JLabel();
+        lbSaldoS = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(40, 43, 40));
+        addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                formAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         detallesFinales.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         detallesFinales.setForeground(new java.awt.Color(255, 255, 255));
         detallesFinales.setText("Detalles Finales");
 
-        abono.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        abono.setForeground(new java.awt.Color(255, 255, 255));
-        abono.setText("Abono");
+        lbabono.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        lbabono.setForeground(new java.awt.Color(255, 255, 255));
+        lbabono.setText("Abono");
 
+        txtAbono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAbonoFocusLost(evt);
+            }
+        });
         txtAbono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAbonoActionPerformed(evt);
             }
         });
-
-        saldo.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        saldo.setForeground(new java.awt.Color(255, 255, 255));
-        saldo.setText("Saldo");
-
-        txtSaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSaldoActionPerformed(evt);
+        txtAbono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAbonoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAbonoKeyTyped(evt);
             }
         });
 
-        precioA.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
-        precioA.setForeground(new java.awt.Color(255, 255, 255));
-        precioA.setText("Precio");
+        lbsaldo.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        lbsaldo.setForeground(new java.awt.Color(255, 255, 255));
+        lbsaldo.setText("Saldo");
 
-        Decoracion.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        Decoracion.setForeground(new java.awt.Color(255, 255, 255));
-        Decoracion.setText("Decoracion");
+        lbprecioA.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        lbprecioA.setForeground(new java.awt.Color(255, 255, 255));
+        lbprecioA.setText("Precio");
+
+        lbDecoracion.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        lbDecoracion.setForeground(new java.awt.Color(255, 255, 255));
+        lbDecoracion.setText("Decoracion");
 
         txtDecoracion.setColumns(20);
         txtDecoracion.setRows(5);
@@ -85,15 +111,34 @@ public class FinalizarVenta extends javax.swing.JPanel {
         txtAditivos.setRows(5);
         jScrollPane2.setViewportView(txtAditivos);
 
+        txtPrecioA.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPrecioAFocusLost(evt);
+            }
+        });
         txtPrecioA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioAActionPerformed(evt);
             }
         });
+        txtPrecioA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioAKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPrecioAKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioAKeyTyped(evt);
+            }
+        });
 
-        aditivos1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        aditivos1.setForeground(new java.awt.Color(255, 255, 255));
-        aditivos1.setText("Aditivos");
+        lbaditivos1.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
+        lbaditivos1.setForeground(new java.awt.Color(255, 255, 255));
+        lbaditivos1.setText("Aditivos");
+
+        lbSaldoS.setBackground(new java.awt.Color(0, 0, 0));
+        lbSaldoS.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,26 +153,26 @@ public class FinalizarVenta extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(abono)
-                            .addComponent(saldo))
+                            .addComponent(lbabono)
+                            .addComponent(lbsaldo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aditivos1)
-                            .addComponent(Decoracion))
+                            .addComponent(lbaditivos1)
+                            .addComponent(lbDecoracion))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbSaldoS, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                             .addComponent(txtAbono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSaldo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(precioA)
+                        .addComponent(lbprecioA)
                         .addGap(12, 12, 12)
                         .addComponent(txtPrecioA, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,27 +188,27 @@ public class FinalizarVenta extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aditivos1)
+                            .addComponent(lbaditivos1)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(precioA)
-                                .addComponent(txtPrecioA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Decoracion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(lbprecioA)
+                                .addComponent(txtPrecioA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lbDecoracion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(abono)
+                    .addComponent(lbabono)
                     .addComponent(txtAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saldo)
-                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbsaldo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbSaldoS, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,30 +216,92 @@ public class FinalizarVenta extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAbonoActionPerformed
 
-    private void txtSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSaldoActionPerformed
-
     private void txtPrecioAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioAActionPerformed
 
+    private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
+        // TODO add your handling code here:
+         np = (NuevoPedido) evt.getAncestorParent();
+         lbSaldoS.setText(Integer.toString(np.getSubTotal()));
+    }//GEN-LAST:event_formAncestorAdded
+
+    private void txtPrecioAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioAKeyPressed
+        // TODO add your handling code here:                  
+    }//GEN-LAST:event_txtPrecioAKeyPressed
+
+    private void txtPrecioAKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioAKeyReleased
+        // TODO add your handling code here:
+            subTotal = np.getSubTotal();
+            lbSaldoS.setText(Integer.toString(subTotal));
+         if(!txtPrecioA.getText().isEmpty()){
+            precio = Integer.parseInt(txtPrecioA.getText());
+            np.upDateSubTotal(subTotal+precio);
+            lbSaldoS.setText(Integer.toString(subTotal+precio));
+         }else{
+            np.upDateSubTotal(subTotal);
+         }
+    }//GEN-LAST:event_txtPrecioAKeyReleased
+
+    private void txtPrecioAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioAKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c))
+            evt.consume();
+    }//GEN-LAST:event_txtPrecioAKeyTyped
+
+    private void txtAbonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbonoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c))
+            evt.consume();
+    }//GEN-LAST:event_txtAbonoKeyTyped
+
+    private void txtAbonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbonoKeyReleased
+        // TODO add your handling code here:
+            subTotal = np.getSubTotal();
+            lbSaldoS.setText(Integer.toString(subTotal));
+         if(!txtAbono.getText().isEmpty()){
+            abono = Integer.parseInt(txtAbono.getText());
+            lbSaldoS.setText(Integer.toString(subTotal-abono));
+         }else{
+             lbSaldoS.setText(Integer.toString(subTotal));
+         }
+    }//GEN-LAST:event_txtAbonoKeyReleased
+
+    private void txtPrecioAFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioAFocusLost
+        // TODO add your handling code here:
+        if(!txtPrecioA.getText().isEmpty()){
+            precio = Integer.parseInt(txtPrecioA.getText());
+            np.setSubTotal(subTotal+precio);
+            lbSaldoS.setText(Integer.toString(np.getSubTotal()));
+        }
+    }//GEN-LAST:event_txtPrecioAFocusLost
+
+    private void txtAbonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAbonoFocusLost
+        // TODO add your handling code here:
+        if(!txtAbono.getText().isEmpty()){
+            precio = Integer.parseInt(txtAbono.getText());
+            lbSaldoS.setText(Integer.toString(np.getSubTotal()));
+        }
+    }//GEN-LAST:event_txtAbonoFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Decoracion;
-    private javax.swing.JLabel abono;
-    private javax.swing.JLabel aditivos1;
     private javax.swing.JLabel detallesFinales;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JLabel precioA;
-    private javax.swing.JLabel saldo;
+    private javax.swing.JLabel lbDecoracion;
+    private javax.swing.JLabel lbSaldoS;
+    private javax.swing.JLabel lbabono;
+    private javax.swing.JLabel lbaditivos1;
+    private javax.swing.JLabel lbprecioA;
+    private javax.swing.JLabel lbsaldo;
     private javax.swing.JTextField txtAbono;
     private javax.swing.JTextArea txtAditivos;
     private javax.swing.JTextArea txtDecoracion;
     private javax.swing.JTextField txtPrecioA;
-    private javax.swing.JTextField txtSaldo;
     // End of variables declaration//GEN-END:variables
 }

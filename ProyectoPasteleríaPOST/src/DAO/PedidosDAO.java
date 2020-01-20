@@ -22,9 +22,9 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author andre
  */
-public class PedidosJpaController implements Serializable {
+public class PedidosDAO implements Serializable {
 
-    public PedidosJpaController(EntityManagerFactory emf) {
+    public PedidosDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;

@@ -15,7 +15,7 @@ public class NuevoPedido extends javax.swing.JPanel {
     private static FinalizarVenta finalizar = new FinalizarVenta();
     
     int contador = 0;
-    public int subTotal;
+    public int subTotal = 0;
 
     /**
      * Creates new form NuevoPedido
@@ -47,6 +47,11 @@ public class NuevoPedido extends javax.swing.JPanel {
         setLayout(null);
 
         panelGeneral.setBackground(new java.awt.Color(255, 255, 0));
+        panelGeneral.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                panelGeneralComponentAdded(evt);
+            }
+        });
         panelGeneral.setLayout(new java.awt.BorderLayout());
         add(panelGeneral);
         panelGeneral.setBounds(0, 80, 540, 520);
@@ -92,6 +97,13 @@ public class NuevoPedido extends javax.swing.JPanel {
             panelGeneral.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void panelGeneralComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_panelGeneralComponentAdded
+        // TODO add your handling code here:
+        if(evt.getChild()==finalizar){
+            System.out.println("holaa");
+        }
+    }//GEN-LAST:event_panelGeneralComponentAdded
 
     public void upDateSubTotal(int upDate){
         jTextField1.setText(String.valueOf(upDate));
