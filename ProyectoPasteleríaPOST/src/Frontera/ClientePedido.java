@@ -28,20 +28,32 @@ public class ClientePedido extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        label_titulo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(540, 520));
 
         jPanel1.setBackground(new java.awt.Color(40, 43, 40));
 
+        label_titulo.setBackground(new java.awt.Color(255, 255, 255));
+        label_titulo.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        label_titulo.setForeground(new java.awt.Color(255, 255, 255));
+        label_titulo.setText("Detalles del Cliente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(113, Short.MAX_VALUE)
+                .addComponent(label_titulo)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(label_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(401, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -59,5 +71,6 @@ public class ClientePedido extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel label_titulo;
     // End of variables declaration//GEN-END:variables
 }

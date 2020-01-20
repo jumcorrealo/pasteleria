@@ -89,13 +89,6 @@ public class Pedidos implements Serializable {
     @ManyToOne(optional = false)
     private Postres iDPostre;
 
-    public Pedidos() {
-    }
-
-    public Pedidos(Integer iDPedido) {
-        this.iDPedido = iDPedido;
-    }
-
     public Pedidos(Integer iDPedido, Date fechaR, Date fechaE, String forma, int tamaño, String decoracion, String adicion, int abono, int precio, boolean estado) {
         this.iDPedido = iDPedido;
         this.fechaR = fechaR;
@@ -108,6 +101,16 @@ public class Pedidos implements Serializable {
         this.precio = precio;
         this.estado = estado;
     }
+    
+    public Pedidos() {
+        this(null,null,null,null,0,null,null,0,0,false);
+    }
+
+    public Pedidos(Integer iDPedido) {
+        this(iDPedido,null,null,null,0,null,null,0,0,false);
+    }
+
+    
 
     public Integer getIDPedido() {
         return iDPedido;

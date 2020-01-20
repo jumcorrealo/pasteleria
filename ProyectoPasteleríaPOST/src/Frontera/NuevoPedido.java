@@ -5,6 +5,9 @@
  */
 package Frontera;
 
+import Control.GestionCliente;
+import Entidad.Pedidos;
+
 /**
  *
  * @author Home
@@ -13,7 +16,8 @@ public class NuevoPedido extends javax.swing.JPanel {
     private static ClientePedido clienteinfo = new ClientePedido();
     private static DetallesVenta detalles = new DetallesVenta();
     private static FinalizarVenta finalizar = new FinalizarVenta();
-    
+    private Pedidos pedidoEnCurso;
+    public static GestionCliente gestor_clientes;
     int contador = 0;
     public int subTotal;
 
@@ -21,6 +25,8 @@ public class NuevoPedido extends javax.swing.JPanel {
      * Creates new form NuevoPedido
      */
     public NuevoPedido() {
+        pedidoEnCurso=new Pedidos();
+        
         initComponents();
         panelGeneral.setVisible(false);
         panelGeneral.removeAll();
@@ -78,7 +84,13 @@ public class NuevoPedido extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        contador ++;
+        
+        if(contador==0){
+           // Clientepedido.getCliente()
+           contador ++;
+        }
+        
+        
         if(contador==1){
             panelGeneral.setVisible(false);
             panelGeneral.removeAll();

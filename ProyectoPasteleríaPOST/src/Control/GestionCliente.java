@@ -68,7 +68,7 @@ public class GestionCliente {
     }
     
     public List<Cliente> allClients() {
-        return clienteDAO.findClienteEntities();
+        return list;
     }
     
     public void isFrequentClient(Cliente cliente) {
