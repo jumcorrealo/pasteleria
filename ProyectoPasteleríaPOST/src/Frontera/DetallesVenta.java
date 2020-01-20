@@ -8,19 +8,16 @@ package Frontera;
 import Control.GestionPostres;
 import Entidad.Postres;
 import java.util.List;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Home
  */
 public class DetallesVenta extends javax.swing.JPanel {
-    private static final VentanaEmergenteAditivosAP vemg = new VentanaEmergenteAditivosAP();
-    private static GestionPostres gp = new GestionPostres();
+    private static final GestionPostres gp = new GestionPostres();
     private static List<Postres> postres = null;
     private NuevoPedido np;
     private int subTotal;
     private int porciones;
-    private int numPasteles;
     private boolean descuento;  //Este atributo se debe traer del anterior panel
     /**
      * Creates new form DetallesVenta
@@ -48,7 +45,6 @@ public class DetallesVenta extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
 
@@ -60,6 +56,7 @@ public class DetallesVenta extends javax.swing.JPanel {
                 formAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                formAncestorRemoved(evt);
             }
         });
 
@@ -89,6 +86,9 @@ public class DetallesVenta extends javax.swing.JPanel {
         jLabel3.setText("Porciones");
 
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField1FocusLost(evt);
             }
@@ -119,24 +119,9 @@ public class DetallesVenta extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Número de Pasteles");
 
-        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField2FocusLost(evt);
-            }
-        });
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField2KeyTyped(evt);
-            }
-        });
-
-        jButton1.setText("Aditivos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -155,15 +140,8 @@ public class DetallesVenta extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -189,15 +167,18 @@ public class DetallesVenta extends javax.swing.JPanel {
                                         .addComponent(jComboBox1, 0, 192, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1)))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,15 +198,9 @@ public class DetallesVenta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(jButton1)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        vemg.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         postres = gp.byTipo((String) jComboBox1.getSelectedItem());
@@ -236,13 +211,13 @@ public class DetallesVenta extends javax.swing.JPanel {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         char c = evt.getKeyChar();
-        if(Character.isAlphabetic(c))
+        if(!Character.isDigit(c))
             evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         char c = evt.getKeyChar();
-        if(Character.isAlphabetic(c))
+        if(!Character.isDigit(c))
             evt.consume();
     }//GEN-LAST:event_jTextField2KeyTyped
 
@@ -300,23 +275,16 @@ public class DetallesVenta extends javax.swing.JPanel {
         subTotal *= porciones;
     }//GEN-LAST:event_jTextField1FocusLost
 
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        if(!jTextField2.getText().isEmpty()){
-            String value = jTextField2.getText();
-            numPasteles = Integer.parseInt(value);
-            np.upDateSubTotal(subTotal * numPasteles);
-        } else {
-            np.upDateSubTotal(subTotal);
-        }
-    }//GEN-LAST:event_jTextField2KeyReleased
+    private void formAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorRemoved
+        np.setSubTotal(subTotal);
+    }//GEN-LAST:event_formAncestorRemoved
 
-    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
-        subTotal *= numPasteles;
-        System.out.println(subTotal);
-        /*
-        * Aca ya se puede guardar el precio que tendra el pedido con o sin dscuento
-        */
-    }//GEN-LAST:event_jTextField2FocusLost
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        if(!jTextField1.getText().isEmpty()){
+            int aux = Integer.parseInt(jTextField1.getText());
+            subTotal /= aux;
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
     
     private void loadDB(){
         List<String> list = gp.distincTipo();
@@ -326,7 +294,6 @@ public class DetallesVenta extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

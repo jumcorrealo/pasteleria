@@ -21,7 +21,7 @@ public class ClientesCreados extends javax.swing.JPanel {
     private static DefaultTableModel dtm;
     private static List<Cliente> clientes;
     private static int itemSelected = -1;
-    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    private final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     
     /**
      * Creates new form ClientesCreados

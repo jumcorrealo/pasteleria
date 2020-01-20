@@ -79,7 +79,6 @@ public class NuevoPedido extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         contador ++;
-        
         if(contador==1){
             panelGeneral.setVisible(false);
             panelGeneral.removeAll();
@@ -92,17 +91,17 @@ public class NuevoPedido extends javax.swing.JPanel {
             panelGeneral.add(finalizar);
             panelGeneral.setVisible(true);
         }
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void upDateSubTotal(int upDate){
-        subTotal = upDate;
-        jTextField1.setText(String.valueOf(subTotal));
+        jTextField1.setText(String.valueOf(upDate));
     }
     
     public int getSubTotal(){
         return subTotal;
+    }
+    public void setSubTotal(int subTotal){
+        this.subTotal = subTotal;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
