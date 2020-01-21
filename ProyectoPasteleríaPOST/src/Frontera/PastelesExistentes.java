@@ -7,6 +7,11 @@ package Frontera;
 import java.util.List;
 import Entidad.Postres;
 import Control.GestionPostres;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -19,14 +24,17 @@ import javax.swing.table.DefaultTableModel;
 public class PastelesExistentes extends javax.swing.JPanel {
     private static final GestionPostres GP = new GestionPostres();
     private static List<Postres> list;
+    private static final Hashtable<Integer,Postres> upDatePostres = new Hashtable<>();
     private static DefaultTableModel dtm;
     private final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    private final EditorTable editorTable =  new EditorTable();
     /**
      * Creates new form PastelesExistentes
      */
     public PastelesExistentes() {
         initComponents();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.setDefaultEditor(Integer.class,editorTable);
         jTable1.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
@@ -79,6 +87,11 @@ public class PastelesExistentes extends javax.swing.JPanel {
         });
         jTable1.setColumnSelectionAllowed(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTable1FocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -115,20 +128,23 @@ public class PastelesExistentes extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(127, 127, 127))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,9 +158,9 @@ public class PastelesExistentes extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -154,17 +170,39 @@ public class PastelesExistentes extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        if(jTextField1.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Ingrese un Tipo");
-        }else {
-            fillTable();
-        }
-        jTextField1.setText("Buscar");
+        fillTable();
+        if(jTextField1.getText().isEmpty() && !jTextField1.getText().equals("Buscar"))
+            jTextField1.setText("Buscar");
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(upDatePostres.isEmpty()){
+            JOptionPane.showMessageDialog(jTable1, "Edite algun valor");
+        } else {
+            Set<Integer> keys = upDatePostres.keySet();
+            for(Integer i : keys){
+                try {
+                    GP.upDatePostre(upDatePostres.get(i));
+                } catch (Exception ex) {
+                    Logger.getLogger(PastelesExistentes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            JOptionPane.showMessageDialog(jTable1, "Datos Actualizados");
+            upDatePostres.clear();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
+        Postres postres = list.get(editorTable.getRow());
+        postres.setPrice(Integer.parseInt((String)editorTable.getCellEditorValue()));
+        if(!upDatePostres.containsKey(postres.getId()))
+            upDatePostres.put(postres.getId(), postres);
+        else
+            upDatePostres.replace(postres.getId(), postres);
+//        System.out.println(String.format("Tipo: %s\nSabor: %s\nPrecio: %d",
+//                postres.getTipo(), postres.getFlavor(), postres.getPrice()));
+//        System.out.println("Value: " + editorTable.getCellEditorValue());
+    }//GEN-LAST:event_jTable1FocusGained
 
     public void fillTable(){
         dtm = (DefaultTableModel) jTable1.getModel();
