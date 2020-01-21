@@ -199,9 +199,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
             upDatePostres.put(postres.getId(), postres);
         else
             upDatePostres.replace(postres.getId(), postres);
-//        System.out.println(String.format("Tipo: %s\nSabor: %s\nPrecio: %d",
-//                postres.getTipo(), postres.getFlavor(), postres.getPrice()));
-//        System.out.println("Value: " + editorTable.getCellEditorValue());
     }//GEN-LAST:event_jTable1FocusGained
 
     public void fillTable(){
