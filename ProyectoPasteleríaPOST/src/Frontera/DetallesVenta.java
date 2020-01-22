@@ -6,7 +6,7 @@
 package Frontera;
 
 import Control.GestionPostres;
-import Entidad.Postres;
+import Entidad.Postre;
 import java.util.List;
 /**
  *
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DetallesVenta extends javax.swing.JPanel {
     private static final GestionPostres gp = new GestionPostres();
-    private static List<Postres> postres = null;
+    private static List<Postre> postres = null;
     private NuevoPedido np;
     private int subTotal;
     private int porciones;
@@ -209,7 +209,7 @@ public class DetallesVenta extends javax.swing.JPanel {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         postres = gp.byTipo((String) jComboBox1.getSelectedItem());
-        for(Postres p : postres){
+        for(Postre p : postres){
             jComboBox2.addItem(p.getFlavor());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -238,7 +238,7 @@ public class DetallesVenta extends javax.swing.JPanel {
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         if(!evt.getItem().equals("Seleccioné") && evt.getStateChange() == 1){
-            Postres postre = postres.get(jComboBox2.getSelectedIndex() - 1);
+            Postre postre = postres.get(jComboBox2.getSelectedIndex() - 1);
             if(descuento){
                 subTotal = (int) (postre.getPrice() - (postre.getPrice()* 0.1));
             } else {

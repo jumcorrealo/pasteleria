@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Postres.findByFlavor", query = "SELECT p FROM Postres p WHERE p.flavor = :flavor")
     , @NamedQuery(name = "Postres.findByPrice", query = "SELECT p FROM Postres p WHERE p.price = :price")
     , @NamedQuery(name = "Postres.findByTipo", query = "SELECT p FROM Postres p WHERE p.tipo = :tipo")})
-public class Postres implements Serializable {
+public class Postre implements Serializable {
 
     
     private static final long serialVersionUID = 1L;
@@ -50,10 +50,10 @@ public class Postres implements Serializable {
     @Column(name = "TIPO")
     private String tipo;
 
-    public Postres() {
+    public Postre() {
     }
 
-    public Postres(Integer id) {
+    public Postre(Integer id) {
         this.id = id;
     }
 
@@ -99,10 +99,10 @@ public class Postres implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Postres)) {
+        if (!(object instanceof Postre)) {
             return false;
         }
-        Postres other = (Postres) object;
+        Postre other = (Postre) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +114,7 @@ public class Postres implements Serializable {
         return "Entidad.Postres[ id=" + id + " ]";
     }
     
-    public boolean isSame(Postres other) {
+    public boolean isSame(Postre other) {
         return  this.tipo.toLowerCase().equals(other.tipo.toLowerCase()) &&
                 this.flavor.toLowerCase().equals(other.flavor.toLowerCase());
     }

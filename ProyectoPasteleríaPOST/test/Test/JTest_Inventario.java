@@ -7,7 +7,7 @@ package Test;
 
 import Control.GestionPostres;
 import DAO.PostresDAO;
-import Entidad.Postres;
+import Entidad.Postre;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -33,9 +33,9 @@ public class JTest_Inventario {
     public static void setUpClass() {
         PostresDAO registroP = new PostresDAO();
         
-        Postres d = new Postres();
-        Postres e = new Postres();
-        Postres f = new Postres();
+        Postre d = new Postre();
+        Postre e = new Postre();
+        Postre f = new Postre();
         
         d.setFlavor("Tres leches");
         e.setFlavor("Vino");
@@ -51,13 +51,13 @@ public class JTest_Inventario {
         e.setTipo("Torta");
         f.setTipo("Postre");
         
-        ArrayList<Postres> listP = new ArrayList<>();
+        ArrayList<Postre> listP = new ArrayList<>();
         
         listP.add(d);
         listP.add(e);
         listP.add(f);
         
-        for(Postres i: listP){
+        for(Postre i: listP){
             registroP.create(i);
         }
     }
@@ -75,7 +75,7 @@ public class JTest_Inventario {
     }
     @Test
     public void PostreRepetido() {
-        Postres u = new Postres();
+        Postre u = new Postre();
         u.setFlavor("Tres leches");
         u.setPrice(2000);
         u.setTipo("Cupcake");
@@ -84,7 +84,7 @@ public class JTest_Inventario {
     }
     @Test
     public void noActualizar() throws Exception {
-        Postres u = new Postres();
+        Postre u = new Postre();
         u.setFlavor("Negro");
         u.setPrice(2000);
         u.setTipo("Cupcake");
@@ -95,7 +95,7 @@ public class JTest_Inventario {
     }
     @Test
     public void Actualizar() throws Exception {
-        Postres u = new Postres();
+        Postre u = new Postre();
         u.setFlavor("Chocolate");
         u.setPrice(2000);
         u.setTipo("Cupcake");
@@ -105,7 +105,7 @@ public class JTest_Inventario {
     }
     @Test
     public void DatosCorrectos() {
-        Postres u = new Postres();
+        Postre u = new Postre();
         u.setFlavor("chocolate");
         u.setPrice(2000);
         u.setTipo("Postre");

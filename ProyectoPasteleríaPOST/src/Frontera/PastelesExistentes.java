@@ -5,7 +5,7 @@
  */
 package Frontera;
 import java.util.List;
-import Entidad.Postres;
+import Entidad.Postre;
 import Control.GestionPostres;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -23,8 +23,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PastelesExistentes extends javax.swing.JPanel {
     private static final GestionPostres GP = new GestionPostres();
-    private static List<Postres> list;
-    private static final Hashtable<Integer,Postres> upDatePostres = new Hashtable<>();
+    private static List<Postre> list;
+    private static final Hashtable<Integer,Postre> upDatePostres = new Hashtable<>();
     private static DefaultTableModel dtm;
     private final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     private final EditorTable editorTable =  new EditorTable();
@@ -193,7 +193,7 @@ public class PastelesExistentes extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
-        Postres postres = list.get(editorTable.getRow());
+        Postre postres = list.get(editorTable.getRow());
         postres.setPrice(Integer.parseInt((String)editorTable.getCellEditorValue()));
         if(!upDatePostres.containsKey(postres.getId()))
             upDatePostres.put(postres.getId(), postres);
@@ -210,7 +210,7 @@ public class PastelesExistentes extends javax.swing.JPanel {
             list = GP.allPostres();
         }
         Object[] row = new Object[3];
-        for(Postres p : list) {
+        for(Postre p : list) {
             row[0] = (Object) p.getTipo();
             row[1] = (Object) p.getFlavor();
             row[2] = (Object) p.getPrice();

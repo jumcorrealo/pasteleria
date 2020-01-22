@@ -78,9 +78,9 @@ public class Inizialitation {
         
         PostresDAO registroP = new PostresDAO();
         
-        Postres d = new Postres();
-        Postres e = new Postres();
-        Postres f = new Postres();
+        Postre d = new Postre();
+        Postre e = new Postre();
+        Postre f = new Postre();
         
         d.setFlavor("Tres leches");
         e.setFlavor("Vino");
@@ -96,13 +96,13 @@ public class Inizialitation {
         e.setTipo("Torta");
         f.setTipo("Postre");
         
-        ArrayList<Postres> listP = new ArrayList<>();
+        ArrayList<Postre> listP = new ArrayList<>();
         
         listP.add(d);
         listP.add(e);
         listP.add(f);
         
-        for(Postres i: listP){
+        for(Postre i: listP){
             registroP.create(i);
         }
         
