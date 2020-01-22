@@ -36,9 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Postres.findByTipo", query = "SELECT p FROM Postres p WHERE p.tipo = :tipo")})
 public class Postres implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iDPostre")
-    private Collection<Pedidos> pedidosCollection;
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -121,12 +119,5 @@ public class Postres implements Serializable {
                 this.flavor.toLowerCase().equals(other.flavor.toLowerCase());
     }
 
-    @XmlTransient
-    public Collection<Pedidos> getPedidosCollection() {
-        return pedidosCollection;
-    }
-
-    public void setPedidosCollection(Collection<Pedidos> pedidosCollection) {
-        this.pedidosCollection = pedidosCollection;
-    }
+  
 }

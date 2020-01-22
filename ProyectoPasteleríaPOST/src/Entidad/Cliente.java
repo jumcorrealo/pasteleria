@@ -21,8 +21,6 @@ public class Cliente implements Serializable {
 
     @Column(name = "ACTIVO")
     private Boolean activo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "iDCliente")
-    private Collection<Pedidos> pedidosCollection;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -139,14 +137,7 @@ public class Cliente implements Serializable {
         this.activo = activo;
     }
 
-    @XmlTransient
-    public Collection<Pedidos> getPedidosCollection() {
-        return pedidosCollection;
-    }
-
-    public void setPedidosCollection(Collection<Pedidos> pedidosCollection) {
-        this.pedidosCollection = pedidosCollection;
-    }
+  
     
     
 }
