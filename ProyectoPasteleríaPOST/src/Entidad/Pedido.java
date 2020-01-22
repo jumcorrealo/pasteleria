@@ -30,17 +30,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p")
     , @NamedQuery(name = "Pedido.findByIdPedido", query = "SELECT p FROM Pedido p WHERE p.idPedido = :idPedido")
-    , @NamedQuery(name = "Pedido.findByIdCliente", query = "SELECT p FROM Pedido p WHERE p.idCliente = :idCliente")
-    , @NamedQuery(name = "Pedido.findByFechaR", query = "SELECT p FROM Pedido p WHERE p.fechaR = :fechaR")
-    , @NamedQuery(name = "Pedido.findByFechaE", query = "SELECT p FROM Pedido p WHERE p.fechaE = :fechaE")
-    , @NamedQuery(name = "Pedido.findByPorciones", query = "SELECT p FROM Pedido p WHERE p.porciones = :porciones")
+    , @NamedQuery(name = "Pedido.findByAbono", query = "SELECT p FROM Pedido p WHERE p.abono = :abono")
+    , @NamedQuery(name = "Pedido.findByAdiciones", query = "SELECT p FROM Pedido p WHERE p.adiciones = :adiciones")
     , @NamedQuery(name = "Pedido.findByCantidadTortas", query = "SELECT p FROM Pedido p WHERE p.cantidadTortas = :cantidadTortas")
     , @NamedQuery(name = "Pedido.findByDecoracion", query = "SELECT p FROM Pedido p WHERE p.decoracion = :decoracion")
-    , @NamedQuery(name = "Pedido.findByAdiciones", query = "SELECT p FROM Pedido p WHERE p.adiciones = :adiciones")
+    , @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")
+    , @NamedQuery(name = "Pedido.findByFechaE", query = "SELECT p FROM Pedido p WHERE p.fechaE = :fechaE")
+    , @NamedQuery(name = "Pedido.findByFechaR", query = "SELECT p FROM Pedido p WHERE p.fechaR = :fechaR")
     , @NamedQuery(name = "Pedido.findByForma", query = "SELECT p FROM Pedido p WHERE p.forma = :forma")
-    , @NamedQuery(name = "Pedido.findByAbono", query = "SELECT p FROM Pedido p WHERE p.abono = :abono")
-    , @NamedQuery(name = "Pedido.findByPrecio", query = "SELECT p FROM Pedido p WHERE p.precio = :precio")
-    , @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado")})
+    , @NamedQuery(name = "Pedido.findByIdCliente", query = "SELECT p FROM Pedido p WHERE p.idCliente = :idCliente")
+    , @NamedQuery(name = "Pedido.findByIdPostre", query = "SELECT p FROM Pedido p WHERE p.idPostre = :idPostre")
+    , @NamedQuery(name = "Pedido.findByPorciones", query = "SELECT p FROM Pedido p WHERE p.porciones = :porciones")
+    , @NamedQuery(name = "Pedido.findByPrecio", query = "SELECT p FROM Pedido p WHERE p.precio = :precio")})
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,58 +50,38 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_PEDIDO")
     private Integer idPedido;
-    @Basic(optional = false)
-    @Column(name = "ID_CLIENTE")
-    private int idCliente;
-    @Basic(optional = false)
-    @Column(name = "FECHA_R")
-    @Temporal(TemporalType.DATE)
-    private Date fechaR;
-    @Basic(optional = false)
+    @Column(name = "ABONO")
+    private Integer abono;
+    @Column(name = "ADICIONES")
+    private String adiciones;
+    @Column(name = "CANTIDAD_TORTAS")
+    private Integer cantidadTortas;
+    @Column(name = "DECORACION")
+    private String decoracion;
+    @Column(name = "ESTADO")
+    private Boolean estado;
     @Column(name = "FECHA_E")
     @Temporal(TemporalType.DATE)
     private Date fechaE;
-    @Basic(optional = false)
-    @Column(name = "PORCIONES")
-    private int porciones;
-    @Basic(optional = false)
-    @Column(name = "CANTIDAD_TORTAS")
-    private int cantidadTortas;
-    @Basic(optional = false)
-    @Column(name = "DECORACION")
-    private String decoracion;
-    @Column(name = "ADICIONES")
-    private String adiciones;
+    @Column(name = "FECHA_R")
+    @Temporal(TemporalType.DATE)
+    private Date fechaR;
     @Column(name = "FORMA")
     private String forma;
-    @Basic(optional = false)
-    @Column(name = "ABONO")
-    private int abono;
-    @Basic(optional = false)
+    @Column(name = "ID_CLIENTE")
+    private Integer idCliente;
+    @Column(name = "ID_POSTRE")
+    private Integer idPostre;
+    @Column(name = "PORCIONES")
+    private Integer porciones;
     @Column(name = "PRECIO")
-    private int precio;
-    @Basic(optional = false)
-    @Column(name = "ESTADO")
-    private boolean estado;
+    private Integer precio;
 
     public Pedido() {
     }
 
     public Pedido(Integer idPedido) {
         this.idPedido = idPedido;
-    }
-
-    public Pedido(Integer idPedido, int idCliente, Date fechaR, Date fechaE, int porciones, int cantidadTortas, String decoracion, int abono, int precio, boolean estado) {
-        this.idPedido = idPedido;
-        this.idCliente = idCliente;
-        this.fechaR = fechaR;
-        this.fechaE = fechaE;
-        this.porciones = porciones;
-        this.cantidadTortas = cantidadTortas;
-        this.decoracion = decoracion;
-        this.abono = abono;
-        this.precio = precio;
-        this.estado = estado;
     }
 
     public Integer getIdPedido() {
@@ -111,43 +92,27 @@ public class Pedido implements Serializable {
         this.idPedido = idPedido;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Integer getAbono() {
+        return abono;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setAbono(Integer abono) {
+        this.abono = abono;
     }
 
-    public Date getFechaR() {
-        return fechaR;
+    public String getAdiciones() {
+        return adiciones;
     }
 
-    public void setFechaR(Date fechaR) {
-        this.fechaR = fechaR;
+    public void setAdiciones(String adiciones) {
+        this.adiciones = adiciones;
     }
 
-    public Date getFechaE() {
-        return fechaE;
-    }
-
-    public void setFechaE(Date fechaE) {
-        this.fechaE = fechaE;
-    }
-
-    public int getPorciones() {
-        return porciones;
-    }
-
-    public void setPorciones(int porciones) {
-        this.porciones = porciones;
-    }
-
-    public int getCantidadTortas() {
+    public Integer getCantidadTortas() {
         return cantidadTortas;
     }
 
-    public void setCantidadTortas(int cantidadTortas) {
+    public void setCantidadTortas(Integer cantidadTortas) {
         this.cantidadTortas = cantidadTortas;
     }
 
@@ -159,12 +124,28 @@ public class Pedido implements Serializable {
         this.decoracion = decoracion;
     }
 
-    public String getAdiciones() {
-        return adiciones;
+    public Boolean getEstado() {
+        return estado;
     }
 
-    public void setAdiciones(String adiciones) {
-        this.adiciones = adiciones;
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaE() {
+        return fechaE;
+    }
+
+    public void setFechaE(Date fechaE) {
+        this.fechaE = fechaE;
+    }
+
+    public Date getFechaR() {
+        return fechaR;
+    }
+
+    public void setFechaR(Date fechaR) {
+        this.fechaR = fechaR;
     }
 
     public String getForma() {
@@ -175,28 +156,36 @@ public class Pedido implements Serializable {
         this.forma = forma;
     }
 
-    public int getAbono() {
-        return abono;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setAbono(int abono) {
-        this.abono = abono;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public int getPrecio() {
+    public Integer getIdPostre() {
+        return idPostre;
+    }
+
+    public void setIdPostre(Integer idPostre) {
+        this.idPostre = idPostre;
+    }
+
+    public Integer getPorciones() {
+        return porciones;
+    }
+
+    public void setPorciones(Integer porciones) {
+        this.porciones = porciones;
+    }
+
+    public Integer getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Integer precio) {
         this.precio = precio;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
 
     @Override
