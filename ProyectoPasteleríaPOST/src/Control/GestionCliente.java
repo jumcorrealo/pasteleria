@@ -19,6 +19,7 @@ public class GestionCliente {
     private static ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
     public GestionCliente() {
+        
     }
     
     public boolean usuarioUnicoUpDate(Cliente cliente){
