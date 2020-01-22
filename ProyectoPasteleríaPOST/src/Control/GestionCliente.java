@@ -19,6 +19,7 @@ public class GestionCliente {
     private static ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
     public GestionCliente() {
+        
     }
     
     public boolean usuarioUnicoUpDate(Cliente cliente){
@@ -68,7 +69,7 @@ public class GestionCliente {
     }
     
     public List<Cliente> allClients() {
-        return clienteDAO.findClienteEntities();
+        return list;
     }
     
     public void isFrequentClient(Cliente cliente) {

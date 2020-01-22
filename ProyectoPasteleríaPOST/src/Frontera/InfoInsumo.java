@@ -28,7 +28,7 @@ public class InfoInsumo extends javax.swing.JPanel {
    
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Dimension arcs = new Dimension(60,60); //Border corners arcs {width,height}, change this to whatever you want
+        Dimension arcs = new Dimension(22,22); //Border corners arcs {width,height}, change this to whatever you want
         int width = getWidth();
         int height = getHeight();
         Graphics2D graphics = (Graphics2D) g;

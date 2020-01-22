@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class ClientesCreados extends javax.swing.JPanel {
     private static final GestionCliente gc = new GestionCliente();
     private static DefaultTableModel dtm;
-    private static List<Cliente> clientes;
+    private static List<Cliente> lista_clientes;
     private static int itemSelected = -1;
     private final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     
@@ -246,6 +246,11 @@ public class ClientesCreados extends javax.swing.JPanel {
                 jTextField1MouseClicked(evt);
             }
         });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_look-find-search-magnify-glass_2203511.png"))); // NOI18N
@@ -307,12 +312,12 @@ public class ClientesCreados extends javax.swing.JPanel {
         if(itemSelected == -1) {
             JOptionPane.showMessageDialog(null, "Seleccone un Cliente");
         }else {
-            Cliente cliente = clientes.get(itemSelected);
+            Cliente cliente = lista_clientes.get(itemSelected);
             cliente.setNombre(nombreS.getText());
             cliente.setCasa(casaS.getText());
             cliente.setTelefono(telefonoS.getText());
             JOptionPane.showMessageDialog(null, gc.upDateClient(cliente));
-            clientes = gc.allClients();
+            lista_clientes = gc.allClients();
             agregarDatos();
             itemSelected = -1;
             
@@ -331,7 +336,7 @@ public class ClientesCreados extends javax.swing.JPanel {
         if(itemSelected == -1){
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         }else {
-            Cliente cliente = clientes.get(itemSelected);
+            Cliente cliente = lista_clientes.get(itemSelected);
             if(cliente.getActivo() == true){
                 cliente.setActivo(false);
                 eliminarButton.setText("Inactivar");
@@ -340,7 +345,7 @@ public class ClientesCreados extends javax.swing.JPanel {
                 cliente.setActivo(true);
             }
             JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
-            clientes = gc.allClients();
+            lista_clientes = gc.allClients();
             agregarDatos();
             itemSelected = -1;
             
@@ -387,7 +392,7 @@ public class ClientesCreados extends javax.swing.JPanel {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        itemSelected = jTable1.getSelectedRow();
-       Cliente c = clientes.get(itemSelected);
+       Cliente c = lista_clientes.get(itemSelected);
        nombreS.setText(c.getNombre());
        nombreS.setEditable(true);
        casaS.setText(c.getCasa());
@@ -401,6 +406,10 @@ public class ClientesCreados extends javax.swing.JPanel {
        eliminarButton.setText("Acticar");
        }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -439,12 +448,12 @@ public class ClientesCreados extends javax.swing.JPanel {
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         if(jTextField1.getText().equals("") || jTextField1.getText().equals("Buscar")) {
-            clientes = gc.allClients();
+            lista_clientes = gc.allClients();
         }else {
-            clientes = gc.dynoSerch(jTextField1.getText());
+            lista_clientes = gc.dynoSerch(jTextField1.getText());
         }
         String[] rows = new String[4];
-        for(Cliente cliente : clientes){
+        for(Cliente cliente : lista_clientes){
             rows[0] = cliente.getNombre();
             rows[1] = cliente.getCasa();
             rows[2] = cliente.getTelefono();
