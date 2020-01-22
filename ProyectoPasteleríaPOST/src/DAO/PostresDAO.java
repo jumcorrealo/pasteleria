@@ -6,7 +6,7 @@
 package DAO;
 
 import DAO.exceptions.NonexistentEntityException;
-import Entidad.Postres;
+import Entidad.Postre;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -34,7 +34,7 @@ public class PostresDAO implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Postres postres) {
+    public void create(Postre postres) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -48,7 +48,7 @@ public class PostresDAO implements Serializable {
         }
     }
 
-    public void edit(Postres postres) throws NonexistentEntityException, Exception {
+    public void edit(Postre postres) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -76,9 +76,9 @@ public class PostresDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Postres postres;
+            Postre postres;
             try {
-                postres = em.getReference(Postres.class, id);
+                postres = em.getReference(Postre.class, id);
                 postres.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The postres with id " + id + " no longer exists.", enfe);
@@ -92,19 +92,19 @@ public class PostresDAO implements Serializable {
         }
     }
 
-    public List<Postres> findPostresEntities() {
+    public List<Postre> findPostresEntities() {
         return findPostresEntities(true, -1, -1);
     }
 
-    public List<Postres> findPostresEntities(int maxResults, int firstResult) {
+    public List<Postre> findPostresEntities(int maxResults, int firstResult) {
         return findPostresEntities(false, maxResults, firstResult);
     }
 
-    private List<Postres> findPostresEntities(boolean all, int maxResults, int firstResult) {
+    private List<Postre> findPostresEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Postres.class));
+            cq.select(cq.from(Postre.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -116,10 +116,10 @@ public class PostresDAO implements Serializable {
         }
     }
 
-    public Postres findPostres(Integer id) {
+    public Postre findPostres(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Postres.class, id);
+            return em.find(Postre.class, id);
         } finally {
             em.close();
         }
@@ -129,7 +129,7 @@ public class PostresDAO implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Postres> rt = cq.from(Postres.class);
+            Root<Postre> rt = cq.from(Postre.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -138,12 +138,12 @@ public class PostresDAO implements Serializable {
         }
     }
     
-    public List<Postres> dynoSerch(String data) {
+    public List<Postre> dynoSerch(String data) {
         EntityManager em = getEntityManager();
-        List<Postres> list = null;
+        List<Postre> list = null;
         try {
             em.getTransaction().begin();
-            StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery("dynoserch", Postres.class);
+            StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery("dynoserch", Postre.class);
             procedureQuery.registerStoredProcedureParameter("_data", String.class, ParameterMode.IN);
             procedureQuery.registerStoredProcedureParameter("_table", Integer.class, ParameterMode.IN);
             procedureQuery.setParameter("_data", "%" + data + "%");
@@ -169,9 +169,9 @@ public class PostresDAO implements Serializable {
         return tipo;
     }
     
-    public List<Postres> selectByTipo(String tipo) {
+    public List<Postre> selectByTipo(String tipo) {
         EntityManager em = getEntityManager();
-        List<Postres> list = null;
+        List<Postre> list = null;
         try {
             Query query = em.createNamedQuery("Postres.findByTipo").setParameter("tipo", tipo);
             list = query.getResultList();

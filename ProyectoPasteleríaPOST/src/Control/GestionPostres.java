@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Control;
-import Entidad.Postres;
+import Entidad.Postre;
 import DAO.PostresDAO;
 import java.util.List;
 import java.util.Objects;
@@ -14,14 +14,14 @@ import java.util.Objects;
  */
 public class GestionPostres {
     private static final PostresDAO PDAO = new PostresDAO();
-    private static List<Postres> list;
+    private static List<Postre> list;
 
     public GestionPostres() {
     }
     
-    private boolean upDateSamePostre(Postres p) {
+    private boolean upDateSamePostre(Postre p) {
         list = PDAO.findPostresEntities();
-        for (Postres postres : list) {
+        for (Postre postres : list) {
             if(p.isSame(postres)) {
                 if(Objects.equals(p.getId(), postres.getId())){
                     return true;
@@ -31,9 +31,9 @@ public class GestionPostres {
         return false;
     }
     
-    private boolean postreUnico(Postres p) {
+    private boolean postreUnico(Postre p) {
         list = PDAO.findPostresEntities();
-        for (Postres postres : list) {
+        for (Postre postres : list) {
             if(p.isSame(postres)) {
                 return true;
             }
@@ -41,7 +41,7 @@ public class GestionPostres {
         return false;
     }
     
-    public String persistPostre(Postres postres){
+    public String persistPostre(Postre postres){
         if(!postreUnico(postres)) {
             PDAO.create(postres);
             return "Registro Exitoso"; 
@@ -50,7 +50,7 @@ public class GestionPostres {
         }
     }
     
-    public String upDatePostre(Postres postres) throws Exception {
+    public String upDatePostre(Postre postres) throws Exception {
         if(upDateSamePostre(postres)) {
             PDAO.edit(postres);
             return "Datos Actualizado";
@@ -59,11 +59,11 @@ public class GestionPostres {
         }
     }
     
-    public List<Postres> allPostres(){
+    public List<Postre> allPostres(){
         return PDAO.findPostresEntities();
     }
     
-    public List<Postres> dynoSerch(String data){
+    public List<Postre> dynoSerch(String data){
         return PDAO.dynoSerch(data);
     }
     
@@ -71,7 +71,7 @@ public class GestionPostres {
         return PDAO.selectDistinct();
     }
     
-    public List<Postres> byTipo(String tipo){
+    public List<Postre> byTipo(String tipo){
         return PDAO.selectByTipo(tipo);
     }
 }

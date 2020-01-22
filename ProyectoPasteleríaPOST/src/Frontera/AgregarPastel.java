@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Frontera;
-import Entidad.Postres;
+import Entidad.Postre;
 import Control.GestionPostres;
 import javax.swing.JOptionPane;
 /**
@@ -163,7 +163,7 @@ public class AgregarPastel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Postres postres = new Postres();
+        Postre postres = new Postre();
         postres.setTipo(jTextField2.getText());
         postres.setFlavor(jTextField3.getText());
         postres.setPrice(Integer.parseInt(jTextField1.getText()));

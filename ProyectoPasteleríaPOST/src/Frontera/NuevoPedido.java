@@ -1,7 +1,7 @@
 package Frontera;
 
 import Control.GestionCliente;
-import Entidad.Pedidos;
+import Entidad.Pedido;
 
 
 public class NuevoPedido extends javax.swing.JPanel {
@@ -10,14 +10,14 @@ public class NuevoPedido extends javax.swing.JPanel {
     private static DetallesVenta detalles = new DetallesVenta();
     private static FinalizarVenta finalizar = new FinalizarVenta();
     
-    private Pedidos pedidoEnCurso;
+    private Pedido pedidoEnCurso;
     
     int contador = 0;
     public int subTotal = 0;
 
     
     public NuevoPedido() {
-        pedidoEnCurso=new Pedidos();
+        pedidoEnCurso=new Pedido();
         
         initComponents();
         panelGeneral.setVisible(false);
@@ -45,11 +45,6 @@ public class NuevoPedido extends javax.swing.JPanel {
         setLayout(null);
 
         panelGeneral.setBackground(new java.awt.Color(255, 255, 0));
-        panelGeneral.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                panelGeneralComponentAdded(evt);
-            }
-        });
         panelGeneral.setLayout(new java.awt.BorderLayout());
         add(panelGeneral);
         panelGeneral.setBounds(0, 80, 540, 520);
