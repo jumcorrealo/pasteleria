@@ -56,22 +56,30 @@ public class Estadisticas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        Estadisticas.setBackground(new java.awt.Color(50, 53, 50));
+        Estadisticas.setBackground(new java.awt.Color(40, 43, 40));
         Estadisticas.setLayout(null);
 
         this.Anterior.setVisible(false);
         Anterior.setBackground(new java.awt.Color(124, 198, 254));
+        Anterior.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        Anterior.setForeground(new java.awt.Color(255, 255, 255));
         Anterior.setText("Anterior");
+        Anterior.setBorderPainted(false);
+        Anterior.setContentAreaFilled(false);
         Anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnteriorActionPerformed(evt);
             }
         });
         Estadisticas.add(Anterior);
-        Anterior.setBounds(30, 520, 100, 60);
+        Anterior.setBounds(30, 520, 130, 60);
 
         home.setBackground(new java.awt.Color(124, 198, 254));
+        home.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        home.setForeground(new java.awt.Color(255, 255, 255));
         home.setText("Volver");
+        home.setBorderPainted(false);
+        home.setContentAreaFilled(false);
         home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeActionPerformed(evt);
@@ -80,15 +88,19 @@ public class Estadisticas extends javax.swing.JFrame {
         Estadisticas.add(home);
         home.setBounds(390, 520, 100, 60);
 
-        jP_Lista.setBackground(new java.awt.Color(0, 0, 0));
+        jP_Lista.setBackground(new java.awt.Color(40, 43, 40));
 
-        jP_Pasteles_mes.setBackground(new java.awt.Color(255, 255, 255));
+        jP_Pasteles_mes.setBackground(new java.awt.Color(40, 43, 40));
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pasteles mas vendidos en el mes");
 
         jB_Pasteles_mes.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Pasteles_mes.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jB_Pasteles_mes.setForeground(new java.awt.Color(255, 255, 255));
         jB_Pasteles_mes.setText("Mostrar");
+        jB_Pasteles_mes.setContentAreaFilled(false);
         jB_Pasteles_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Pasteles_mesActionPerformed(evt);
@@ -100,11 +112,11 @@ public class Estadisticas extends javax.swing.JFrame {
         jP_Pasteles_mesLayout.setHorizontalGroup(
             jP_Pasteles_mesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_Pasteles_mesLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(jB_Pasteles_mes)
-                .addGap(37, 37, 37))
+                .addContainerGap())
         );
         jP_Pasteles_mesLayout.setVerticalGroup(
             jP_Pasteles_mesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,17 +124,21 @@ public class Estadisticas extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jP_Pasteles_mesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jB_Pasteles_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
-        jP_Pasteles_year.setBackground(new java.awt.Color(255, 255, 255));
+        jP_Pasteles_year.setBackground(new java.awt.Color(40, 43, 40));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Pasteles mas vendidos en el año");
 
         jB_Pasteles_year.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Pasteles_year.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jB_Pasteles_year.setForeground(new java.awt.Color(255, 255, 255));
         jB_Pasteles_year.setText("Mostrar");
+        jB_Pasteles_year.setContentAreaFilled(false);
         jB_Pasteles_year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Pasteles_yearActionPerformed(evt);
@@ -134,11 +150,11 @@ public class Estadisticas extends javax.swing.JFrame {
         jP_Pasteles_yearLayout.setHorizontalGroup(
             jP_Pasteles_yearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_Pasteles_yearLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jB_Pasteles_year)
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
         jP_Pasteles_yearLayout.setVerticalGroup(
             jP_Pasteles_yearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,14 +166,18 @@ public class Estadisticas extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jP_Ventas_pedidos.setBackground(new java.awt.Color(255, 255, 255));
+        jP_Ventas_pedidos.setBackground(new java.awt.Color(40, 43, 40));
         jP_Ventas_pedidos.setPreferredSize(new java.awt.Dimension(434, 100));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cantidad de pedidos en el mes");
 
         jB_Ventas_Pedidos.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Ventas_Pedidos.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jB_Ventas_Pedidos.setForeground(new java.awt.Color(255, 255, 255));
         jB_Ventas_Pedidos.setText("Mostrar");
+        jB_Ventas_Pedidos.setContentAreaFilled(false);
         jB_Ventas_Pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Ventas_PedidosActionPerformed(evt);
@@ -169,11 +189,11 @@ public class Estadisticas extends javax.swing.JFrame {
         jP_Ventas_pedidosLayout.setHorizontalGroup(
             jP_Ventas_pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_Ventas_pedidosLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jB_Ventas_Pedidos)
-                .addGap(35, 35, 35))
+                .addContainerGap())
         );
         jP_Ventas_pedidosLayout.setVerticalGroup(
             jP_Ventas_pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,16 +202,20 @@ public class Estadisticas extends javax.swing.JFrame {
                 .addGroup(jP_Ventas_pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jB_Ventas_Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jP_Ventas_dinero.setBackground(new java.awt.Color(255, 255, 255));
+        jP_Ventas_dinero.setBackground(new java.awt.Color(40, 43, 40));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Dinero hecho en el mes");
 
         jB_Ventas_pedidos.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Ventas_pedidos.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jB_Ventas_pedidos.setForeground(new java.awt.Color(255, 255, 255));
         jB_Ventas_pedidos.setText("Mostrar");
+        jB_Ventas_pedidos.setContentAreaFilled(false);
         jB_Ventas_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Ventas_pedidosActionPerformed(evt);
@@ -203,20 +227,20 @@ public class Estadisticas extends javax.swing.JFrame {
         jP_Ventas_dineroLayout.setHorizontalGroup(
             jP_Ventas_dineroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_Ventas_dineroLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jB_Ventas_pedidos)
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
         jP_Ventas_dineroLayout.setVerticalGroup(
             jP_Ventas_dineroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_Ventas_dineroLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_Ventas_dineroLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jP_Ventas_dineroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jB_Ventas_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout jP_ListaLayout = new javax.swing.GroupLayout(jP_Lista);
@@ -229,7 +253,7 @@ public class Estadisticas extends javax.swing.JFrame {
                     .addComponent(jP_Ventas_dinero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jP_Pasteles_mes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jP_Pasteles_year, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jP_Ventas_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jP_Ventas_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jP_ListaLayout.setVerticalGroup(
@@ -249,11 +273,11 @@ public class Estadisticas extends javax.swing.JFrame {
         jScrollPane_Estadisticas.setViewportView(jP_Lista);
 
         Estadisticas.add(jScrollPane_Estadisticas);
-        jScrollPane_Estadisticas.setBounds(30, 20, 460, 470);
+        jScrollPane_Estadisticas.setBounds(50, 20, 460, 470);
 
-        jPanel2.setBackground(new java.awt.Color(50, 53, 50));
+        jPanel2.setBackground(new java.awt.Color(40, 43, 40));
 
-        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Estadisticas");
