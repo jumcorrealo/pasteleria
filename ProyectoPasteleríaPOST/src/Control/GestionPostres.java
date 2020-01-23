@@ -74,4 +74,8 @@ public class GestionPostres {
     public List<Postre> byTipo(String tipo){
         return PDAO.selectByTipo(tipo);
     }
+    
+    public Postre findPostre(int id){
+        return PDAO.findPostres(id);
+    }
 }
