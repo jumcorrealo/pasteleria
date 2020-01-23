@@ -158,7 +158,7 @@ public class AgregarPastel extends javax.swing.JPanel {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         char typed = evt.getKeyChar();
-        if(Character.isLetter(typed))
+        if(!Character.isDigit(typed))
             evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
 
