@@ -39,83 +39,93 @@ public class GestionDeClientes extends javax.swing.JFrame {
         VolverButton = new javax.swing.JButton();
         CerrarButton = new javax.swing.JButton();
         HomeButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        GestionDeClienteReemplazo.setBackground(new java.awt.Color(40, 43, 40));
         GestionDeClienteReemplazo.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 GestionDeClienteReemplazoComponentAdded(evt);
             }
         });
         GestionDeClienteReemplazo.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(GestionDeClienteReemplazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 540, 770));
+        jPanel1.add(GestionDeClienteReemplazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 540, 770));
 
         jPanel2.setBackground(new java.awt.Color(40, 43, 40));
         jPanel2.setLayout(null);
 
         NuevoClienteButton.setBackground(new java.awt.Color(124, 198, 254));
+        NuevoClienteButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        NuevoClienteButton.setForeground(new java.awt.Color(255, 255, 255));
         NuevoClienteButton.setText("Nuevo Cliente");
+        NuevoClienteButton.setBorderPainted(false);
+        NuevoClienteButton.setContentAreaFilled(false);
         NuevoClienteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NuevoClienteButtonActionPerformed(evt);
             }
         });
         jPanel2.add(NuevoClienteButton);
-        NuevoClienteButton.setBounds(180, 450, 200, 113);
+        NuevoClienteButton.setBounds(10, 390, 200, 113);
 
         ClienteExistenteButton.setBackground(new java.awt.Color(124, 198, 254));
+        ClienteExistenteButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        ClienteExistenteButton.setForeground(new java.awt.Color(255, 255, 255));
         ClienteExistenteButton.setText("Cliente Existente");
+        ClienteExistenteButton.setBorderPainted(false);
+        ClienteExistenteButton.setContentAreaFilled(false);
         ClienteExistenteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClienteExistenteButtonActionPerformed(evt);
             }
         });
         jPanel2.add(ClienteExistenteButton);
-        ClienteExistenteButton.setBounds(180, 220, 200, 113);
+        ClienteExistenteButton.setBounds(10, 220, 200, 113);
 
-        VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
+        VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216436-48.png"))); // NOI18N
+        VolverButton.setBorderPainted(false);
+        VolverButton.setContentAreaFilled(false);
         VolverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VolverButtonActionPerformed(evt);
             }
         });
         jPanel2.add(VolverButton);
-        VolverButton.setBounds(10, 10, 80, 65);
+        VolverButton.setBounds(0, 10, 80, 65);
 
-        CerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
+        CerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_Delete_1493279.png"))); // NOI18N
+        CerrarButton.setBorderPainted(false);
+        CerrarButton.setContentAreaFilled(false);
         CerrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarButtonActionPerformed(evt);
             }
         });
         jPanel2.add(CerrarButton);
-        CerrarButton.setBounds(440, 20, 80, 65);
+        CerrarButton.setBounds(150, 10, 80, 70);
 
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_home_126572.png"))); // NOI18N
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/126572-48.png"))); // NOI18N
+        HomeButton.setBorderPainted(false);
+        HomeButton.setContentAreaFilled(false);
         HomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeButtonActionPerformed(evt);
             }
         });
         jPanel2.add(HomeButton);
-        HomeButton.setBounds(120, 10, 80, 65);
+        HomeButton.setBounds(80, 10, 80, 65);
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 770));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/bar-1846137_1280.jpg"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(0, 0, 230, 770);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 770));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -197,6 +207,7 @@ public class GestionDeClientes extends javax.swing.JFrame {
     private javax.swing.JButton HomeButton;
     private javax.swing.JButton NuevoClienteButton;
     private javax.swing.JButton VolverButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
