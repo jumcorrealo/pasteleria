@@ -15,6 +15,7 @@ public class NuevoPedido extends javax.swing.JPanel {
     private static FinalizarVenta finalizar = new FinalizarVenta();
     private static ControlPedidos control_pedido= new ControlPedidos();
     private Pedido pedidoEnCurso;
+    public boolean fechaC;
     
     int contador = 0;
     public int subTotal = 0;
@@ -101,17 +102,21 @@ public class NuevoPedido extends javax.swing.JPanel {
         switch(contador){
             case 0:{//cuando el panel selecciona clientes y fechas
                 if(Clienteinfo.checkAllFilled()){
-                    pedidoEnCurso.setIdCliente(Clienteinfo.getCliente().getId());
-                    System.out.println("FR: "+Clienteinfo.getFechaR().getTime().toString());
-                    System.out.println("FE: "+Clienteinfo.getFechaE().getTime().toString());
-                    pedidoEnCurso.setFechaR(Clienteinfo.getFechaR().getTime());
-                    pedidoEnCurso.setFechaE(Clienteinfo.getFechaE().getTime());
-                    label_advertencia_campos.setVisible(false);
-                    boton_atras.setVisible(true);
-                    contador++;    
-                    
+                   if(control_pedido.difFecha(Clienteinfo.getFechaR(),Clienteinfo.getFechaE())){
+                        pedidoEnCurso.setIdCliente(Clienteinfo.getCliente().getId());
+                        pedidoEnCurso.setFechaR(Clienteinfo.getFechaE().getTime());
+                        pedidoEnCurso.setFechaE(Clienteinfo.getFechaR().getTime());
+                        label_advertencia_campos.setVisible(false);
+                        boton_atras.setVisible(true);
+                        contador++;    
+                   }else{
+                       label_advertencia_campos.setText("La fecha de entrega es muy pronto");
+                       label_advertencia_campos.setVisible(true);
+                   }
                 }else{
+                    label_advertencia_campos.setText("Complete todos los campos");
                     label_advertencia_campos.setVisible(true); 
+                    
                 }
                 
                     
@@ -129,9 +134,10 @@ public class NuevoPedido extends javax.swing.JPanel {
                 pedidoEnCurso.setDecoracion(finalizar.getdecoracion());
                 pedidoEnCurso.setPrecio(finalizar.getSaldo());
                 pedidoEnCurso.setAbono(finalizar.getAbono());
-                 contador = 0;
-                 
-                 control_pedido.AgregarPedido(pedidoEnCurso);
+                contador = 0;
+                btSiguiente.setText("Siguiente");
+                jTextField1.setText("");
+                control_pedido.AgregarPedido(pedidoEnCurso);
                 break;}
             
         }

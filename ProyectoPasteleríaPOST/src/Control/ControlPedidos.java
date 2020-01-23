@@ -9,6 +9,7 @@ import Entidad.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class ControlPedidos {
@@ -19,7 +20,16 @@ public class ControlPedidos {
         pA = new PedidoDAO();
         lista_Pedido = new ArrayList(pA.findPedidoEntities());
     }
-
+    
+    public Boolean difFecha(Calendar FechaR,Calendar FechaE){
+    Calendar c = Calendar.getInstance();
+    c.setTimeInMillis(FechaR.getTime().getTime()-FechaE.getTime().getTime());
+    if(c.get(Calendar.DAY_OF_YEAR)<2){
+    return false;
+    }
+    return true;
+    }
+    
     public void AgregarPedido(Pedido pedido){ 
         pA.create(pedido);
     }
