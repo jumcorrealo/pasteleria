@@ -140,6 +140,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                 pedidoEnCurso.setDecoracion(finalizar.getdecoracion());
                 pedidoEnCurso.setPrecio(finalizar.getSaldo());
                 pedidoEnCurso.setAbono(finalizar.getAbono());
+                pedidoEnCurso.setPrecioad(finalizar.getPrecioAD());
                 contador = 0;
                 btSiguiente.setText("Siguiente");
                 jTextField1.setText("");

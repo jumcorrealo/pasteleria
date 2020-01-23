@@ -30,7 +30,11 @@ public class FinalizarVenta extends javax.swing.JPanel {
         lbSaldoS.setText("0");
     }
     }
-
+    
+    public int getPrecioAD(){
+    return precio;
+    }
+    
     public String getAditivos(){
     return aditivos;
     }

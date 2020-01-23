@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p")
     , @NamedQuery(name = "Pedido.findByIdPedido", query = "SELECT p FROM Pedido p WHERE p.idPedido = :idPedido")
     , @NamedQuery(name = "Pedido.findByAbono", query = "SELECT p FROM Pedido p WHERE p.abono = :abono")
+    , @NamedQuery(name = "Pedido.findByPrecioad", query = "SELECT p FROM Pedido p WHERE p.precioad = :precioad")
     , @NamedQuery(name = "Pedido.findByAdiciones", query = "SELECT p FROM Pedido p WHERE p.adiciones = :adiciones")
     , @NamedQuery(name = "Pedido.findByCantidadTortas", query = "SELECT p FROM Pedido p WHERE p.cantidadTortas = :cantidadTortas")
     , @NamedQuery(name = "Pedido.findByDecoracion", query = "SELECT p FROM Pedido p WHERE p.decoracion = :decoracion")
@@ -53,6 +54,8 @@ public class Pedido implements Serializable {
     private Integer idPedido;
     @Column(name = "ABONO")
     private Integer abono;
+    @Column(name = "PRECIOAD")
+    private Integer precioad;
     @Column(name = "ADICIONES")
     private String adiciones;
     @Column(name = "CANTIDAD_TORTAS")
@@ -83,7 +86,7 @@ public class Pedido implements Serializable {
     private String horaEntrega;
 
     public Pedido() {
-        this.estado = false;
+        this.estado = true;
     }
 
     public Pedido(Integer idPedido) {
@@ -109,6 +112,14 @@ public class Pedido implements Serializable {
 
     public void setAbono(Integer abono) {
         this.abono = abono;
+    }
+
+    public Integer getPrecioad() {
+        return precioad;
+    }
+
+    public void setPrecioad(Integer precioad) {
+        this.precioad = precioad;
     }
 
     public String getAdiciones() {
