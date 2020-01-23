@@ -69,15 +69,15 @@ public class NuevoPedido extends javax.swing.JPanel {
                 btSiguienteActionPerformed(evt);
             }
         });
-        add(btSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, 70, 70));
+        add(btSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 630, 70, 50));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Subtotal $");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 110, 40));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 650, 110, 40));
 
         jTextField1.setEditable(false);
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 120, -1));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 660, 120, -1));
 
         boton_atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216436-48.png"))); // NOI18N
         boton_atras.setBorderPainted(false);
@@ -87,7 +87,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                 boton_atrasActionPerformed(evt);
             }
         });
-        add(boton_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 610, 70, 70));
+        add(boton_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, 70, 70));
 
         label_advertencia_campos.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         label_advertencia_campos.setForeground(new java.awt.Color(255, 0, 51));
