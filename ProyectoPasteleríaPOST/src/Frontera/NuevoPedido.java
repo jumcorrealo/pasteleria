@@ -5,12 +5,13 @@ import Entidad.Pedido;
 
 
 public class NuevoPedido extends javax.swing.JPanel {
-    private static GestionCliente gestor_cliente=new GestionCliente();
-    private static final ClientePedido Clienteinfo = new ClientePedido(gestor_cliente);
-    private static DetallesVenta detalles = new DetallesVenta();
-    private static FinalizarVenta finalizar = new FinalizarVenta();
     
-    private Pedido pedidoEnCurso;
+    private static final GestionCliente gestor_cliente=new GestionCliente();
+    private static final ClientePedido Clienteinfo = new ClientePedido(gestor_cliente);
+    private static final DetallesVenta detalles = new DetallesVenta();
+    private static final FinalizarVenta finalizar = new FinalizarVenta();
+    
+    private final Pedido pedidoEnCurso;
     
     int contador = 0;
     public int subTotal = 0;
@@ -45,6 +46,11 @@ public class NuevoPedido extends javax.swing.JPanel {
         setLayout(null);
 
         panelGeneral.setBackground(new java.awt.Color(255, 255, 0));
+        panelGeneral.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                panelGeneralComponentAdded(evt);
+            }
+        });
         panelGeneral.setLayout(new java.awt.BorderLayout());
         add(panelGeneral);
         panelGeneral.setBounds(0, 80, 540, 520);
@@ -128,6 +134,11 @@ public class NuevoPedido extends javax.swing.JPanel {
         contador--;
         updatePanel();        
     }//GEN-LAST:event_boton_atrasActionPerformed
+
+    private void panelGeneralComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_panelGeneralComponentAdded
+        if(evt.getChild().equals(Clienteinfo))
+            Clienteinfo.agregarDatos();
+    }//GEN-LAST:event_panelGeneralComponentAdded
 
     private void updatePanel(){
         

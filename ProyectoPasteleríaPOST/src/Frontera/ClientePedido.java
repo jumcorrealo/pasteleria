@@ -10,8 +10,6 @@ import Entidad.Cliente;
 import com.sun.glass.events.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,10 +20,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClientePedido extends javax.swing.JPanel {
 
-    public GestionCliente GC;
+    public static GestionCliente GC;
     public Cliente clienteObjetivo;
     public Calendar fechaRealización;
     public Calendar fechaEntrega;
+    private final AddClienteVenta acv = new AddClienteVenta(this);
     
     String busqueda;
     private static DefaultTableModel dtm;
@@ -37,25 +36,23 @@ public class ClientePedido extends javax.swing.JPanel {
     
     public ClientePedido(GestionCliente gestor_clientes) {
         this.GC=gestor_clientes;
-       
+
         initComponents();
         busqueda="";
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        agregarDatos();
         if(dateChooser.getDate()==null)
             System.out.println("no date yet");
-
     }
 
     public void agregarDatos() {
-        mapa=new ArrayList<Integer>();
+        mapa = new ArrayList<Integer>();
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
         String[] rows = new String[2];
         for(int i=0;i< GC.allClients().size();i++){
-            Cliente c=GC.allClients().get(i);
+            Cliente c = GC.allClients().get(i);
             if(comparador(busqueda,c.getNombre().toUpperCase())){
                 mapa.add(i);
                 rows[0] = c.getNombre();
@@ -64,8 +61,6 @@ public class ClientePedido extends javax.swing.JPanel {
             }
             
         }
-            
-        
         jTable1.setModel(dtm);
     }
     
@@ -135,13 +130,13 @@ public class ClientePedido extends javax.swing.JPanel {
         label_titulo.setForeground(new java.awt.Color(255, 255, 255));
         label_titulo.setText("Detalles del Cliente");
         add(label_titulo);
-        label_titulo.setBounds(140, 30, 304, 71);
+        label_titulo.setBounds(140, 30, 282, 71);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cliente:");
         add(jLabel2);
-        jLabel2.setBounds(90, 130, 82, 38);
+        jLabel2.setBounds(90, 130, 72, 38);
 
         txt_buscar_cliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_buscar_cliente.setText("Buscar");
@@ -167,6 +162,11 @@ public class ClientePedido extends javax.swing.JPanel {
         txt_buscar_cliente.setBounds(180, 130, 260, 40);
 
         jButton_nuevoCliente.setLabel("+");
+        jButton_nuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_nuevoClienteActionPerformed(evt);
+            }
+        });
         add(jButton_nuevoCliente);
         jButton_nuevoCliente.setBounds(450, 130, 41, 38);
 
@@ -205,7 +205,7 @@ public class ClientePedido extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha/Hora:");
         add(jLabel3);
-        jLabel3.setBounds(90, 360, 132, 38);
+        jLabel3.setBounds(90, 360, 121, 38);
         add(dateChooser);
         dateChooser.setBounds(230, 360, 135, 38);
 
@@ -223,7 +223,7 @@ public class ClientePedido extends javax.swing.JPanel {
         
         if(txt_buscar_cliente.getText().equals("Buscar")){
             txt_buscar_cliente.setText(busqueda);
-        };
+        }
         
         
     }//GEN-LAST:event_txt_buscar_clienteFocusGained
@@ -262,13 +262,17 @@ public class ClientePedido extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         itemSelected=jTable1.getSelectedRow();
         System.out.println("selected item:"+itemSelected+"\nselected client:"+GC.allClients().get(mapa.get(itemSelected)).getNombre());
-       this.clienteObjetivo=GC.allClients().get(mapa.get(itemSelected));
+        this.clienteObjetivo=GC.allClients().get(mapa.get(itemSelected));
         System.out.println("item selected: "+jcombo_hora.getSelectedIndex());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jcombo_horaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcombo_horaMouseClicked
-        System.out.println("mouse clicked in hour");        // TODO add your handling code here:
+        System.out.println("mouse clicked in hour");
     }//GEN-LAST:event_jcombo_horaMouseClicked
+
+    private void jButton_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoClienteActionPerformed
+        acv.setVisible(true);
+    }//GEN-LAST:event_jButton_nuevoClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

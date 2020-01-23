@@ -161,7 +161,7 @@ public class PostresDAO implements Serializable {
         EntityManager em = getEntityManager();
         List<String> tipo = null;
         try {
-            Query query = em.createQuery("SELECT DISTINCT p.tipo FROM Postres p");
+            Query query = em.createQuery("SELECT DISTINCT p.tipo FROM Postre p");
             tipo = query.getResultList();
         } finally {
             em.close();
@@ -173,7 +173,7 @@ public class PostresDAO implements Serializable {
         EntityManager em = getEntityManager();
         List<Postre> list = null;
         try {
-            Query query = em.createNamedQuery("Postres.findByTipo").setParameter("tipo", tipo);
+            Query query = em.createNamedQuery("Postre.findByTipo").setParameter("tipo", tipo);
             list = query.getResultList();
         } finally {
             em.close();

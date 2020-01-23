@@ -4,21 +4,25 @@
  * and open the template in the editor.
  */
 package Frontera;
-import Control.GestionCliente;
+
 import Entidad.Cliente;
 import javax.swing.JOptionPane;
-/**
+import Control.GestionCliente;
+
 /**
  *
- * @author Home
+ * @author enano
  */
-public class AgregarCliente extends javax.swing.JPanel {
-    private static final GestionCliente gestionC = new GestionCliente();
-    /**
-     * Creates new form AgregarCliente
-     */
+public class AddClienteVenta extends javax.swing.JFrame {
 
-    public AgregarCliente() {
+    private static GestionCliente gestionC = new GestionCliente();
+    private static ClientePedido Clienteinfo;
+    /**
+     * Creates new form AddClienteVenta
+     * @param pedido
+     */
+    public AddClienteVenta(ClientePedido pedido) {
+        this.Clienteinfo = pedido;
         initComponents();
     }
 
@@ -46,6 +50,9 @@ public class AgregarCliente extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 877));
 
         jPanel1.setBackground(new java.awt.Color(40, 43, 40));
 
@@ -130,14 +137,14 @@ public class AgregarCliente extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(terminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addGap(71, 71, 71)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nombreTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,7 +162,7 @@ public class AgregarCliente extends javax.swing.JPanel {
                 .addComponent(casaTx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(terminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,41 +170,44 @@ public class AgregarCliente extends javax.swing.JPanel {
         );
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(60, 40, 430, 640);
+        jPanel2.setBounds(40, 30, 400, 400);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cake-1241413_1280.jpg"))); // NOI18N
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(0, 0, 540, 720);
+        jLabel4.setBounds(0, 0, 490, 480);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         nombreTx.setText("");
         telefonoTx.setText("");
         casaTx.setText("");
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void terminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terminarActionPerformed
@@ -210,7 +220,16 @@ public class AgregarCliente extends javax.swing.JPanel {
         nombreTx.setText("");
         telefonoTx.setText("");
         casaTx.setText("");
+        Clienteinfo.agregarDatos();
+        dispose();
     }//GEN-LAST:event_terminarActionPerformed
+
+    private void nombreTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTxKeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreTxKeyTyped
 
     private void telefonoTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTxKeyTyped
         char c = evt.getKeyChar();
@@ -220,16 +239,10 @@ public class AgregarCliente extends javax.swing.JPanel {
 
     private void casaTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaTxKeyTyped
         char c = evt.getKeyChar();
-        if(!Character.isDigit(c)) 
+        if(!Character.isDigit(c))
             evt.consume();
     }//GEN-LAST:event_casaTxKeyTyped
 
-    private void nombreTxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTxKeyTyped
-        char c = evt.getKeyChar();
-        if(Character.isDigit(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_nombreTxKeyTyped
     /**
      * @param args the command line arguments
      */
@@ -247,19 +260,21 @@ public class AgregarCliente extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddClienteVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddClienteVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddClienteVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddClienteVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new AgregarCliente().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddClienteVenta(Clienteinfo).setVisible(true);
+            }
         });
     }
 

@@ -4,7 +4,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidad.Cliente</class>
     <class>Entidad.Insumo</class>
-    <class>Entidad.Pedidos</class>
     <class>Entidad.Pedido</class>
     <class>Entidad.Postre</class>
     <properties>
@@ -12,7 +11,7 @@
       <property name="javax.persistence.jdbc.user" value="useringesoft"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="ingesotf1234"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>
