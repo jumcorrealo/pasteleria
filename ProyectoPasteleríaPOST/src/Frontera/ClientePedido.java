@@ -8,6 +8,10 @@ package Frontera;
 import Control.GestionCliente;
 import Entidad.Cliente;
 import com.sun.glass.events.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,9 +27,12 @@ import javax.swing.table.DefaultTableModel;
 public class ClientePedido extends javax.swing.JPanel {
 
     public GestionCliente GC;
+    private NuevoPedido np;
     public Cliente clienteObjetivo;
     public Calendar fechaRealización;
     public Calendar fechaEntrega;
+    public LocalDateTime now = LocalDateTime.now();  
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
     
     String busqueda;
     private static DefaultTableModel dtm;
@@ -84,6 +91,14 @@ public class ClientePedido extends javax.swing.JPanel {
     //da como resultado un arreglo de dos fechas, la primera: fecha de realización del pedido,
     //la segunda: fecha para la entrega del pedido
     
+    public Calendar getFechaE(){
+        return Calendar.getInstance();
+    }
+    
+    public Calendar getFechaR(){
+        this.fechaEntrega = dateChooser.getCalendar();
+        return this.fechaEntrega;
+    }
     
     public Calendar[] getFechas(){
         Calendar[] fechasR_E = new Calendar[2];
@@ -135,13 +150,13 @@ public class ClientePedido extends javax.swing.JPanel {
         label_titulo.setForeground(new java.awt.Color(255, 255, 255));
         label_titulo.setText("Detalles del Cliente");
         add(label_titulo);
-        label_titulo.setBounds(140, 30, 304, 71);
+        label_titulo.setBounds(140, 30, 282, 71);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cliente:");
         add(jLabel2);
-        jLabel2.setBounds(90, 130, 82, 38);
+        jLabel2.setBounds(90, 130, 72, 38);
 
         txt_buscar_cliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txt_buscar_cliente.setText("Buscar");
@@ -205,7 +220,7 @@ public class ClientePedido extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha/Hora:");
         add(jLabel3);
-        jLabel3.setBounds(90, 360, 132, 38);
+        jLabel3.setBounds(90, 360, 121, 38);
         add(dateChooser);
         dateChooser.setBounds(230, 360, 135, 38);
 
@@ -267,7 +282,7 @@ public class ClientePedido extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jcombo_horaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcombo_horaMouseClicked
-        System.out.println("mouse clicked in hour");        // TODO add your handling code here:
+             // TODO add your handling code here:
     }//GEN-LAST:event_jcombo_horaMouseClicked
 
 

@@ -12,6 +12,8 @@ package Frontera;
 public class FinalizarVenta extends javax.swing.JPanel {
     public NuevoPedido np;
     int abono,precio,saldo;
+    String aditivos;
+    String decoracion;
     int subTotal = 0;
     /**
      * Creates new form FinalizarVenta
@@ -27,6 +29,22 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }catch(NullPointerException e){
         lbSaldoS.setText("0");
     }
+    }
+
+    public String getAditivos(){
+    return aditivos;
+    }
+    
+    public String getdecoracion(){
+    return decoracion;
+    }
+    
+    public int getSaldo(){
+    return saldo;
+    }
+    
+    public int getAbono(){
+    return abono;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,12 +73,12 @@ public class FinalizarVenta extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(40, 43, 40));
         addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 formAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -105,10 +123,20 @@ public class FinalizarVenta extends javax.swing.JPanel {
 
         txtDecoracion.setColumns(20);
         txtDecoracion.setRows(5);
+        txtDecoracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDecoracionKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDecoracion);
 
         txtAditivos.setColumns(20);
         txtAditivos.setRows(5);
+        txtAditivos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAditivosKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtAditivos);
 
         txtPrecioA.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -264,6 +292,7 @@ public class FinalizarVenta extends javax.swing.JPanel {
          if(!txtAbono.getText().isEmpty()){
             abono = Integer.parseInt(txtAbono.getText());
             lbSaldoS.setText(Integer.toString(subTotal-abono));
+            saldo = subTotal-abono;
          }else{
              lbSaldoS.setText(Integer.toString(subTotal));
          }
@@ -281,10 +310,21 @@ public class FinalizarVenta extends javax.swing.JPanel {
     private void txtAbonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAbonoFocusLost
         // TODO add your handling code here:
         if(!txtAbono.getText().isEmpty()){
-            precio = Integer.parseInt(txtAbono.getText());
+            abono = Integer.parseInt(txtAbono.getText());
             lbSaldoS.setText(Integer.toString(np.getSubTotal()));
+            saldo = subTotal-abono;
         }
     }//GEN-LAST:event_txtAbonoFocusLost
+
+    private void txtDecoracionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDecoracionKeyReleased
+        // TODO add your handling code here:
+        decoracion = txtDecoracion.getText();
+    }//GEN-LAST:event_txtDecoracionKeyReleased
+
+    private void txtAditivosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAditivosKeyReleased
+        // TODO add your handling code here:
+        aditivos = txtAditivos.getText();
+    }//GEN-LAST:event_txtAditivosKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

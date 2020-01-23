@@ -6,9 +6,7 @@
 package Entidad;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,27 +14,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author enano
+ * @author andre
  */
 @Entity
-@Table(name = "postres")
+@Table(name = "postre")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Postres.findAll", query = "SELECT p FROM Postres p")
-    , @NamedQuery(name = "Postres.findById", query = "SELECT p FROM Postres p WHERE p.id = :id")
-    , @NamedQuery(name = "Postres.findByFlavor", query = "SELECT p FROM Postres p WHERE p.flavor = :flavor")
-    , @NamedQuery(name = "Postres.findByPrice", query = "SELECT p FROM Postres p WHERE p.price = :price")
-    , @NamedQuery(name = "Postres.findByTipo", query = "SELECT p FROM Postres p WHERE p.tipo = :tipo")})
+    @NamedQuery(name = "Postre.findAll", query = "SELECT p FROM Postre p")
+    , @NamedQuery(name = "Postre.findById", query = "SELECT p FROM Postre p WHERE p.id = :id")
+    , @NamedQuery(name = "Postre.findByFlavor", query = "SELECT p FROM Postre p WHERE p.flavor = :flavor")
+    , @NamedQuery(name = "Postre.findByPrice", query = "SELECT p FROM Postre p WHERE p.price = :price")
+    , @NamedQuery(name = "Postre.findByTipo", query = "SELECT p FROM Postre p WHERE p.tipo = :tipo")})
 public class Postre implements Serializable {
 
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,13 +106,12 @@ public class Postre implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidad.Postres[ id=" + id + " ]";
+        return "Entidad.Postre[ id=" + id + " ]";
     }
     
     public boolean isSame(Postre other) {
         return  this.tipo.toLowerCase().equals(other.tipo.toLowerCase()) &&
                 this.flavor.toLowerCase().equals(other.flavor.toLowerCase());
     }
-
-  
+    
 }

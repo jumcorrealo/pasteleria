@@ -1,15 +1,19 @@
 package Frontera;
 
-import Control.GestionCliente;
-import Entidad.Pedido;
+import Control.*;
+import Entidad.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class NuevoPedido extends javax.swing.JPanel {
+    public SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
     private static GestionCliente gestor_cliente=new GestionCliente();
     private static final ClientePedido Clienteinfo = new ClientePedido(gestor_cliente);
     private static DetallesVenta detalles = new DetallesVenta();
     private static FinalizarVenta finalizar = new FinalizarVenta();
-    
+    private static ControlPedidos control_pedido= new ControlPedidos();
     private Pedido pedidoEnCurso;
     
     int contador = 0;
@@ -33,7 +37,7 @@ public class NuevoPedido extends javax.swing.JPanel {
 
         panelGeneral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        boton_sig = new javax.swing.JButton();
+        btSiguiente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         boton_atras = new javax.swing.JButton();
@@ -55,14 +59,14 @@ public class NuevoPedido extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(50, 0, 440, 80);
 
-        boton_sig.setText("Siguiente");
-        boton_sig.addActionListener(new java.awt.event.ActionListener() {
+        btSiguiente.setText("Siguiente");
+        btSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_sigActionPerformed(evt);
+                btSiguienteActionPerformed(evt);
             }
         });
-        add(boton_sig);
-        boton_sig.setBounds(390, 640, 100, 50);
+        add(btSiguiente);
+        btSiguiente.setBounds(390, 640, 100, 50);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,37 +96,49 @@ public class NuevoPedido extends javax.swing.JPanel {
 
     
     
-    private void boton_sigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_sigActionPerformed
+    private void btSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSiguienteActionPerformed
         
         switch(contador){
             case 0:{//cuando el panel selecciona clientes y fechas
                 if(Clienteinfo.checkAllFilled()){
-                    
+                    pedidoEnCurso.setIdCliente(Clienteinfo.getCliente().getId());
+                    System.out.println("FR: "+Clienteinfo.getFechaR().getTime().toString());
+                    System.out.println("FE: "+Clienteinfo.getFechaE().getTime().toString());
+                    pedidoEnCurso.setFechaR(Clienteinfo.getFechaR().getTime());
+                    pedidoEnCurso.setFechaE(Clienteinfo.getFechaE().getTime());
                     label_advertencia_campos.setVisible(false);
                     boton_atras.setVisible(true);
                     contador++;    
-                   
+                    
                 }else{
                     label_advertencia_campos.setVisible(true); 
                 }
                 
-                
+                    
                 
                 break;}
             case 1:{//cuando el panel selecciona Detalles
-                
+                pedidoEnCurso.setIdPostre(detalles.getIdPostre());
+                pedidoEnCurso.setForma(detalles.getForma());
+                pedidoEnCurso.setPorciones(detalles.getPorciones());
+                pedidoEnCurso.setCantidadTortas(detalles.getCantidadPasteles());
                 contador++;
                 break;}
             case 2:{
-                
-                
+                pedidoEnCurso.setAdiciones(finalizar.getAditivos());
+                pedidoEnCurso.setDecoracion(finalizar.getdecoracion());
+                pedidoEnCurso.setPrecio(finalizar.getSaldo());
+                pedidoEnCurso.setAbono(finalizar.getAbono());
+                 contador = 0;
+                 
+                 control_pedido.AgregarPedido(pedidoEnCurso);
                 break;}
             
         }
         
         updatePanel();
         
-    }//GEN-LAST:event_boton_sigActionPerformed
+    }//GEN-LAST:event_btSiguienteActionPerformed
 
     private void boton_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_atrasActionPerformed
         contador--;
@@ -141,13 +157,13 @@ public class NuevoPedido extends javax.swing.JPanel {
                 boton_atras.setVisible(false);
                 break;
             case 1:
-                boton_sig.setText("Siguiente");
+                btSiguiente.setText("Siguiente");
                 panelGeneral.add(detalles);
                 panelGeneral.setVisible(true);
                 boton_atras.setVisible(true);
                 break;
             case 2:
-                boton_sig.setText("Finalizar");
+                btSiguiente.setText("Finalizar");
                 panelGeneral.add(finalizar);
                 panelGeneral.setVisible(true);
                 break;
@@ -167,7 +183,7 @@ public class NuevoPedido extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_atras;
-    private javax.swing.JButton boton_sig;
+    private javax.swing.JButton btSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
