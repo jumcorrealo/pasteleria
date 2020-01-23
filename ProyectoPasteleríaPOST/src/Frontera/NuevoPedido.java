@@ -111,6 +111,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                         pedidoEnCurso.setIdCliente(Clienteinfo.getCliente().getId());
                         pedidoEnCurso.setFechaR(Clienteinfo.getFechaE().getTime());
                         pedidoEnCurso.setFechaE(Clienteinfo.getFechaR().getTime());
+                        pedidoEnCurso.setHoraEntrega(Clienteinfo.getHora());
                         label_advertencia_campos.setVisible(false);
                         boton_atras.setVisible(true);
                         contador++;    

@@ -95,6 +95,10 @@ public class ClientePedido extends javax.swing.JPanel {
         return this.fechaEntrega;
     }
     
+    public String getHora(){
+      return jcombo_hora.getSelectedItem().toString(); 
+    }
+    
     public Calendar[] getFechas(){
         Calendar[] fechasR_E = new Calendar[2];
         
@@ -230,6 +234,11 @@ public class ClientePedido extends javax.swing.JPanel {
                 jcombo_horaMouseClicked(evt);
             }
         });
+        jcombo_hora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcombo_horaActionPerformed(evt);
+            }
+        });
         add(jcombo_hora);
         jcombo_hora.setBounds(380, 360, 110, 38);
     }// </editor-fold>//GEN-END:initComponents
@@ -288,6 +297,10 @@ public class ClientePedido extends javax.swing.JPanel {
     private void jButton_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoClienteActionPerformed
         acv.setVisible(true);
     }//GEN-LAST:event_jButton_nuevoClienteActionPerformed
+
+    private void jcombo_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcombo_horaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcombo_horaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

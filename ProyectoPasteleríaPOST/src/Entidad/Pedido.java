@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -76,6 +77,10 @@ public class Pedido implements Serializable {
     private Integer porciones;
     @Column(name = "PRECIO")
     private Integer precio;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "HORA_ENTREGA")
+    private String horaEntrega;
 
     public Pedido() {
         this.estado = false;
@@ -83,6 +88,11 @@ public class Pedido implements Serializable {
 
     public Pedido(Integer idPedido) {
         this.idPedido = idPedido;
+    }
+
+    public Pedido(Integer idPedido, String horaEntrega) {
+        this.idPedido = idPedido;
+        this.horaEntrega = horaEntrega;
     }
 
     public Integer getIdPedido() {
@@ -187,6 +197,14 @@ public class Pedido implements Serializable {
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
+    }
+
+    public String getHoraEntrega() {
+        return horaEntrega;
+    }
+
+    public void setHoraEntrega(String horaEntrega) {
+        this.horaEntrega = horaEntrega;
     }
 
     @Override
