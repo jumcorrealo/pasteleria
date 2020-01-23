@@ -9,9 +9,7 @@ import Control.GestionCliente;
 import Entidad.Cliente;
 import com.sun.glass.events.KeyEvent;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.SwingConstants;
@@ -48,8 +46,7 @@ public class ClientePedido extends javax.swing.JPanel {
         busqueda="";
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        if(dateChooser.getDate()==null)
-            System.out.println("no date yet");
+
     }
 
     public void agregarDatos() {
@@ -262,7 +259,6 @@ public class ClientePedido extends javax.swing.JPanel {
 
     private void txt_buscar_clienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscar_clienteKeyPressed
         int c=evt.getExtendedKeyCode();
-        System.out.println("codigo tecla: "+c);
         if((c>= KeyEvent.VK_A && c<=KeyEvent.VK_Z)|| c==KeyEvent.VK_SPACE){
             busqueda+=(char)evt.getKeyCode();
         }
@@ -278,20 +274,16 @@ public class ClientePedido extends javax.swing.JPanel {
             Calendar fechaE=dateChooser.getCalendar();
             System.out.println(fechaE.toString());
         }
-        System.out.println("busqueda:"+busqueda+","+busqueda.length()+
-                ", texto:"+txt_buscar_cliente.getText()+","+txt_buscar_cliente.getText().length());
         agregarDatos();
     }//GEN-LAST:event_txt_buscar_clienteKeyPressed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         itemSelected=jTable1.getSelectedRow();
-        System.out.println("selected item:"+itemSelected+"\nselected client:"+GC.allClients().get(mapa.get(itemSelected)).getNombre());
         this.clienteObjetivo=GC.allClients().get(mapa.get(itemSelected));
-        System.out.println("item selected: "+jcombo_hora.getSelectedIndex());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jcombo_horaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcombo_horaMouseClicked
-             // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jcombo_horaMouseClicked
 
     private void jButton_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoClienteActionPerformed

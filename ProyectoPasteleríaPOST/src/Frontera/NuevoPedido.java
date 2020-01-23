@@ -3,8 +3,6 @@ package Frontera;
 import Control.*;
 import Entidad.*;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 
 public class NuevoPedido extends javax.swing.JPanel {

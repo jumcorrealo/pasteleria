@@ -11,7 +11,7 @@ package Frontera;
  * @author Home
  */
 public class Ventas extends javax.swing.JFrame {
-    private  static NuevoPedido nuevo = new NuevoPedido();
+    private static NuevoPedido nuevo = new NuevoPedido();
     private static Inicio volver = new Inicio();
     private static PedidosExistentes pedidos = new PedidosExistentes();
     /** Creates new form Ventas */
@@ -100,6 +100,11 @@ public class Ventas extends javax.swing.JFrame {
         getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 720));
 
         panelVentas.setBackground(new java.awt.Color(40, 43, 40));
+        panelVentas.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                panelVentasComponentAdded(evt);
+            }
+        });
         panelVentas.setLayout(new java.awt.BorderLayout());
         getContentPane().add(panelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 540, 720));
 
@@ -130,6 +135,11 @@ public class Ventas extends javax.swing.JFrame {
         panelVentas.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void panelVentasComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_panelVentasComponentAdded
+        if(evt.getChild().equals(pedidos))
+            pedidos.fillTable();
+    }//GEN-LAST:event_panelVentasComponentAdded
 
     /**
      * @param args the command line arguments
