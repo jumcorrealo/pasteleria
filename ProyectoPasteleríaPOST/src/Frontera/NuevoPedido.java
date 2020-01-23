@@ -35,7 +35,6 @@ public class NuevoPedido extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         panelGeneral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -48,7 +47,7 @@ public class NuevoPedido extends javax.swing.JPanel {
         label_advertencia_campos.setVisible(false);
 
         setBackground(new java.awt.Color(40, 43, 40));
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelGeneral.setBackground(new java.awt.Color(255, 255, 0));
         panelGeneral.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -57,27 +56,12 @@ public class NuevoPedido extends javax.swing.JPanel {
             }
         });
         panelGeneral.setLayout(new java.awt.BorderLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.ipadx = 540;
-        gridBagConstraints.ipady = 520;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(panelGeneral, gridBagConstraints);
+        add(panelGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 540, 520));
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nuevo Pedido");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 229;
-        gridBagConstraints.ipady = 40;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        add(jLabel1, gridBagConstraints);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 440, 80));
 
         btSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/1063918-48.png"))); // NOI18N
         btSiguiente.setBorderPainted(false);
@@ -87,37 +71,15 @@ public class NuevoPedido extends javax.swing.JPanel {
                 btSiguienteActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.ipadx = -11;
-        gridBagConstraints.ipady = -7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 70, 0, 0);
-        add(btSiguiente, gridBagConstraints);
+        add(btSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 610, 70, 70));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Subtotal $");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 20, 30, 0);
-        add(jLabel2, gridBagConstraints);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 110, 40));
 
         jTextField1.setEditable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 114;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(60, 10, 0, 0);
-        add(jTextField1, gridBagConstraints);
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 120, -1));
 
         boton_atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216436-48.png"))); // NOI18N
         boton_atras.setBorderPainted(false);
@@ -127,29 +89,12 @@ public class NuevoPedido extends javax.swing.JPanel {
                 boton_atrasActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = -11;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 30, 30, 0);
-        add(boton_atras, gridBagConstraints);
+        add(boton_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 610, 70, 70));
 
         label_advertencia_campos.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         label_advertencia_campos.setForeground(new java.awt.Color(255, 0, 51));
         label_advertencia_campos.setText("Complete todos los campos");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 85;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 20, 0, 0);
-        add(label_advertencia_campos, gridBagConstraints);
+        add(label_advertencia_campos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 360, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     
