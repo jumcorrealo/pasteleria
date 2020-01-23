@@ -86,7 +86,7 @@ public class Pedido implements Serializable {
     private String horaEntrega;
 
     public Pedido() {
-        this.estado = true;
+        this.estado = false;
     }
 
     public Pedido(Integer idPedido) {

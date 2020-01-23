@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package Frontera;
-
+import Control.STATS_C;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.*;
+import org.knowm.xchart.*;
 /**
  *
  * @author Home
@@ -14,6 +18,8 @@ public class Estadisticas extends javax.swing.JFrame {
     /**
      * Creates new form Estadisticas
      */
+    private static final Administrativo volver = new Administrativo();
+    private static STATS_C control= new STATS_C();
     public Estadisticas() {
         initComponents();
     }
@@ -28,38 +34,309 @@ public class Estadisticas extends javax.swing.JFrame {
     private void initComponents() {
 
         Estadisticas = new javax.swing.JPanel();
-        meme = new javax.swing.JLabel();
+        Anterior = new javax.swing.JButton();
+        home = new javax.swing.JButton();
+        jScrollPane_Estadisticas = new javax.swing.JScrollPane();
+        jP_Lista = new javax.swing.JPanel();
+        jP_Pasteles_mes = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jB_Pasteles_mes = new javax.swing.JButton();
+        jP_Pasteles_year = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jB_Pasteles_year = new javax.swing.JButton();
+        jP_Ventas_pedidos = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jB_Ventas_Pedidos = new javax.swing.JButton();
+        jP_Ventas_dinero = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jB_Ventas_pedidos = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        Estadisticas.setBackground(new java.awt.Color(50, 53, 50));
         Estadisticas.setLayout(null);
 
-        meme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/meme.jpg"))); // NOI18N
-        Estadisticas.add(meme);
-        meme.setBounds(50, 0, 480, 700);
+        this.Anterior.setVisible(false);
+        Anterior.setBackground(new java.awt.Color(124, 198, 254));
+        Anterior.setText("Anterior");
+        Anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AnteriorActionPerformed(evt);
+            }
+        });
+        Estadisticas.add(Anterior);
+        Anterior.setBounds(30, 520, 100, 60);
+
+        home.setBackground(new java.awt.Color(124, 198, 254));
+        home.setText("Volver");
+        home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeActionPerformed(evt);
+            }
+        });
+        Estadisticas.add(home);
+        home.setBounds(390, 520, 100, 60);
+
+        jP_Lista.setBackground(new java.awt.Color(0, 0, 0));
+
+        jP_Pasteles_mes.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel1.setText("Pasteles mas vendidos en el mes");
+
+        jB_Pasteles_mes.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Pasteles_mes.setText("Mostrar");
+        jB_Pasteles_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_Pasteles_mesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jP_Pasteles_mesLayout = new javax.swing.GroupLayout(jP_Pasteles_mes);
+        jP_Pasteles_mes.setLayout(jP_Pasteles_mesLayout);
+        jP_Pasteles_mesLayout.setHorizontalGroup(
+            jP_Pasteles_mesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Pasteles_mesLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jB_Pasteles_mes)
+                .addGap(37, 37, 37))
+        );
+        jP_Pasteles_mesLayout.setVerticalGroup(
+            jP_Pasteles_mesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_Pasteles_mesLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(jP_Pasteles_mesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jB_Pasteles_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jP_Pasteles_year.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel2.setText("Pasteles mas vendidos en el año");
+
+        jB_Pasteles_year.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Pasteles_year.setText("Mostrar");
+        jB_Pasteles_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_Pasteles_yearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jP_Pasteles_yearLayout = new javax.swing.GroupLayout(jP_Pasteles_year);
+        jP_Pasteles_year.setLayout(jP_Pasteles_yearLayout);
+        jP_Pasteles_yearLayout.setHorizontalGroup(
+            jP_Pasteles_yearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Pasteles_yearLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jB_Pasteles_year)
+                .addGap(34, 34, 34))
+        );
+        jP_Pasteles_yearLayout.setVerticalGroup(
+            jP_Pasteles_yearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Pasteles_yearLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jP_Pasteles_yearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jB_Pasteles_year, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jP_Ventas_pedidos.setBackground(new java.awt.Color(255, 255, 255));
+        jP_Ventas_pedidos.setPreferredSize(new java.awt.Dimension(434, 100));
+
+        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel3.setText("Cantidad de pedidos en el mes");
+
+        jB_Ventas_Pedidos.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Ventas_Pedidos.setText("Mostrar");
+        jB_Ventas_Pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_Ventas_PedidosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jP_Ventas_pedidosLayout = new javax.swing.GroupLayout(jP_Ventas_pedidos);
+        jP_Ventas_pedidos.setLayout(jP_Ventas_pedidosLayout);
+        jP_Ventas_pedidosLayout.setHorizontalGroup(
+            jP_Ventas_pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Ventas_pedidosLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jB_Ventas_Pedidos)
+                .addGap(35, 35, 35))
+        );
+        jP_Ventas_pedidosLayout.setVerticalGroup(
+            jP_Ventas_pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Ventas_pedidosLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jP_Ventas_pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_Ventas_Pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        jP_Ventas_dinero.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        jLabel4.setText("Dinero hecho en el mes");
+
+        jB_Ventas_pedidos.setBackground(new java.awt.Color(124, 198, 254));
+        jB_Ventas_pedidos.setText("Mostrar");
+        jB_Ventas_pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_Ventas_pedidosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jP_Ventas_dineroLayout = new javax.swing.GroupLayout(jP_Ventas_dinero);
+        jP_Ventas_dinero.setLayout(jP_Ventas_dineroLayout);
+        jP_Ventas_dineroLayout.setHorizontalGroup(
+            jP_Ventas_dineroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Ventas_dineroLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jB_Ventas_pedidos)
+                .addGap(34, 34, 34))
+        );
+        jP_Ventas_dineroLayout.setVerticalGroup(
+            jP_Ventas_dineroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_Ventas_dineroLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jP_Ventas_dineroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_Ventas_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jP_ListaLayout = new javax.swing.GroupLayout(jP_Lista);
+        jP_Lista.setLayout(jP_ListaLayout);
+        jP_ListaLayout.setHorizontalGroup(
+            jP_ListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ListaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jP_ListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jP_Ventas_dinero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jP_Pasteles_mes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jP_Pasteles_year, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jP_Ventas_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jP_ListaLayout.setVerticalGroup(
+            jP_ListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_ListaLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jP_Pasteles_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jP_Pasteles_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jP_Ventas_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jP_Ventas_dinero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(188, Short.MAX_VALUE))
+        );
+
+        jScrollPane_Estadisticas.setViewportView(jP_Lista);
+
+        Estadisticas.add(jScrollPane_Estadisticas);
+        jScrollPane_Estadisticas.setBounds(30, 20, 460, 470);
+
+        jPanel2.setBackground(new java.awt.Color(50, 53, 50));
+
+        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Estadisticas");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(185, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(157, 157, 157))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Estadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addComponent(Estadisticas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Estadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Estadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnteriorActionPerformed
+        anterior();
+    }//GEN-LAST:event_AnteriorActionPerformed
+
+    private void homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeActionPerformed
+        volver.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_homeActionPerformed
+
+    private void jB_Pasteles_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_Pasteles_mesActionPerformed
+        ocultar();/*
+        ArrayList<Number> yData = new ArrayList<>();
+        yData.add(2);
+        yData.add(5);
+        yData.add(7);
+        yData.add(1);
+        
+        
+        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Score Histogram").xAxisTitle("Score").yAxisTitle("Number").build();
+        chart.getStyler().setHasAnnotations(true);
+        chart.addSeries("a",new ArrayList<String>(Arrays.asList(new String[] { "1era Semana", "2da Semana", "3era Semana", "4ta Semana"})),yData);
+        JPanel ChartPanel = new XChartPanel(chart);
+        */
+        JPanel ChartPanel=control.Pasteles_v_mes();
+        jScrollPane_Estadisticas.setViewportView(ChartPanel);
+    }//GEN-LAST:event_jB_Pasteles_mesActionPerformed
+
+    private void jB_Ventas_PedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_Ventas_PedidosActionPerformed
+        ocultar();
+        JPanel ChartPanel=control.Pedidos_cantidad_mes();
+        jScrollPane_Estadisticas.setViewportView(ChartPanel);
+    }//GEN-LAST:event_jB_Ventas_PedidosActionPerformed
+
+    private void jB_Ventas_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_Ventas_pedidosActionPerformed
+        ocultar();
+        JPanel ChartPanel=control.Pedidos_dinero_mes();
+        jScrollPane_Estadisticas.setViewportView(ChartPanel);
+    }//GEN-LAST:event_jB_Ventas_pedidosActionPerformed
+
+    private void jB_Pasteles_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_Pasteles_yearActionPerformed
+        ocultar();
+        JPanel ChartPanel=control.Pasteles_v_anio();
+        jScrollPane_Estadisticas.setViewportView(ChartPanel);
+    }//GEN-LAST:event_jB_Pasteles_yearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,7 +374,35 @@ public class Estadisticas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Anterior;
     private javax.swing.JPanel Estadisticas;
-    private javax.swing.JLabel meme;
+    private javax.swing.JButton home;
+    private javax.swing.JButton jB_Pasteles_mes;
+    private javax.swing.JButton jB_Pasteles_year;
+    private javax.swing.JButton jB_Ventas_Pedidos;
+    private javax.swing.JButton jB_Ventas_pedidos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jP_Lista;
+    private javax.swing.JPanel jP_Pasteles_mes;
+    private javax.swing.JPanel jP_Pasteles_year;
+    private javax.swing.JPanel jP_Ventas_dinero;
+    private javax.swing.JPanel jP_Ventas_pedidos;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane_Estadisticas;
     // End of variables declaration//GEN-END:variables
+    public void ocultar(){
+        this.Anterior.setVisible(true);
+        //this.Next_g.setVisible(true);
+        this.jP_Lista.setVisible(false);
+    }
+    public void anterior(){
+        this.Anterior.setVisible(false);
+        //this.Next_g.setVisible(false);
+        jScrollPane_Estadisticas.setViewportView(this.jP_Lista);
+        this.jP_Lista.setVisible(true);
+    }
 }

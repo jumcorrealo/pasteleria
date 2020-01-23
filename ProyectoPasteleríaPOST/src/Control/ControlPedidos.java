@@ -8,13 +8,14 @@ import DAO.*;
 import Entidad.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ControlPedidos {
-    private final PedidoDAO pA;
-    private ArrayList<Pedido> lista_Pedido;
+    private static final PedidoDAO pA = new PedidoDAO();
+    private static ArrayList<Pedido> lista_Pedido;
     
     public ControlPedidos() {
-        pA = new PedidoDAO();
         lista_Pedido = new ArrayList(pA.findPedidoEntities());
     }
     
@@ -29,10 +30,21 @@ public class ControlPedidos {
     
     public void AgregarPedido(Pedido pedido){ 
         pA.create(pedido);
-        lista_Pedido.add(pedido);
     }
     
     public ArrayList<Pedido> getPedidos() {
         return lista_Pedido;
+    }
+    
+    public String upDateList(Pedido pedido){
+        try {
+            pA.edit(pedido);
+        } catch (Exception ex) {
+            Logger.getLogger(ControlPedidos.class.getName()).log(Level.SEVERE, null, ex);
+            return "Error";
+        }
+        lista_Pedido.clear();
+        lista_Pedido.addAll(pA.findPedidoEntities());
+        return "Exitoso";
     }
 }
