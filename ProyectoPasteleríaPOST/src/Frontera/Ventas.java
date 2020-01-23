@@ -56,7 +56,7 @@ public class Ventas extends javax.swing.JFrame {
             }
         });
         PanelFondo.add(jButton2);
-        jButton2.setBounds(30, 380, 180, 130);
+        jButton2.setBounds(30, 350, 380, 130);
 
         jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -69,7 +69,7 @@ public class Ventas extends javax.swing.JFrame {
             }
         });
         PanelFondo.add(jButton1);
-        jButton1.setBounds(30, 210, 180, 120);
+        jButton1.setBounds(30, 210, 380, 120);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216436-48.png"))); // NOI18N
         jButton3.setBorderPainted(false);
@@ -95,9 +95,9 @@ public class Ventas extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cake-2001781_1280.jpg"))); // NOI18N
         PanelFondo.add(jLabel2);
-        jLabel2.setBounds(0, 0, 220, 720);
+        jLabel2.setBounds(0, 0, 430, 720);
 
-        getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 720));
+        getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 720));
 
         panelVentas.setBackground(new java.awt.Color(40, 43, 40));
         panelVentas.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -106,7 +106,7 @@ public class Ventas extends javax.swing.JFrame {
             }
         });
         panelVentas.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(panelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 540, 720));
+        getContentPane().add(panelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 540, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

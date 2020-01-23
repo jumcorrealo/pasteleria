@@ -16,19 +16,20 @@ public class ControlPedidos {
     private static ArrayList<Pedido> lista_Pedido;
     
     public ControlPedidos() {
+        
         lista_Pedido = new ArrayList(pA.findPedidoEntities());
     }
     
     public Boolean difFecha(Calendar FechaR,Calendar FechaE){
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(FechaR.getTime().getTime()-FechaE.getTime().getTime());
-        if(c.get(Calendar.DAY_OF_YEAR)<2){
+        if(c.get(Calendar.DAY_OF_YEAR)<2 || FechaE.after(FechaR)){
             return false;
         }
         return true;
     }
     
-    public void AgregarPedido(Pedido pedido){ 
+    public void AgregarPedido(Pedido pedido){
         pA.create(pedido);
     }
     

@@ -44,7 +44,7 @@ public class STATS_C {
             xData = SPostres();
         }
         
-        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Ventas de pasteles en el mes").xAxisTitle("Pastel").yAxisTitle("Cantidad de ventas").build();
+        CategoryChart chart = new CategoryChartBuilder().width(456).height(619).title("Ventas de pasteles en el mes").xAxisTitle("Pastel").yAxisTitle("Cantidad de ventas").build();
         chart.getStyler().setHasAnnotations(true);
         chart.addSeries("Ventas",xData,yData);
         JPanel ChartPanel = new XChartPanel(chart);
@@ -68,7 +68,7 @@ public class STATS_C {
             xData = SPostres();
         }
         
-        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Ventas de pasteles en el mes").xAxisTitle("Pastel").yAxisTitle("Cantidad de ventas").build();
+        CategoryChart chart = new CategoryChartBuilder().width(456).height(619).title("Ventas de pasteles en el mes").xAxisTitle("Pastel").yAxisTitle("Cantidad de ventas").build();
         chart.getStyler().setHasAnnotations(true);
         chart.addSeries("Ventas",xData,yData);
         JPanel ChartPanel = new XChartPanel(chart);
@@ -114,7 +114,7 @@ public class STATS_C {
         }else{
             yData.add(pedido_dinero(resultados));
         }
-        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Numero de ventas en el mes").xAxisTitle("Semana").yAxisTitle("Dinero").build();
+        CategoryChart chart = new CategoryChartBuilder().width(456).height(619).title("Numero de ventas en el mes").xAxisTitle("Semana").yAxisTitle("Dinero").build();
         chart.getStyler().setHasAnnotations(true);
         chart.addSeries("Dinero de los pedidos",new ArrayList<String>(Arrays.asList(new String[] { "1era Semana", "2da Semana", "3era Semana", "4ta Semana"})),yData);
         JPanel ChartPanel = new XChartPanel(chart);
@@ -159,7 +159,9 @@ public class STATS_C {
         }else{
             yData.add(resultados.size());
         }
-        CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Numero de ventas en el mes").xAxisTitle("Semanas").yAxisTitle("Ventas").build();
+        
+        //[456, 619]
+        CategoryChart chart = new CategoryChartBuilder().width(456).height(619).title("Numero de ventas en el mes").xAxisTitle("Semanas").yAxisTitle("Ventas").build();
         chart.getStyler().setHasAnnotations(true);
         chart.addSeries("Cantidad de pedidos",new ArrayList<String>(Arrays.asList(new String[] { "1era Semana", "2da Semana", "3era Semana", "4ta Semana"})),yData);
         JPanel ChartPanel = new XChartPanel(chart);
@@ -180,7 +182,7 @@ public class STATS_C {
         ArrayList<Number> a= new ArrayList<>();
         System.out.println(l.size());
         for(int j=0;j<=l.size();j++){
-            System.out.println(a.get(i));
+//            System.out.println(a.get(i));
             a.add(yData[j]);
         }
         return a;
