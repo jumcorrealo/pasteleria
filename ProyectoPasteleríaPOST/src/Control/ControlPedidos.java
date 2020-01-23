@@ -6,11 +6,8 @@
 package Control;
 import DAO.*;
 import Entidad.*;
-import java.util.Collections;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Objects;
 
 public class ControlPedidos {
     private final PedidoDAO pA;
@@ -22,16 +19,20 @@ public class ControlPedidos {
     }
     
     public Boolean difFecha(Calendar FechaR,Calendar FechaE){
-    Calendar c = Calendar.getInstance();
-    c.setTimeInMillis(FechaR.getTime().getTime()-FechaE.getTime().getTime());
-    if(c.get(Calendar.DAY_OF_YEAR)<2){
-    return false;
-    }
-    return true;
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(FechaR.getTime().getTime()-FechaE.getTime().getTime());
+        if(c.get(Calendar.DAY_OF_YEAR)<2){
+            return false;
+        }
+        return true;
     }
     
     public void AgregarPedido(Pedido pedido){ 
         pA.create(pedido);
+        lista_Pedido.add(pedido);
     }
     
+    public ArrayList<Pedido> getPedidos() {
+        return lista_Pedido;
+    }
 }

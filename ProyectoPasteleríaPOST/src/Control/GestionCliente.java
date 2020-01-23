@@ -71,12 +71,15 @@ public class GestionCliente {
         return list;
     }
     
-    public void isFrequentClient(Cliente cliente) {
-        //TODO Los clientes se clasifican por medio de la cantidad de pedidos
-        //Que ha realizado por medio de un puntaje de tres estrellas recibiendo un incentivo en descuentos
+    public boolean isFrequentClient(Cliente cliente) {
+        return cliente.getPuntaje() > 10;
     }
     
     public List<Cliente> dynoSerch(String keyTyped){
         return clienteDAO.dynoSerch(keyTyped);
+    }
+    
+    public Cliente findCliente(int id){
+        return clienteDAO.findCliente(id);
     }
 }
