@@ -10,8 +10,7 @@ import Entidad.Cliente;
 import Entidad.Insumo;
 import java.util.Collections;
 import java.util.List;
-
-/**
+/**ad
  *
  * @author ACER
  */

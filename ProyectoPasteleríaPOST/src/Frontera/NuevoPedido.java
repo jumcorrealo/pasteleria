@@ -97,9 +97,9 @@ public class NuevoPedido extends javax.swing.JPanel {
         switch(contador){
             case 0:{//cuando el panel selecciona clientes y fechas
                 if(Clienteinfo.checkAllFilled()){
+                    
                     label_advertencia_campos.setVisible(false);
                     boton_atras.setVisible(true);
-                    
                     contador++;    
                    
                 }else{

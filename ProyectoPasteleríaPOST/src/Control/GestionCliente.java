@@ -18,8 +18,7 @@ public class GestionCliente {
     private static final ClienteDAO clienteDAO = new ClienteDAO();
     private static ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
-    public GestionCliente() {
-        
+    public GestionCliente() {  
     }
     
     public boolean usuarioUnicoUpDate(Cliente cliente){

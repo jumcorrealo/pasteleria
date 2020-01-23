@@ -4,12 +4,24 @@
  * and open the template in the editor.
  */
 package Control;
+import DAO.*;
+import Entidad.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
 
-
-/**
- *
- * @author andre
- */
 public class ControlPedidos {
+    private final PedidoDAO pA;
+    private ArrayList<Pedido> lista_Pedido;
+    
+    public ControlPedidos() {
+        pA = new PedidoDAO();
+        lista_Pedido = new ArrayList(pA.findPedidoEntities());
+    }
+
+    public void AgregarPedido(Pedido pedido){ 
+        pA.create(pedido);
+    }
     
 }
