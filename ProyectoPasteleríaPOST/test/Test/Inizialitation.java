@@ -13,6 +13,7 @@ import org.junit.Test;
 import DAO.*;
 import Entidad.*;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author enano
@@ -125,6 +126,67 @@ public class Inizialitation {
         for(Insumo i: listI){
             registroI.create(i);
         }
+        PedidoDAO n =new PedidoDAO(); 
+        Date d1= new Date(2020,01,12);
+        Date d2= new Date(2020,02,13);
+        Date d3= new Date(2020,03,12);
+        Date d4= new Date(2020,01,13);
+        Pedido p= new Pedido();
+        p.setIdPedido(1);
+        p.setPrecio(1000);
+        p.setIdPostre(d.getId());
+        p.setIdCliente(a.getId());
+        p.setEstado(true);
+        p.setCantidadTortas(1);
+        p.setFechaE(d1);
+        p.setFechaR(d2);
+        p.setAbono(0);
+        p.setAdiciones("aaa");
+        p.setDecoracion("aaa");
+        p.setForma("circulo");
+        n.create(p);
+        Pedido p1= new Pedido();
+        p1.setIdPedido(1);
+        p1.setPrecio(1000);
+        p1.setIdPostre(d.getId());
+        p1.setIdCliente(a.getId());
+        p1.setEstado(true);
+        p1.setCantidadTortas(1);
+        p1.setFechaE(d1);
+        p1.setFechaR(d2);
+        p1.setAbono(0);
+        p1.setAdiciones("aaa");
+        p1.setDecoracion("aaa");
+        p1.setForma("circulo");
+        n.create(p1);
+        Pedido p2= new Pedido();
+        p2.setIdPedido(1);
+        p2.setPrecio(1000);
+        p2.setIdPostre(d.getId());
+        p2.setIdCliente(a.getId());
+        p2.setEstado(true);
+        p2.setCantidadTortas(1);
+        p2.setFechaE(d1);
+        p2.setFechaR(d2);
+        p2.setAbono(0);
+        p2.setAdiciones("aaa");
+        p2.setDecoracion("aaa");
+        p2.setForma("circulo");
+        n.create(p2);
+        Pedido p3= new Pedido();
+        p3.setIdPedido(1);
+        p3.setPrecio(1000);
+        p3.setIdPostre(d.getId());
+        p3.setIdCliente(a.getId());
+        p3.setEstado(true);
+        p3.setCantidadTortas(1);
+        p3.setFechaE(d1);
+        p3.setFechaR(d2);
+        p3.setAbono(0);
+        p3.setAdiciones("aaa");
+        p3.setDecoracion("aaa");
+        p3.setForma("circulo");
+        n.create(p3);
     }
     
 }

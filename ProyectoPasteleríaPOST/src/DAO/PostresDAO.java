@@ -24,10 +24,9 @@ import javax.persistence.criteria.Root;
  * @author enano
  */
 public class PostresDAO implements Serializable {
-    private final EntityManagerFactory emf;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistence");
     
     public PostresDAO() {
-        this.emf = Persistence.createEntityManagerFactory("Persistence");
     }
 
     public EntityManager getEntityManager() {
