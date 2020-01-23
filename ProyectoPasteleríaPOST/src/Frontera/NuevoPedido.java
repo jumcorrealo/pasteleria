@@ -79,10 +79,10 @@ public class NuevoPedido extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         add(jLabel1, gridBagConstraints);
 
-        boton_sig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/1063918-48.png"))); // NOI18N
-        boton_sig.setBorderPainted(false);
-        boton_sig.setContentAreaFilled(false);
-        boton_sig.addActionListener(new java.awt.event.ActionListener() {
+        btSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/1063918-48.png"))); // NOI18N
+        btSiguiente.setBorderPainted(false);
+        btSiguiente.setContentAreaFilled(false);
+        btSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSiguienteActionPerformed(evt);
             }
@@ -95,7 +95,7 @@ public class NuevoPedido extends javax.swing.JPanel {
         gridBagConstraints.ipady = -7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 70, 0, 0);
-        add(boton_sig, gridBagConstraints);
+        add(btSiguiente, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
