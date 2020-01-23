@@ -42,99 +42,79 @@ public class Administrativo extends javax.swing.JFrame {
         setUndecorated(true);
 
         panelAdministrativoReemplazo.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdministrativoReemplazo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ClienteButton.setBackground(new java.awt.Color(77, 126, 168));
+        ClienteButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        ClienteButton.setForeground(new java.awt.Color(255, 255, 255));
         ClienteButton.setText("Clientes");
+        ClienteButton.setBorderPainted(false);
+        ClienteButton.setContentAreaFilled(false);
         ClienteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClienteButtonActionPerformed(evt);
             }
         });
+        panelAdministrativoReemplazo.add(ClienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 210, 40));
 
         InventarioButton.setBackground(new java.awt.Color(77, 126, 168));
+        InventarioButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        InventarioButton.setForeground(new java.awt.Color(255, 255, 255));
         InventarioButton.setText("Inventario");
+        InventarioButton.setBorderPainted(false);
+        InventarioButton.setContentAreaFilled(false);
         InventarioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InventarioButtonActionPerformed(evt);
             }
         });
+        panelAdministrativoReemplazo.add(InventarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 210, -1));
 
         EstadisticasButton.setBackground(new java.awt.Color(77, 126, 168));
+        EstadisticasButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        EstadisticasButton.setForeground(new java.awt.Color(255, 255, 255));
         EstadisticasButton.setText("Estadísticas");
+        EstadisticasButton.setBorderPainted(false);
+        EstadisticasButton.setContentAreaFilled(false);
         EstadisticasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EstadisticasButtonActionPerformed(evt);
             }
         });
+        panelAdministrativoReemplazo.add(EstadisticasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 210, 40));
 
-        VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_arrow-back_216437.png"))); // NOI18N
+        VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216436-48.png"))); // NOI18N
+        VolverButton.setBorderPainted(false);
+        VolverButton.setContentAreaFilled(false);
         VolverButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VolverButtonActionPerformed(evt);
             }
         });
+        panelAdministrativoReemplazo.add(VolverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 65));
 
-        CerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
+        CerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_Delete_1493279.png"))); // NOI18N
+        CerrarButton.setBorderPainted(false);
+        CerrarButton.setContentAreaFilled(false);
         CerrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarButtonActionPerformed(evt);
             }
         });
+        panelAdministrativoReemplazo.add(CerrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 65));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/stock-1863880_1280.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout panelAdministrativoReemplazoLayout = new javax.swing.GroupLayout(panelAdministrativoReemplazo);
-        panelAdministrativoReemplazo.setLayout(panelAdministrativoReemplazoLayout);
-        panelAdministrativoReemplazoLayout.setHorizontalGroup(
-            panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(VolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CerrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-            .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
-                .addGap(416, 416, 416)
-                .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ClienteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InventarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(EstadisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addContainerGap(454, Short.MAX_VALUE))
-            .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, Short.MAX_VALUE))
-        );
-        panelAdministrativoReemplazoLayout.setVerticalGroup(
-            panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
-                .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(CerrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(VolverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(ClienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(97, 97, 97)
-                .addComponent(InventarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98)
-                .addComponent(EstadisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
-            .addGroup(panelAdministrativoReemplazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelAdministrativoReemplazoLayout.createSequentialGroup()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        panelAdministrativoReemplazo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdministrativoReemplazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

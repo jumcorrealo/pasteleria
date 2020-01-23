@@ -40,7 +40,7 @@ public class Inicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(40, 43, 40));
 
@@ -48,37 +48,47 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2.setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(124, 198, 254));
+        jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ventas");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(430, 420, 200, 113);
+        jButton1.setBounds(440, 340, 200, 30);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_basics-22_296812.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_Delete_1493279.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton3);
-        jButton3.setBounds(990, 10, 80, 65);
+        jButton3.setBounds(1010, 10, 60, 50);
 
         jButton2.setBackground(new java.awt.Color(124, 198, 254));
+        jButton2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Administrativo");
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(430, 240, 200, 113);
+        jButton2.setBounds(440, 300, 200, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/bun-268237_1920.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cake-1241413_1280.jpg"))); // NOI18N
         jLabel1.setToolTipText("");
         jPanel2.add(jLabel1);
         jLabel1.setBounds(0, 0, 1080, 720);
