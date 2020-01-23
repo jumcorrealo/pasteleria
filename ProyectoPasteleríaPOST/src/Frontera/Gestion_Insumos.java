@@ -58,12 +58,11 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setLocationByPlatform(true);
 
-        panel_principal_Insumos.setBackground(new java.awt.Color(221, 221, 221));
+        panel_principal_Insumos.setBackground(new java.awt.Color(0, 0, 0));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(0, 153, 153));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(204, 204, 0));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 72)); // NOI18N
-        titulo_insumos.setForeground(new java.awt.Color(255, 255, 255));
         titulo_insumos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo_insumos.setText("Insumos");
         titulo_insumos.setToolTipText("");
@@ -98,6 +97,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         );
 
         label_buscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_buscar.setForeground(new java.awt.Color(204, 204, 204));
         label_buscar.setText("Buscar");
 
         tx_buscar.setToolTipText("Ingrese el nombre del insumo que desea buscar");
@@ -119,7 +119,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
 
         boton_agregar_Insumo.setBackground(new java.awt.Color(51, 102, 255));
         boton_agregar_Insumo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        boton_agregar_Insumo.setForeground(new java.awt.Color(255, 255, 255));
+        boton_agregar_Insumo.setForeground(new java.awt.Color(255, 0, 0));
         boton_agregar_Insumo.setText("+");
         boton_agregar_Insumo.setToolTipText("Añada un nuevo insumo");
         boton_agregar_Insumo.setPreferredSize(new java.awt.Dimension(80, 80));
@@ -135,7 +135,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         panel_scroll.setAutoscrolls(true);
         panel_scroll.setPreferredSize(new java.awt.Dimension(480, 420));
 
-        panel_lista.setBackground(new java.awt.Color(255, 255, 255));
+        panel_lista.setBackground(new java.awt.Color(0, 0, 0));
         panel_lista.setPreferredSize(new java.awt.Dimension(480, 418));
         panel_lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

@@ -53,7 +53,7 @@ public class InfoInsumo extends javax.swing.JPanel {
         titulo_insumo_subPanel = new javax.swing.JLabel();
         button_crear_recordatorio = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 204, 204));
+        setBackground(new java.awt.Color(204, 204, 0));
         setForeground(new java.awt.Color(200, 17, 200));
         setPreferredSize(new java.awt.Dimension(388, 80));
         addFocusListener(new java.awt.event.FocusAdapter() {
