@@ -117,7 +117,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
             }
         });
 
-        boton_agregar_Insumo.setBackground(new java.awt.Color(51, 102, 255));
+        boton_agregar_Insumo.setBackground(new java.awt.Color(204, 204, 0));
         boton_agregar_Insumo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         boton_agregar_Insumo.setForeground(new java.awt.Color(255, 0, 0));
         boton_agregar_Insumo.setText("+");

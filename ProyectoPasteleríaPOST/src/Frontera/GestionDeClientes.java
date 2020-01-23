@@ -20,6 +20,7 @@ public class GestionDeClientes extends javax.swing.JFrame {
      */
     public GestionDeClientes() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,7 +33,6 @@ public class GestionDeClientes extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        GestionDeClienteReemplazo = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         NuevoClienteButton = new javax.swing.JButton();
         ClienteExistenteButton = new javax.swing.JButton();
@@ -40,20 +40,12 @@ public class GestionDeClientes extends javax.swing.JFrame {
         CerrarButton = new javax.swing.JButton();
         HomeButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        GestionDeClienteReemplazo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        GestionDeClienteReemplazo.setBackground(new java.awt.Color(40, 43, 40));
-        GestionDeClienteReemplazo.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                GestionDeClienteReemplazoComponentAdded(evt);
-            }
-        });
-        GestionDeClienteReemplazo.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(GestionDeClienteReemplazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 540, 770));
 
         jPanel2.setBackground(new java.awt.Color(40, 43, 40));
         jPanel2.setLayout(null);
@@ -70,7 +62,7 @@ public class GestionDeClientes extends javax.swing.JFrame {
             }
         });
         jPanel2.add(NuevoClienteButton);
-        NuevoClienteButton.setBounds(10, 390, 200, 113);
+        NuevoClienteButton.setBounds(70, 330, 360, 113);
 
         ClienteExistenteButton.setBackground(new java.awt.Color(124, 198, 254));
         ClienteExistenteButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
@@ -84,7 +76,7 @@ public class GestionDeClientes extends javax.swing.JFrame {
             }
         });
         jPanel2.add(ClienteExistenteButton);
-        ClienteExistenteButton.setBounds(10, 220, 200, 113);
+        ClienteExistenteButton.setBounds(20, 220, 460, 113);
 
         VolverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/216436-48.png"))); // NOI18N
         VolverButton.setBorderPainted(false);
@@ -121,11 +113,20 @@ public class GestionDeClientes extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/bar-1846137_1280.jpg"))); // NOI18N
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(0, 0, 230, 770);
+        jLabel1.setBounds(0, 0, 500, 770);
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 770));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 770));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        GestionDeClienteReemplazo.setBackground(new java.awt.Color(40, 43, 40));
+        GestionDeClienteReemplazo.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                GestionDeClienteReemplazoComponentAdded(evt);
+            }
+        });
+        GestionDeClienteReemplazo.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(GestionDeClienteReemplazo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 540, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
