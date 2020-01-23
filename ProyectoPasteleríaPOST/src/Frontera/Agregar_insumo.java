@@ -44,9 +44,9 @@ public class Agregar_insumo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(241, 198, 241));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(212, 17, 200));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(204, 204, 0));
         panel_titulo_Insumos.setPreferredSize(new java.awt.Dimension(300, 89));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 66)); // NOI18N
@@ -73,10 +73,12 @@ public class Agregar_insumo extends javax.swing.JFrame {
         titulo_insumos.getAccessibleContext().setAccessibleName("Nuevo Insumo");
 
         label_buscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_buscar.setForeground(new java.awt.Color(255, 255, 255));
         label_buscar.setText("Nombre");
         label_buscar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         label_buscar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_buscar1.setForeground(new java.awt.Color(255, 255, 255));
         label_buscar1.setText("Unidad");
 
         tx_nombre_insumo.setText("Ingrese el nombre del nuevo insumo");

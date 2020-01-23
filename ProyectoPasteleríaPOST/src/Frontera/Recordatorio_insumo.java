@@ -58,9 +58,9 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setPreferredSize(new java.awt.Dimension(450, 300));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(0, 153, 153));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(204, 204, 0));
         panel_titulo_Insumos.setPreferredSize(new java.awt.Dimension(300, 89));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 55)); // NOI18N
@@ -102,10 +102,12 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         });
 
         label_cantidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_cantidad.setForeground(new java.awt.Color(255, 255, 255));
         label_cantidad.setText("Cantidad:");
         label_cantidad.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         label_proximo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_proximo.setForeground(new java.awt.Color(255, 255, 255));
         label_proximo.setText("Fecha:");
         label_proximo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -117,6 +119,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         });
 
         label_unidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        label_unidad.setForeground(new java.awt.Color(255, 255, 255));
         label_unidad.setText(insumo.getUnidad());
         label_unidad.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
