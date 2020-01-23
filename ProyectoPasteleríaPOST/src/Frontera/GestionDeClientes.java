@@ -137,7 +137,6 @@ public class GestionDeClientes extends javax.swing.JFrame {
     private void VolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverButtonActionPerformed
         adm.setVisible(true);
         dispose();
-        //dispose();
     }//GEN-LAST:event_VolverButtonActionPerformed
 
     private void CerrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarButtonActionPerformed
