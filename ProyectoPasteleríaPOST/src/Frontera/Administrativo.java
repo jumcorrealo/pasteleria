@@ -11,6 +11,7 @@ package Frontera;
 public class Administrativo extends javax.swing.JFrame {
     private static GestionDeClientes clientes = new GestionDeClientes();
     private static Inicio volver = new Inicio();
+    private static Estadisticas elmeme = new Estadisticas();
   
     /**
      * Creates new form Administrativo
@@ -142,6 +143,8 @@ public class Administrativo extends javax.swing.JFrame {
 
     private void EstadisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadisticasButtonActionPerformed
         // TODO add your handling code here:
+        elmeme.setVisible(true);
+        dispose();
     }//GEN-LAST:event_EstadisticasButtonActionPerformed
 
     
