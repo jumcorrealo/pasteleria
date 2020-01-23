@@ -8,6 +8,10 @@ package Frontera;
 import Control.GestionCliente;
 import Entidad.Cliente;
 import com.sun.glass.events.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.SwingConstants;
@@ -20,10 +24,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClientePedido extends javax.swing.JPanel {
 
-    public static GestionCliente GC;
+    public GestionCliente GC;
+    private NuevoPedido np;
     public Cliente clienteObjetivo;
     public Calendar fechaRealización;
     public Calendar fechaEntrega;
+    public LocalDateTime now = LocalDateTime.now();  
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
     private final AddClienteVenta acv = new AddClienteVenta(this);
     
     String busqueda;
@@ -79,6 +86,14 @@ public class ClientePedido extends javax.swing.JPanel {
     //da como resultado un arreglo de dos fechas, la primera: fecha de realización del pedido,
     //la segunda: fecha para la entrega del pedido
     
+    public Calendar getFechaE(){
+        return Calendar.getInstance();
+    }
+    
+    public Calendar getFechaR(){
+        this.fechaEntrega = dateChooser.getCalendar();
+        return this.fechaEntrega;
+    }
     
     public Calendar[] getFechas(){
         Calendar[] fechasR_E = new Calendar[2];
@@ -267,7 +282,7 @@ public class ClientePedido extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jcombo_horaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcombo_horaMouseClicked
-        System.out.println("mouse clicked in hour");
+             // TODO add your handling code here:
     }//GEN-LAST:event_jcombo_horaMouseClicked
 
     private void jButton_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoClienteActionPerformed

@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author enano
+ * @author andre
  */
 @Entity
 @Table(name = "postre")
@@ -32,7 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Postre.findByTipo", query = "SELECT p FROM Postre p WHERE p.tipo = :tipo")})
 public class Postre implements Serializable {
 
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -114,6 +113,5 @@ public class Postre implements Serializable {
         return  this.tipo.toLowerCase().equals(other.tipo.toLowerCase()) &&
                 this.flavor.toLowerCase().equals(other.flavor.toLowerCase());
     }
-
-  
+    
 }

@@ -78,6 +78,7 @@ public class Pedido implements Serializable {
     private Integer precio;
 
     public Pedido() {
+        this.estado = false;
     }
 
     public Pedido(Integer idPedido) {

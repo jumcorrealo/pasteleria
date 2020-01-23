@@ -23,7 +23,7 @@ import javax.persistence.criteria.Root;
  */
 public class PedidoDAO implements Serializable {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistence");
-    public PedidoDAO(EntityManagerFactory emf) { 
+    public PedidoDAO() { 
     }
     
 

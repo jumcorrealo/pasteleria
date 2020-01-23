@@ -11,8 +11,9 @@ package Frontera;
  * @author Home
  */
 public class Ventas extends javax.swing.JFrame {
-    private static NuevoPedido nuevo = new NuevoPedido();
+    private  static NuevoPedido nuevo = new NuevoPedido();
     private static Inicio volver = new Inicio();
+    
     /** Creates new form Ventas */
     public Ventas() {
         initComponents();
