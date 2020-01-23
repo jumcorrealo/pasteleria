@@ -109,6 +109,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                         pedidoEnCurso.setHoraEntrega(Clienteinfo.getHora());
                         label_advertencia_campos.setVisible(false);
                         boton_atras.setVisible(true);
+                        detalles.setClient(Clienteinfo.getCliente());
                         contador++;    
                    }else{
                        label_advertencia_campos.setText("La fecha de entrega es muy pronto");
@@ -128,6 +129,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                 pedidoEnCurso.setForma(detalles.getForma());
                 pedidoEnCurso.setPorciones(detalles.getPorciones());
                 pedidoEnCurso.setCantidadTortas(detalles.getCantidadPasteles());
+                
                 contador++;
                 break;}
             case 2:{
@@ -141,6 +143,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                 jTextField1.setText("");
                 control_pedido.getPedidos().add(pedidoEnCurso);
                 control_pedido.AgregarPedido(pedidoEnCurso);
+                Clienteinfo.cleanPanel();
                 break;}
             
         }

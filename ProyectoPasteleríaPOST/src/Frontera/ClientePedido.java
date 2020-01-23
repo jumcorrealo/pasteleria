@@ -38,6 +38,13 @@ public class ClientePedido extends javax.swing.JPanel {
     private ArrayList<Integer> mapa;
     
     
+    public void cleanPanel(){
+        itemSelected=-1;
+        clienteObjetivo= new Cliente();
+        dateChooser.setDate(null);
+        jcombo_hora.setSelectedIndex(0);
+    }
+    
     public ClientePedido(GestionCliente gestor_clientes) {
         this.GC=gestor_clientes;
 

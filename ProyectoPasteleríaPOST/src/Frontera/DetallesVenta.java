@@ -6,6 +6,7 @@
 package Frontera;
 
 import Control.GestionPostres;
+import Entidad.Cliente;
 import Entidad.Postre;
 import java.util.List;
 /**
@@ -16,6 +17,7 @@ public class DetallesVenta extends javax.swing.JPanel {
     private static final GestionPostres gp = new GestionPostres();
     private static List<Postre> postres = null;
     private NuevoPedido np;
+    private Cliente clienteObjetivo;
     private int subTotal;
     private int idPostre;
     private int porciones;
@@ -27,6 +29,10 @@ public class DetallesVenta extends javax.swing.JPanel {
     public DetallesVenta() {
         initComponents();
         loadDB();
+    }
+    
+    public void setClient(Cliente c){
+        clienteObjetivo=c;
     }
     
     public int getIdPostre(){
@@ -278,11 +284,8 @@ public class DetallesVenta extends javax.swing.JPanel {
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         if(!evt.getItem().equals("Seleccioné") && evt.getStateChange() == 1){
             Postre postre = postres.get(jComboBox2.getSelectedIndex() - 1);
-            if(descuento){
-                subTotal = (int) (postre.getPrice() - (postre.getPrice()* 0.1));
-            } else {
-                subTotal = postre.getPrice();
-            }
+             subTotal = (int) (postre.getPrice() - (postre.getPrice()* clienteObjetivo.getPuntaje()/10));
+            
             np.upDateSubTotal(subTotal);
             /*
             * System.out.println(String.format(getDefaultLocale(), "Tipo: %s\nSabor: %s\nPrecio: %d", 
