@@ -46,6 +46,7 @@ public class GestionCliente {
     public String textoSalida(Cliente cliente){
         if(!usuarioUnico(cliente)){
             clienteDAO.create(cliente);
+            list.add(cliente);
             return "Registro con exito";
         }else{
             return "Este usuario ya existe";

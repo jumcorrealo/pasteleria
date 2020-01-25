@@ -209,7 +209,6 @@ public class AgregarCliente extends javax.swing.JPanel {
         cliente.setNombre(nombreTx.getText());
         cliente.setTelefono(telefonoTx.getText());
         cliente.setCasa(casaTx.getText());
-        gestionC.allClients().add(cliente);
         JOptionPane.showMessageDialog(null, gestionC.textoSalida(cliente));
         nombreTx.setText("");
         telefonoTx.setText("");
