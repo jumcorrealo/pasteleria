@@ -132,23 +132,5 @@ public class ClienteDAO implements Serializable {
             em.close();
         }
     }
-    
-    public List<Cliente> dynoSerch(String key) {
-        EntityManager em = getEntityManager();
-        List<Cliente> list = null;
-        try {
-            em.getTransaction().begin();
-            StoredProcedureQuery procedureQuery =  em.createStoredProcedureQuery("dynoserch", Cliente.class);
-            procedureQuery.registerStoredProcedureParameter("_data", String.class, ParameterMode.IN);
-            procedureQuery.registerStoredProcedureParameter("_table", Integer.class, ParameterMode.IN);
-            procedureQuery.setParameter("_table", 1);
-            procedureQuery.setParameter("_data", "%" + key + "%");
-            procedureQuery.execute();
-            em.getTransaction().commit();
-            list = procedureQuery.getResultList();
-        } finally {
-            em.close();
-        }
-        return list;
-    }
+
 }

@@ -10,7 +10,7 @@ package Frontera;
  * @author Home
  */
 public class FinalizarVenta extends javax.swing.JPanel {
-    public NuevoPedido np;
+    public static NuevoPedido np;
     int abono,precio,saldo;
     String aditivos;
     String decoracion;
@@ -49,6 +49,13 @@ public class FinalizarVenta extends javax.swing.JPanel {
     
     public int getAbono(){
     return abono;
+    }
+    
+    public void cleanPanel() {
+        txtAbono.setText("");
+        txtAditivos.setText("");
+        txtDecoracion.setText("");
+        txtPrecioA.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -257,7 +264,6 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPrecioAActionPerformed
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
-        // TODO add your handling code here:
          np = (NuevoPedido) evt.getAncestorParent();
          lbSaldoS.setText(Integer.toString(np.getSubTotal()));
     }//GEN-LAST:event_formAncestorAdded
@@ -267,7 +273,6 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPrecioAKeyPressed
 
     private void txtPrecioAKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioAKeyReleased
-        // TODO add your handling code here:
             subTotal = np.getSubTotal();
             lbSaldoS.setText(Integer.toString(subTotal));
          if(!txtPrecioA.getText().isEmpty()){
@@ -280,21 +285,18 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPrecioAKeyReleased
 
     private void txtPrecioAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioAKeyTyped
-        // TODO add your handling code here:
         char c = evt.getKeyChar();
         if(!Character.isDigit(c))
             evt.consume();
     }//GEN-LAST:event_txtPrecioAKeyTyped
 
     private void txtAbonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbonoKeyTyped
-        // TODO add your handling code here:
         char c = evt.getKeyChar();
         if(!Character.isDigit(c))
             evt.consume();
     }//GEN-LAST:event_txtAbonoKeyTyped
 
     private void txtAbonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbonoKeyReleased
-        // TODO add your handling code here:
             subTotal = np.getSubTotal();
             lbSaldoS.setText(Integer.toString(subTotal));
          if(!txtAbono.getText().isEmpty()){
@@ -307,7 +309,6 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAbonoKeyReleased
 
     private void txtPrecioAFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioAFocusLost
-        // TODO add your handling code here:
         if(!txtPrecioA.getText().isEmpty()){
             precio = Integer.parseInt(txtPrecioA.getText());
             np.setSubTotal(subTotal+precio);
@@ -316,7 +317,6 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPrecioAFocusLost
 
     private void txtAbonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAbonoFocusLost
-        // TODO add your handling code here:
         if(!txtAbono.getText().isEmpty()){
             abono = Integer.parseInt(txtAbono.getText());
             lbSaldoS.setText(Integer.toString(np.getSubTotal()));
@@ -325,12 +325,10 @@ public class FinalizarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAbonoFocusLost
 
     private void txtDecoracionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDecoracionKeyReleased
-        // TODO add your handling code here:
         decoracion = txtDecoracion.getText();
     }//GEN-LAST:event_txtDecoracionKeyReleased
 
     private void txtAditivosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAditivosKeyReleased
-        // TODO add your handling code here:
         aditivos = txtAditivos.getText();
     }//GEN-LAST:event_txtAditivosKeyReleased
 

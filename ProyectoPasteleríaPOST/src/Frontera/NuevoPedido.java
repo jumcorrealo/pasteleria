@@ -144,6 +144,8 @@ public class NuevoPedido extends javax.swing.JPanel {
                 control_pedido.getPedidos().add(pedidoEnCurso);
                 control_pedido.AgregarPedido(pedidoEnCurso);
                 Clienteinfo.cleanPanel();
+                detalles.cleanPanel();
+                finalizar.cleanPanel();
                 break;}
             
         }

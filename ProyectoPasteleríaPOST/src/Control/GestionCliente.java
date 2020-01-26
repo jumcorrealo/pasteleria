@@ -18,7 +18,7 @@ public class GestionCliente {
     private static final ClienteDAO clienteDAO = new ClienteDAO();
     private static ArrayList<Cliente> list = new ArrayList<>(clienteDAO.findClienteEntities());
     
-    public GestionCliente() {  
+    public GestionCliente() {
     }
     
     public boolean usuarioUnicoUpDate(Cliente cliente){
@@ -74,10 +74,6 @@ public class GestionCliente {
     
     public boolean isFrequentClient(Cliente cliente) {
         return cliente.getPuntaje() > 10;
-    }
-    
-    public List<Cliente> dynoSerch(String keyTyped){
-        return clienteDAO.dynoSerch(keyTyped);
     }
     
     public Cliente findCliente(int id){

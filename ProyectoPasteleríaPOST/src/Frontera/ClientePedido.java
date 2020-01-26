@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 public class ClientePedido extends javax.swing.JPanel {
 
     public GestionCliente GC;
-    private NuevoPedido np;
     public Cliente clienteObjetivo;
     public Calendar fechaRealización;
     public Calendar fechaEntrega;
@@ -56,12 +55,12 @@ public class ClientePedido extends javax.swing.JPanel {
     }
 
     public void agregarDatos() {
-        mapa = new ArrayList<Integer>();
+        mapa = new ArrayList<>();
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         
         String[] rows = new String[2];
-        for(int i=0;i< GC.allClients().size();i++){
+        for(int i = 0; i < GC.allClients().size(); i++){
             Cliente c = GC.allClients().get(i);
             if(comparador(busqueda,c.getNombre().toUpperCase())){
                 mapa.add(i);
@@ -76,7 +75,7 @@ public class ClientePedido extends javax.swing.JPanel {
     
     private boolean comparador(String a, String b){
         boolean flag=true;
-        for(int i=0;i<a.length() && i< b.length() && flag;i++){
+        for(int i = 0; i < a.length() && i < b.length() && flag; i++){
             flag &= a.charAt(i)==b.charAt(i);
         }
         return flag;
@@ -167,17 +166,9 @@ public class ClientePedido extends javax.swing.JPanel {
                 txt_buscar_clienteFocusGained(evt);
             }
         });
-        txt_buscar_cliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_buscar_clienteActionPerformed(evt);
-            }
-        });
         txt_buscar_cliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_buscar_clienteKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_buscar_clienteKeyTyped(evt);
             }
         });
         add(txt_buscar_cliente);
@@ -235,73 +226,41 @@ public class ClientePedido extends javax.swing.JPanel {
         dateChooser.setBounds(230, 360, 135, 38);
 
         jcombo_hora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora:", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 m", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm" }));
-        jcombo_hora.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jcombo_horaMouseClicked(evt);
-            }
-        });
-        jcombo_hora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcombo_horaActionPerformed(evt);
-            }
-        });
         add(jcombo_hora);
         jcombo_hora.setBounds(380, 360, 110, 38);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_buscar_clienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_buscar_clienteFocusGained
-        
         if(txt_buscar_cliente.getText().equals("Buscar")){
             txt_buscar_cliente.setText(busqueda);
-        }
-        
-        
+        }        
     }//GEN-LAST:event_txt_buscar_clienteFocusGained
     static int count=0;
-    private void txt_buscar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_clienteActionPerformed
-       
-    }//GEN-LAST:event_txt_buscar_clienteActionPerformed
-
-    private void txt_buscar_clienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscar_clienteKeyTyped
-    
-    }//GEN-LAST:event_txt_buscar_clienteKeyTyped
-
     private void txt_buscar_clienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscar_clienteKeyPressed
-        int c=evt.getExtendedKeyCode();
-        if((c>= KeyEvent.VK_A && c<=KeyEvent.VK_Z)|| c==KeyEvent.VK_SPACE){
-            busqueda+=(char)evt.getKeyCode();
+        int c = evt.getExtendedKeyCode();
+        if((c >= KeyEvent.VK_A && c <= KeyEvent.VK_Z)|| c == KeyEvent.VK_SPACE){
+            busqueda += (char)evt.getKeyCode();
         }
-        else if(c==KeyEvent.VK_BACKSPACE){
+        else if(c == KeyEvent.VK_BACKSPACE){
             
-            if(busqueda.length()==1){
-                busqueda="";
+            if(busqueda.length() == 1){
+                busqueda = "";
             }
             if(busqueda.length()>1){
-                busqueda=busqueda.substring(0, busqueda.length()-1);
+                busqueda = busqueda.substring(0, busqueda.length() - 1);
             }
-        }else if(c==10){
-            Calendar fechaE=dateChooser.getCalendar();
-            System.out.println(fechaE.toString());
         }
         agregarDatos();
     }//GEN-LAST:event_txt_buscar_clienteKeyPressed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        itemSelected=jTable1.getSelectedRow();
+        itemSelected  = jTable1.getSelectedRow();
         this.clienteObjetivo=GC.allClients().get(mapa.get(itemSelected));
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jcombo_horaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcombo_horaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcombo_horaMouseClicked
 
     private void jButton_nuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoClienteActionPerformed
         acv.setVisible(true);
     }//GEN-LAST:event_jButton_nuevoClienteActionPerformed
-
-    private void jcombo_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcombo_horaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcombo_horaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,41 +15,19 @@ import java.util.List;
  */
 public class DetallesVenta extends javax.swing.JPanel {
     private static final GestionPostres gp = new GestionPostres();
-    private static List<Postre> postres = null;
     private NuevoPedido np;
+    
+    private static List<Postre> postres = null;
+    
     private Cliente clienteObjetivo;
-    private int subTotal;
-    private int idPostre;
-    private int porciones;
-    private int cantidadPasteles;
-    private boolean descuento;  //Este atributo se debe traer del anterior panel
+    private int subTotal, idPostre, porciones, cantidadPasteles;
     /**
      * Creates new form DetallesVenta
      */
     public DetallesVenta() {
         initComponents();
         loadDB();
-    }
-    
-    public void setClient(Cliente c){
-        clienteObjetivo=c;
-    }
-    
-    public int getIdPostre(){
-    return idPostre;
-    }
-    
-    public String getForma(){
-    String forma = jComboBox3.getSelectedItem().toString();
-    return forma;
-    }
-    
-    public int getPorciones(){
-    return porciones;
-    }
-    
-    public int getCantidadPasteles(){
-    return cantidadPasteles;
+        jComboBox2.setEnabled(false);
     }
     
     /**
@@ -257,6 +235,7 @@ public class DetallesVenta extends javax.swing.JPanel {
             jComboBox2.addItem(p.getFlavor());
             idPostre = p.getId();
         }
+        jComboBox2.setEnabled(true);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -284,15 +263,11 @@ public class DetallesVenta extends javax.swing.JPanel {
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
         if(!evt.getItem().equals("Seleccioné") && evt.getStateChange() == 1){
             Postre postre = postres.get(jComboBox2.getSelectedIndex() - 1);
-             subTotal = (int) (postre.getPrice() - (postre.getPrice()* clienteObjetivo.getPuntaje()/10));
-            
+            if(clienteObjetivo.getPuntaje() >= 10)
+                subTotal = (int) (postre.getPrice() - (postre.getPrice() * 0.1));
+            else 
+                subTotal = postre.getPrice();
             np.upDateSubTotal(subTotal);
-            /*
-            * System.out.println(String.format(getDefaultLocale(), "Tipo: %s\nSabor: %s\nPrecio: %d", 
-            * postre.getTipo(), postre.getFlavor(), postre.getPrice()));
-            * Aca ya se conoce el postre que el cliente pedira por ende
-            * ya se puede ir agregando la información al objeto pedido
-            */
         }
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
@@ -361,6 +336,35 @@ public class DetallesVenta extends javax.swing.JPanel {
         for(String s : list) {
             jComboBox1.addItem(s);
         }
+    }
+    
+     public void setClient(Cliente c){
+        clienteObjetivo=c;
+    }
+    
+    public int getIdPostre(){
+        return idPostre;
+    }
+    
+    public String getForma(){
+        String forma = jComboBox3.getSelectedItem().toString();
+        return forma;
+    }
+    
+    public int getPorciones(){
+        return porciones;
+    }
+    
+    public int getCantidadPasteles(){
+        return cantidadPasteles;
+    }
+    
+    public void cleanPanel() {
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jTextField1.setText("");
+        jTextField2.setText("");        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

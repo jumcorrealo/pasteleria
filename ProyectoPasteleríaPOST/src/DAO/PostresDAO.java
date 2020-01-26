@@ -137,25 +137,6 @@ public class PostresDAO implements Serializable {
         }
     }
     
-    public List<Postre> dynoSerch(String data) {
-        EntityManager em = getEntityManager();
-        List<Postre> list = null;
-        try {
-            em.getTransaction().begin();
-            StoredProcedureQuery procedureQuery = em.createStoredProcedureQuery("dynoserch", Postre.class);
-            procedureQuery.registerStoredProcedureParameter("_data", String.class, ParameterMode.IN);
-            procedureQuery.registerStoredProcedureParameter("_table", Integer.class, ParameterMode.IN);
-            procedureQuery.setParameter("_data", "%" + data + "%");
-            procedureQuery.setParameter("_table", 2);
-            procedureQuery.execute();
-            em.getTransaction().commit();
-            list = procedureQuery.getResultList();
-        }finally {
-            em.close();
-        }
-        return list;
-    }
-    
     public List<String> selectDistinct(){
         EntityManager em = getEntityManager();
         List<String> tipo = null;

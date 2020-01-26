@@ -6,6 +6,8 @@
 package Frontera;
 import Control.GestionCliente;
 import Entidad.Cliente;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -17,11 +19,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Home
  */
 public class ClientesCreados extends javax.swing.JPanel {
+    
     private static final GestionCliente gc = new GestionCliente();
-    private static DefaultTableModel dtm;
-    private static List<Cliente> lista_clientes;
-    private static int itemSelected = -1;
     private final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    private static DefaultTableModel dtm;
+    
+    private static final List<Cliente> lista_clientes = gc.allClients();
+    private final HashMap<Integer, Cliente> hashMap = new HashMap<>();
+    
+    private Cliente clienteObjetivo;
+    private String busqueda = "";
     
     /**
      * Creates new form ClientesCreados
@@ -64,7 +71,6 @@ public class ClientesCreados extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(40, 43, 40));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -97,7 +103,7 @@ public class ClientesCreados extends javax.swing.JPanel {
             }
         });
         jPanel2.add(eliminarButton);
-        eliminarButton.setBounds(280, 620, 169, 85);
+        eliminarButton.setBounds(269, 620, 180, 85);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,25 +262,17 @@ public class ClientesCreados extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(40, 43, 40));
 
         jTextField1.setText("Buscar");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
             }
         });
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/171427-48.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
             }
         });
 
@@ -285,8 +283,7 @@ public class ClientesCreados extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +291,6 @@ public class ClientesCreados extends javax.swing.JPanel {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel4);
@@ -324,18 +320,15 @@ public class ClientesCreados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarButtonActionPerformed
-        if(itemSelected == -1) {
+        if(clienteObjetivo == null) {
             JOptionPane.showMessageDialog(null, "Seleccone un Cliente");
         }else {
-            Cliente cliente = lista_clientes.get(itemSelected);
-            cliente.setNombre(nombreS.getText());
-            cliente.setCasa(casaS.getText());
-            cliente.setTelefono(telefonoS.getText());
-            JOptionPane.showMessageDialog(null, gc.upDateClient(cliente));
-            lista_clientes = gc.allClients();
+            clienteObjetivo.setNombre(nombreS.getText());
+            clienteObjetivo.setCasa(casaS.getText());
+            clienteObjetivo.setTelefono(telefonoS.getText());
+            JOptionPane.showMessageDialog(null, gc.upDateClient(clienteObjetivo));
             agregarDatos();
-            itemSelected = -1;
-            
+            clienteObjetivo = null;
         }
         nombreS.setText("");
         nombreS.setEditable(false);
@@ -348,22 +341,18 @@ public class ClientesCreados extends javax.swing.JPanel {
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
         //Actualizar estado del cliente 
-        if(itemSelected == -1){
+        if(clienteObjetivo == null){
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         }else {
-            Cliente cliente = lista_clientes.get(itemSelected);
-            if(cliente.getActivo() == true){
-                cliente.setActivo(false);
+            if(clienteObjetivo.getActivo()){
+                clienteObjetivo.setActivo(false);
                 eliminarButton.setText("Inactivar");
             }else{
                 eliminarButton.setText("Acticar");
-                cliente.setActivo(true);
+                clienteObjetivo.setActivo(true);
             }
-            JOptionPane.showMessageDialog(null, gc.deleteClient(cliente));
-            lista_clientes = gc.allClients();
+            JOptionPane.showMessageDialog(null, gc.deleteClient(clienteObjetivo));
             agregarDatos();
-            itemSelected = -1;
-            
         }
         nombreS.setText("");
         nombreS.setEditable(false);
@@ -376,27 +365,15 @@ public class ClientesCreados extends javax.swing.JPanel {
 
     private void casaSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casaSKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isAlphabetic(c))
+        if(!Character.isDigit(c))
             evt.consume();
     }//GEN-LAST:event_casaSKeyTyped
 
     private void telefonoSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoSKeyTyped
         char c = evt.getKeyChar();
-        if(Character.isAlphabetic(c)) 
+        if(!Character.isDigit(c)) 
             evt.consume();
     }//GEN-LAST:event_telefonoSKeyTyped
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jTextField1.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un Nombre");
-            jTextField1.setText("Buscar");
-        }else
-            agregarDatos();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
 
     private void nombreSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreSKeyTyped
         char c = evt.getKeyChar();
@@ -406,25 +383,42 @@ public class ClientesCreados extends javax.swing.JPanel {
     }//GEN-LAST:event_nombreSKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       itemSelected = jTable1.getSelectedRow();
-       Cliente c = lista_clientes.get(itemSelected);
-       nombreS.setText(c.getNombre());
+       int rowSelected = jTable1.getSelectedRow();
+       String name = (String) jTable1.getValueAt(rowSelected, 0);
+       clienteObjetivo = hashMap.get(name.hashCode());
+       nombreS.setText(clienteObjetivo.getNombre());
        nombreS.setEditable(true);
-       casaS.setText(c.getCasa());
+       casaS.setText(clienteObjetivo.getCasa());
        casaS.setEditable(true);
-       telefonoS.setText(c.getTelefono());
+       telefonoS.setText(clienteObjetivo.getTelefono());
        telefonoS.setEditable(true);
-       puntajeS.setText(String.valueOf(c.getPuntaje()));
-       if(c.getActivo()==true){
-       eliminarButton.setText("Inactivar");
-       }else{
-       eliminarButton.setText("Acticar");
-       }
+       puntajeS.setText(String.valueOf(clienteObjetivo.getPuntaje()));
+       eliminarButton.setText(clienteObjetivo.getActivo()? "Inactivar" : "Activar");
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        if(jTextField1.getText().equals("Buscar")){
+            jTextField1.setText(busqueda);
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        jTextField1.setText("Buscar");
+        busqueda = "";
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || c == KeyEvent.VK_SPACE) {
+            busqueda += c;
+        } else if(c == KeyEvent.VK_BACK_SPACE) {
+            if(busqueda.length() == 1)
+                busqueda = "";
+            if(busqueda.length() > 1)
+                busqueda = busqueda.substring(0, busqueda.length() - 1);
+        }
+        agregarDatos();
+    }//GEN-LAST:event_jTextField1KeyTyped
     
     /**
      * @param args the command line arguments
@@ -462,27 +456,34 @@ public class ClientesCreados extends javax.swing.JPanel {
     public void agregarDatos() {
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
-        if(jTextField1.getText().equals("") || jTextField1.getText().equals("Buscar")) {
-            lista_clientes = gc.allClients();
-        }else {
-            lista_clientes = gc.dynoSerch(jTextField1.getText());
-        }
         String[] rows = new String[4];
-        for(Cliente cliente : lista_clientes){
-            rows[0] = cliente.getNombre();
-            rows[1] = cliente.getCasa();
-            rows[2] = cliente.getTelefono();
-            rows[3] = cliente.getActivo()? "Activo" : "Inactivo";
-            dtm.addRow(rows);
+        for(int i = 0; i < lista_clientes.size(); i++){
+            Cliente cliente = lista_clientes.get(i);
+            if(!hashMap.containsValue(cliente))
+                hashMap.put(cliente.getNombre().hashCode(), cliente);
+            if(comparador(busqueda.toLowerCase(), cliente.getNombre().toLowerCase())){
+                rows[0] = cliente.getNombre();
+                rows[1] = cliente.getCasa();
+                rows[2] = cliente.getTelefono();
+                rows[3] = cliente.getActivo()? "Activo" : "Inactivo";
+                dtm.addRow(rows);
+            }
         }
         jTable1.setModel(dtm);
+    }
+    
+    private boolean comparador(String a, String b){
+        boolean flag = true;
+        for(int i=0;i<a.length() && i< b.length() && flag;i++){
+            flag &= a.charAt(i)==b.charAt(i);
+        }
+        return flag;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarButton;
     private javax.swing.JTextField casaS;
     private javax.swing.JButton eliminarButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

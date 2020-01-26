@@ -14,13 +14,12 @@ import java.util.Objects;
  */
 public class GestionPostres {
     private static final PostresDAO PDAO = new PostresDAO();
-    private static List<Postre> list;
+    private static List<Postre> list = PDAO.findPostresEntities();;
 
     public GestionPostres() {
     }
     
     private boolean upDateSamePostre(Postre p) {
-        list = PDAO.findPostresEntities();
         for (Postre postres : list) {
             if(p.isSame(postres)) {
                 if(Objects.equals(p.getId(), postres.getId())){
@@ -32,7 +31,6 @@ public class GestionPostres {
     }
     
     private boolean postreUnico(Postre p) {
-        list = PDAO.findPostresEntities();
         for (Postre postres : list) {
             if(p.isSame(postres)) {
                 return true;
@@ -44,6 +42,7 @@ public class GestionPostres {
     public String persistPostre(Postre postres){
         if(!postreUnico(postres)) {
             PDAO.create(postres);
+            list.add(postres);
             return "Registro Exitoso"; 
         }else {
             return "Postre Existente";
@@ -60,11 +59,7 @@ public class GestionPostres {
     }
     
     public List<Postre> allPostres(){
-        return PDAO.findPostresEntities();
-    }
-    
-    public List<Postre> dynoSerch(String data){
-        return PDAO.dynoSerch(data);
+        return list;
     }
     
     public List<String> distincTipo(){

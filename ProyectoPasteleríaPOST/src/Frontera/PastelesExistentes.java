@@ -7,8 +7,10 @@ package Frontera;
 import java.util.List;
 import Entidad.Postre;
 import Control.GestionPostres;
-import java.util.Hashtable;
-import java.util.Set;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,12 +23,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Home
  */
 public class PastelesExistentes extends javax.swing.JPanel {
+    
     private static final GestionPostres GP = new GestionPostres();
-    private static List<Postre> list;
-    private static final Hashtable<Integer,Postre> upDatePostres = new Hashtable<>();
+    
     private static DefaultTableModel dtm;
     private final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     private final EditorTable editorTable =  new EditorTable();
+    
+    private static final List<Postre> list = GP.allPostres();
+    private final HashMap<Integer, Postre> hashMap = new HashMap<>();
+    private static final HashSet<Postre> upDatePostres = new HashSet<>();
+    
+    private String busqueda = "";
     /**
      * Creates new form PastelesExistentes
      */
@@ -50,7 +58,6 @@ public class PastelesExistentes extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(40, 43, 40));
@@ -102,16 +109,17 @@ public class PastelesExistentes extends javax.swing.JPanel {
         }
 
         jTextField1.setText("Buscar");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
             }
         });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/171427-48.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
             }
         });
 
@@ -141,9 +149,7 @@ public class PastelesExistentes extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))
+                        .addGap(186, 186, 186))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(136, 136, 136))))
@@ -153,15 +159,9 @@ public class PastelesExistentes extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
+                .addGap(47, 47, 47)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,24 +169,15 @@ public class PastelesExistentes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        fillTable();
-        if(jTextField1.getText().isEmpty() && !jTextField1.getText().equals("Buscar"))
-            jTextField1.setText("Buscar");
-    }//GEN-LAST:event_jLabel2MouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(upDatePostres.isEmpty()){
             JOptionPane.showMessageDialog(jTable1, "Edite algun valor");
         } else {
-            Set<Integer> keys = upDatePostres.keySet();
-            for(Integer i : keys){
+            Iterator<Postre> iterator = upDatePostres.iterator();
+            while(iterator.hasNext()){
+                Postre p = iterator.next();
                 try {
-                    GP.upDatePostre(upDatePostres.get(i));
+                    GP.upDatePostre(p);
                 } catch (Exception ex) {
                     Logger.getLogger(PastelesExistentes.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -197,36 +188,71 @@ public class PastelesExistentes extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
-        Postre postres = list.get(editorTable.getRow());
+        String tipo = (String) jTable1.getValueAt(editorTable.getRow(), 0);
+        Postre postres = hashMap.get(tipo.hashCode());
         postres.setPrice(Integer.parseInt((String)editorTable.getCellEditorValue()));
-        if(!upDatePostres.containsKey(postres.getId()))
-            upDatePostres.put(postres.getId(), postres);
-        else
-            upDatePostres.replace(postres.getId(), postres);
+        if(!upDatePostres.contains(postres))
+            upDatePostres.add(postres);
+        else{
+            upDatePostres.remove(postres);
+            upDatePostres.add(postres);
+        }
+        fillTable();
     }//GEN-LAST:event_jTable1FocusGained
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        if(jTextField1.getText().equals("Buscar")){
+            jTextField1.setText(busqueda);
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        jTextField1.setText("Buscar");
+        busqueda = "";
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c) || c == KeyEvent.VK_SPACE) {
+            busqueda += c;
+        } else if(c == KeyEvent.VK_BACK_SPACE) {
+            if(busqueda.length() == 1)
+                busqueda = "";
+            if(busqueda.length() > 1)
+                busqueda = busqueda.substring(0, busqueda.length() - 1);
+        }
+        fillTable();
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     public void fillTable(){
         dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
-        if(!jTextField1.getText().isEmpty() && !jTextField1.getText().equals("Buscar")) {
-            list = GP.dynoSerch(jTextField1.getText());    
-        }else {
-            list = GP.allPostres();
-        }
         Object[] row = new Object[3];
-        for(Postre p : list) {
-            row[0] = (Object) p.getTipo();
-            row[1] = (Object) p.getFlavor();
-            row[2] = (Object) p.getPrice();
-            dtm.addRow(row);
+        for(int i = 0; i < list.size(); i++) {
+            Postre p = list.get(i);
+            if(!hashMap.containsValue(p))
+                hashMap.put(p.getTipo().hashCode(), p);
+            if(comparador(busqueda.toLowerCase(), p.getTipo().toLowerCase())) {
+                row[0] = (Object) p.getTipo();
+                row[1] = (Object) p.getFlavor();
+                row[2] = (Object) p.getPrice();
+                dtm.addRow(row);
             }
+        }
         jTable1.setModel(dtm);
     }
 
+    private boolean comparador(String a, String b){
+        boolean flag=true;
+        for(int i = 0; i < a.length() && i < b.length() && flag; i++){
+            flag &= a.charAt(i)==b.charAt(i);
+        }
+        return flag;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
