@@ -64,11 +64,12 @@ public class RecordatorioSubPanelInsumo extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        button_resolver = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(153, 153, 153));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(920, 80));
+        setPreferredSize(new java.awt.Dimension(920, 100));
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -83,11 +84,29 @@ public class RecordatorioSubPanelInsumo extends javax.swing.JPanel {
             e.printStackTrace();
         }
         add(jLabel1);
-        jLabel1.setBounds(10, 10, 890, 60);
+        jLabel1.setBounds(30, 30, 760, 40);
+
+        button_resolver.setText("Despachar");
+        button_resolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_resolverActionPerformed(evt);
+            }
+        });
+        add(button_resolver);
+        button_resolver.setBounds(810, 20, 100, 50);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button_resolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_resolverActionPerformed
+        if(insumo.getRecordatorio()!=null){
+            insumo.setRecordatorio(null,0);
+            RecordatoriosPrincipal.CI.editInsumo(insumo);
+            button_resolver.setEnabled(false);
+        }
+    }//GEN-LAST:event_button_resolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_resolver;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

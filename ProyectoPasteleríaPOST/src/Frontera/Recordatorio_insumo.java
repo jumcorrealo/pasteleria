@@ -6,13 +6,8 @@
 package Frontera;
 
 import Entidad.Insumo;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -82,7 +77,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
             panel_titulo_InsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_titulo_InsumosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titulo_insumos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(titulo_insumos, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
         );
 
         button_aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_done-01_186405.png"))); // NOI18N
@@ -143,7 +138,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_titulo_Insumos, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(panel_titulo_Insumos, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -218,16 +213,13 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
 
     private void button_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_aceptarActionPerformed
         Date date=selector_fecha.getDate();
-        System.out.println(date.getDate());
-        System.out.println((date.getMonth()+1));
-        System.out.println((date.getYear()+1900));
         
+       
         String fecha=date.getDate()+"/"+(date.getMonth()+1)+"/"+(date.getYear()+1900);
        
         int cantidad=Integer.parseInt(tx_cantidad.getText());
         insumo.setRecordatorio(fecha, cantidad);
         insumo.upFreq();
-         System.out.println(insumo);
         
             if(Gestion_Insumos.gi.editInsumo(insumo)){
                      JOptionPane.showMessageDialog(null, "Exito al crear recordatorio " + insumo);

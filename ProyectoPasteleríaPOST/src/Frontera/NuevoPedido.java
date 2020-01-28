@@ -3,6 +3,7 @@ package Frontera;
 import Control.*;
 import Entidad.*;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 
 public class NuevoPedido extends javax.swing.JPanel {
@@ -143,6 +144,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                 jTextField1.setText("");
                 control_pedido.getPedidosList().add(pedidoEnCurso);
                 control_pedido.AgregarPedido(pedidoEnCurso);
+                JOptionPane.showMessageDialog(null,"Exitoooo");
                 Clienteinfo.cleanPanel();
                 detalles.cleanPanel();
                 finalizar.cleanPanel();

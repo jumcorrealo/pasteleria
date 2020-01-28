@@ -5,7 +5,6 @@
  */
 package Frontera;
 
-import Control.ControlPedidos;
 
 /**
  *
@@ -18,7 +17,7 @@ public class ProyectoPasteleríaPOST {
      */
     public static void main(String[] args) {
         Inicio tortAPP=new Inicio();
-        RecordatoriosPrincipal alarmas=new RecordatoriosPrincipal(new ControlPedidos());
+        RecordatoriosPrincipal alarmas=new RecordatoriosPrincipal();
        
         
         tortAPP.run();

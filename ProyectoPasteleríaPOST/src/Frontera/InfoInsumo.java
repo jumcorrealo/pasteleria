@@ -89,7 +89,7 @@ public class InfoInsumo extends javax.swing.JPanel {
             }
         });
         add(button_crear_recordatorio);
-        button_crear_recordatorio.setBounds(310, 0, 58, 58);
+        button_crear_recordatorio.setBounds(330, 0, 58, 58);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained

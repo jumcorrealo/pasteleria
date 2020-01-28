@@ -56,10 +56,11 @@ public class RecordatorioSubPanelPedido extends javax.swing.JPanel {
 
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
+        button_resolver = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setMinimumSize(new java.awt.Dimension(458, 80));
-        setPreferredSize(new java.awt.Dimension(920, 80));
+        setPreferredSize(new java.awt.Dimension(920, 100));
         setLayout(null);
 
         Cliente c=RecordatoriosPrincipal.CC.findCliente(ped.getIdCliente().intValue());
@@ -69,17 +70,35 @@ public class RecordatorioSubPanelPedido extends javax.swing.JPanel {
             " personas, "+ tipoTorta.getTipo()+" "+tipoTorta.getFlavor()+". Detalles: "+ped.getDecoracion()
         );
         add(label1);
-        label1.setBounds(10, 10, 890, 30);
+        label1.setBounds(30, 20, 770, 30);
 
         label2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         SimpleDateFormat formato=new SimpleDateFormat("EEEE dd");
         label2.setText(formato.format(ped.getFechaE())+" "+ped.getHoraEntrega()+"   Saldo:$"+(ped.getPrecio()-ped.getAbono()));
         add(label2);
-        label2.setBounds(10, 40, 890, 30);
+        label2.setBounds(30, 50, 500, 30);
+
+        button_resolver.setText("Despachar");
+        button_resolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_resolverActionPerformed(evt);
+            }
+        });
+        add(button_resolver);
+        button_resolver.setBounds(810, 20, 100, 50);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button_resolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_resolverActionPerformed
+        if(!ped.getEstado()){
+            ped.setEstado(Boolean.TRUE);
+            RecordatoriosPrincipal.CP.upDateList(ped);
+            button_resolver.setEnabled(false);
+        }
+    }//GEN-LAST:event_button_resolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_resolver;
     private java.awt.Label label1;
     private java.awt.Label label2;
     // End of variables declaration//GEN-END:variables

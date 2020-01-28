@@ -52,7 +52,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="panel_titulo_Insumos" alignment="0" pref="460" max="32767" attributes="0"/>
+              <Component id="panel_titulo_Insumos" alignment="0" pref="475" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -145,7 +145,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="titulo_insumos" max="32767" attributes="0"/>
+                      <Component id="titulo_insumos" pref="61" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

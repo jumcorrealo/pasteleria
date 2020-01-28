@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class RecordatoriosPrincipal extends javax.swing.JFrame {
     
-    private final ControlPedidos CP;
+    public static ControlPedidos CP=new ControlPedidos();
     public static GestionCliente CC=new GestionCliente();
     public static GestionPostres GP=new GestionPostres();
     public static Control_Insumos CI=new Control_Insumos();
@@ -25,10 +25,9 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
     
     private DateFormat formatoFecha;
     
-    public RecordatoriosPrincipal(ControlPedidos CP_given) {
+    public RecordatoriosPrincipal() {
         initComponents();
         
-        CP=CP_given;
         this.setLocationRelativeTo(null);
         
         formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -48,39 +47,40 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
     
     private void addSubpanelsHoy(){
         subpanel_hoy.removeAll();
-        int altura=80;
+        int altura=100;
         int largo=920;
         int count=0;
         //insumos
+        System.out.println("agregando insumos.....");
         for(int i=0; i< CI.getInsumoList().size();i++ ){
             Insumo insumo_temp=CI.getInsumoList().get(i);
             if(insumo_temp.getRecordatorio()!=null){
                 try {
                 
-                Date fecharec=formatoFecha.parse(insumo_temp.getRecordatorio());
-                
-                
-                boolean flag=
-                   fecharec.getDate()==fechaHoy.getDate()&&
-                   fecharec.getMonth()==fechaHoy.getMonth()&&
-                   fecharec.getYear()==fechaHoy.getYear();
-                
-                if(flag){
-                    RecordatorioSubPanelInsumo subPanel = new RecordatorioSubPanelInsumo(insumo_temp);
-                    
-                    subPanel.setBounds(10, 10+altura*count,largo,altura-10);
-                    subPanel.setOpaque(false);
-                    subpanel_hoy.add(subPanel);
-                    count++;
+                    Date fecharec=formatoFecha.parse(insumo_temp.getRecordatorio());
+
+
+                    boolean flag=
+                       fecharec.getDate()==fechaHoy.getDate()&&
+                       fecharec.getMonth()==fechaHoy.getMonth()&&
+                       fecharec.getYear()==fechaHoy.getYear();
+
+                    if(flag){
+                        RecordatorioSubPanelInsumo subPanel = new RecordatorioSubPanelInsumo(insumo_temp);
+
+                        subPanel.setBounds(10, 10+altura*count,largo,altura-10);
+                        subPanel.setOpaque(false);
+                        subpanel_hoy.add(subPanel);
+                        count++;
+                    }
+                } catch (ParseException ex) {
+                    Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (ParseException ex) {
-                Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
             }
             
         }
         
-        
+         System.out.println(count+" insumos agregados");
         //pedidos
         for(int i=0; i< CP.getPedidosList().size();i++ ){
             Pedido pedido_temp=CP.getPedidosList().get(i);
@@ -101,6 +101,8 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
             }
         }
         
+        System.out.println(count+" pedidos agregados");
+        
         
         subpanel_hoy.setPreferredSize(new java.awt.Dimension(subpanel_hoy.getWidth(), subpanel_hoy.getComponentCount()*altura+10));
         scroll_pane_HOY.setViewportView(subpanel_hoy);
@@ -114,7 +116,7 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
                 f.add(Calendar.DAY_OF_MONTH, 7);
                 Date fecha_una_semana=f.getTime();
         subpanel_semana.removeAll();
-        int altura=80;
+        int altura=100;
         int largo=920;
         int count=0;
         //insumos
@@ -185,6 +187,7 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
         subpanel_hoy = new javax.swing.JPanel();
         scroll_pane_SEMANA = new javax.swing.JScrollPane();
         subpanel_semana = new javax.swing.JPanel();
+        button_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -263,6 +266,15 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
         jPanel1.add(scroll_pane_SEMANA);
         scroll_pane_SEMANA.setBounds(20, 460, 960, 310);
 
+        button_actualizar.setText("Actualizar");
+        button_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_actualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(button_actualizar);
+        button_actualizar.setBounds(820, 100, 150, 50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,12 +289,18 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void button_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_actualizarActionPerformed
+        addSubpanelsHoy();
+        addSubpanelsSemana();
+    }//GEN-LAST:event_button_actualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_actualizar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -296,7 +314,7 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
 
     void run() {
         java.awt.EventQueue.invokeLater(() -> {
-            new RecordatoriosPrincipal(CP).setVisible(true);
+            new RecordatoriosPrincipal().setVisible(true);
         });
     }
 

@@ -12,10 +12,9 @@ import Control.ControlPedidos;
  * @author Home
  */
 public class Inicio extends javax.swing.JFrame {
-    public static ControlPedidos control_pedidos=new ControlPedidos();
     private static final Administrativo adm = new Administrativo();
     private static final Ventas ventas = new Ventas();
-    private static final RecordatoriosPrincipal alarmas=new RecordatoriosPrincipal(control_pedidos);
+    private static final RecordatoriosPrincipal alarmas=new RecordatoriosPrincipal();
     
     
     
