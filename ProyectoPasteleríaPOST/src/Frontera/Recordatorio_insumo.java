@@ -60,7 +60,7 @@ public class Recordatorio_insumo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(204, 204, 0));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(153, 153, 153));
         panel_titulo_Insumos.setPreferredSize(new java.awt.Dimension(300, 89));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 55)); // NOI18N

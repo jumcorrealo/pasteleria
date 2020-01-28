@@ -97,6 +97,8 @@ public class Pedido implements Serializable {
         this.idPedido = idPedido;
         this.horaEntrega = horaEntrega;
     }
+    
+   
 
     public Integer getIdPedido() {
         return idPedido;

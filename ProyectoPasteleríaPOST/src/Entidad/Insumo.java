@@ -7,6 +7,7 @@ package Entidad;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.*;
 
 
@@ -95,6 +96,8 @@ public class Insumo implements Serializable, Comparable<Insumo> {
     public String getRecordatorio(){
         return fecha;
     }
+    
+  
     
     public int getCantidad(){
         return this.cantidad;

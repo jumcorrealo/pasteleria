@@ -5,27 +5,36 @@
  */
 package Frontera;
 
-import Entidad.Cliente;
-import Entidad.Pedido;
-import Entidad.Postre;
+import Entidad.Insumo;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ACER
  */
-public class RecordatorioSubPanelPedido extends javax.swing.JPanel {
+public class RecordatorioSubPanelInsumo extends javax.swing.JPanel {
 
-    private Pedido ped;
+    private Insumo insumo;
     /**
-     * Creates new form RecordatorioSubPanelPedido
+     * Creates new form RecordatorioSubPanelInsumo
+     * 
+     * 
+     * dateFormat.format(fechaHoy.getTime())
      */
-    public RecordatorioSubPanelPedido(Pedido p) {
-        ped=p;
+    public RecordatorioSubPanelInsumo(Insumo ins) {
+        insumo=ins;
+
+        
+        
         initComponents();
     }
 
@@ -54,33 +63,31 @@ public class RecordatorioSubPanelPedido extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 153, 153));
-        setMinimumSize(new java.awt.Dimension(458, 80));
+        setForeground(new java.awt.Color(153, 153, 153));
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(920, 80));
         setLayout(null);
 
-        Cliente c=RecordatoriosPrincipal.CC.findCliente(ped.getIdCliente().intValue());
-        Postre tipoTorta=RecordatoriosPrincipal.GP.findPostre(ped.getIdPostre().intValue());
-        label1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        label1.setText(c.getNombre()+", "+ped.getPorciones()+
-            " personas, "+ tipoTorta.getTipo()+" "+tipoTorta.getFlavor()+". Detalles: "+ped.getDecoracion()
-        );
-        add(label1);
-        label1.setBounds(10, 10, 890, 30);
-
-        label2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        SimpleDateFormat formato=new SimpleDateFormat("EEEE dd");
-        label2.setText(formato.format(ped.getFechaE())+" "+ped.getHoraEntrega()+"   Saldo:$"+(ped.getPrecio()-ped.getAbono()));
-        add(label2);
-        label2.setBounds(10, 40, 890, 30);
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        Date date;
+        try{
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(insumo.getRecordatorio());
+            SimpleDateFormat formato=new SimpleDateFormat("EEEE, MMM d");
+            jLabel1.setText("COMPRAR INSUMO:"+insumo.getNombre()+", "+insumo.getCantidad()+" "+insumo.getUnidad()+", "+
+                formato.format(date)
+            );
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        add(jLabel1);
+        jLabel1.setBounds(10, 10, 890, 60);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label label1;
-    private java.awt.Label label2;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

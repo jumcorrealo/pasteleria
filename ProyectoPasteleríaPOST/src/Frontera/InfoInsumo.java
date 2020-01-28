@@ -26,6 +26,7 @@ public class InfoInsumo extends javax.swing.JPanel {
     }
     
    
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Dimension arcs = new Dimension(22,22); //Border corners arcs {width,height}, change this to whatever you want
@@ -53,25 +54,29 @@ public class InfoInsumo extends javax.swing.JPanel {
         titulo_insumo_subPanel = new javax.swing.JLabel();
         button_crear_recordatorio = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 0));
-        setForeground(new java.awt.Color(200, 17, 200));
+        setBackground(new java.awt.Color(153, 153, 153));
+        setForeground(new java.awt.Color(153, 153, 153));
         setPreferredSize(new java.awt.Dimension(388, 80));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
             }
         });
+        setLayout(null);
 
         titulo_insumo_subPanel.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        titulo_insumo_subPanel.setForeground(new java.awt.Color(255, 255, 255));
         titulo_insumo_subPanel.setText(""+insumo.getNombre());
+        add(titulo_insumo_subPanel);
+        titulo_insumo_subPanel.setBounds(20, 20, 127, 30);
 
         java.awt.Color butColor;
         javax.swing.ImageIcon icono;
         if(insumo.getRecordatorio()==null){
-            butColor=new java.awt.Color(153,255,153);
+            butColor=new java.awt.Color(56,186,56);
             icono= new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_done-01_186405.png"));
         }else{
-            butColor=new java.awt.Color(19,157,236);
+            butColor=new java.awt.Color(56,186,186);
             icono= new javax.swing.ImageIcon(getClass().getResource("/Img/clock.png"));
         }
         button_crear_recordatorio.setBackground(butColor);
@@ -83,27 +88,8 @@ public class InfoInsumo extends javax.swing.JPanel {
                 button_crear_recordatorioActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(titulo_insumo_subPanel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
-                .addComponent(button_crear_recordatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(button_crear_recordatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titulo_insumo_subPanel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(button_crear_recordatorio);
+        button_crear_recordatorio.setBounds(310, 0, 58, 58);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained

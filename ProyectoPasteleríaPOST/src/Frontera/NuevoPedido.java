@@ -141,7 +141,7 @@ public class NuevoPedido extends javax.swing.JPanel {
                 contador = 0;
                 btSiguiente.setText("Siguiente");
                 jTextField1.setText("");
-                control_pedido.getPedidos().add(pedidoEnCurso);
+                control_pedido.getPedidosList().add(pedidoEnCurso);
                 control_pedido.AgregarPedido(pedidoEnCurso);
                 Clienteinfo.cleanPanel();
                 detalles.cleanPanel();

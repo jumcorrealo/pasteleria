@@ -58,11 +58,12 @@ public class Gestion_Insumos extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setLocationByPlatform(true);
 
-        panel_principal_Insumos.setBackground(new java.awt.Color(0, 0, 0));
+        panel_principal_Insumos.setBackground(new java.awt.Color(51, 51, 51));
 
-        panel_titulo_Insumos.setBackground(new java.awt.Color(204, 204, 0));
+        panel_titulo_Insumos.setBackground(new java.awt.Color(102, 102, 102));
 
         titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 72)); // NOI18N
+        titulo_insumos.setForeground(new java.awt.Color(255, 255, 255));
         titulo_insumos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo_insumos.setText("Insumos");
         titulo_insumos.setToolTipText("");
@@ -117,7 +118,7 @@ public class Gestion_Insumos extends javax.swing.JFrame {
             }
         });
 
-        boton_agregar_Insumo.setBackground(new java.awt.Color(204, 204, 0));
+        boton_agregar_Insumo.setBackground(new java.awt.Color(70, 74, 6));
         boton_agregar_Insumo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         boton_agregar_Insumo.setForeground(new java.awt.Color(255, 0, 0));
         boton_agregar_Insumo.setText("+");
@@ -355,9 +356,9 @@ public class Gestion_Insumos extends javax.swing.JFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-            jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-            panel_titulo_Insumos.setBackground(new java.awt.Color(0, 153, 153));
+            panel_titulo_Insumos.setBackground(new java.awt.Color(103, 103, 103));
             panel_titulo_Insumos.setPreferredSize(new java.awt.Dimension(300, 89));
 
             titulo_insumos.setFont(new java.awt.Font("Giddyup Std", 1, 66)); // NOI18N
@@ -384,10 +385,12 @@ public class Gestion_Insumos extends javax.swing.JFrame {
             titulo_insumos.getAccessibleContext().setAccessibleName("Nuevo Insumo");
 
             label_buscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+            label_buscar.setForeground(new java.awt.Color(255,255,255));
             label_buscar.setText("Nombre");
             label_buscar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
             label_buscar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+            label_buscar1.setForeground(new java.awt.Color(255,255,255));
             label_buscar1.setText("Unidad");
 
             tx_nombre_insumo.setText("Ingrese el nombre del nuevo insumo");

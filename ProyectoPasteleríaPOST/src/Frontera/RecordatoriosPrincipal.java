@@ -1,35 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Frontera;
 
+import Control.*;
+import Entidad.Insumo;
+import Entidad.Pedido;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author ACER
- */
 public class RecordatoriosPrincipal extends javax.swing.JFrame {
     
+    private final ControlPedidos CP;
+    public static GestionCliente CC=new GestionCliente();
+    public static GestionPostres GP=new GestionPostres();
+    public static Control_Insumos CI=new Control_Insumos();
     
-    
-
+    private final Date fechaHoy;
     /**
      * Creates new form RecordatoriosPrincipal
      */
-    public RecordatoriosPrincipal() {
+    
+    private DateFormat formatoFecha;
+    
+    public RecordatoriosPrincipal(ControlPedidos CP_given) {
         initComponents();
         
+        CP=CP_given;
         this.setLocationRelativeTo(null);
         
+        formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat dateFormat = new SimpleDateFormat("EEEE, MMM d");
-        Calendar fechaHoy = Calendar.getInstance();
-        label_fecha_hoy.setText("Hoy: "+dateFormat.format(fechaHoy.getTime()));
-        System.out.println(dateFormat.format(fechaHoy.getTime()));
+        fechaHoy = Calendar.getInstance().getTime();
+        label_fecha_hoy.setText("Hoy: "+dateFormat.format(fechaHoy));
+        System.out.println(dateFormat.format(fechaHoy));
+        addSubpanelsHoy();
+        addSubpanelsSemana();
     }
 
     /**
@@ -41,8 +49,128 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
     private void addSubpanelsHoy(){
         subpanel_hoy.removeAll();
         int altura=80;
+        int largo=920;
         int count=0;
+        //insumos
+        for(int i=0; i< CI.getInsumoList().size();i++ ){
+            Insumo insumo_temp=CI.getInsumoList().get(i);
+            if(insumo_temp.getRecordatorio()!=null){
+                try {
+                
+                Date fecharec=formatoFecha.parse(insumo_temp.getRecordatorio());
+                
+                
+                boolean flag=
+                   fecharec.getDate()==fechaHoy.getDate()&&
+                   fecharec.getMonth()==fechaHoy.getMonth()&&
+                   fecharec.getYear()==fechaHoy.getYear();
+                
+                if(flag){
+                    RecordatorioSubPanelInsumo subPanel = new RecordatorioSubPanelInsumo(insumo_temp);
+                    
+                    subPanel.setBounds(10, 10+altura*count,largo,altura-10);
+                    subPanel.setOpaque(false);
+                    subpanel_hoy.add(subPanel);
+                    count++;
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+        }
+        
+        
+        //pedidos
+        for(int i=0; i< CP.getPedidosList().size();i++ ){
+            Pedido pedido_temp=CP.getPedidosList().get(i);
+            
+            boolean flag=
+                    !pedido_temp.getEstado()&&
+                    pedido_temp.getFechaE().getDate()==fechaHoy.getDate()&&
+                    pedido_temp.getFechaE().getMonth()==fechaHoy.getMonth()&&
+                    pedido_temp.getFechaE().getYear()==fechaHoy.getYear();
+            
+            if(flag){
+                RecordatorioSubPanelPedido subPanel = new RecordatorioSubPanelPedido(pedido_temp);
+
+                subPanel.setBounds(10, 10+altura*count,largo,altura-10);
+                subPanel.setOpaque(false);
+                subpanel_hoy.add(subPanel);
+                count++;
+            }
+        }
+        
+        
+        subpanel_hoy.setPreferredSize(new java.awt.Dimension(subpanel_hoy.getWidth(), subpanel_hoy.getComponentCount()*altura+10));
+        scroll_pane_HOY.setViewportView(subpanel_hoy);
     }
+    
+    
+    
+    
+    private void addSubpanelsSemana(){
+        Calendar f=Calendar.getInstance(); 
+                f.add(Calendar.DAY_OF_MONTH, 7);
+                Date fecha_una_semana=f.getTime();
+        subpanel_semana.removeAll();
+        int altura=80;
+        int largo=920;
+        int count=0;
+        //insumos
+        for(int i=0; i< CI.getInsumoList().size();i++ ){
+            Insumo insumo_temp=CI.getInsumoList().get(i);
+            if(insumo_temp.getRecordatorio()!=null){
+                try {
+                
+                
+                Date fecharec=formatoFecha.parse(insumo_temp.getRecordatorio());
+                
+                
+                boolean flag=fecharec.compareTo(fechaHoy)>=0 && fecharec.compareTo(fecha_una_semana)<=0;
+                   
+                
+                if(flag){
+                    RecordatorioSubPanelInsumo subPanel = new RecordatorioSubPanelInsumo(insumo_temp);
+                    
+                    subPanel.setBounds(10, 10+altura*count,largo,altura-10);
+                    subPanel.setOpaque(false);
+                    subpanel_semana.add(subPanel);
+                    count++;
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+        }
+        
+        
+        //pedidos
+        for(int i=0; i< CP.getPedidosList().size();i++ ){
+            
+            Pedido pedido_temp=CP.getPedidosList().get(i);
+            
+            boolean flag=
+               !pedido_temp.getEstado()&&
+               pedido_temp.getFechaE().compareTo(fechaHoy)>=0 && pedido_temp.getFechaE().compareTo(fecha_una_semana)<=0;
+            
+            if(flag){
+                RecordatorioSubPanelPedido subPanel = new RecordatorioSubPanelPedido(pedido_temp);
+
+                subPanel.setBounds(10, 10+altura*count,largo,altura-10);
+                subPanel.setOpaque(false);
+                subpanel_semana.add(subPanel);
+                count++;
+            }
+        }
+        
+        
+        subpanel_semana.setPreferredSize(new java.awt.Dimension(subpanel_semana.getWidth(), subpanel_semana.getComponentCount()*altura+10));
+        scroll_pane_SEMANA.setViewportView(subpanel_semana);
+    }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,15 +181,17 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
         label_titulo = new javax.swing.JLabel();
         label_fecha_hoy = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scroll_pane_HOY = new javax.swing.JScrollPane();
         subpanel_hoy = new javax.swing.JPanel();
+        scroll_pane_SEMANA = new javax.swing.JScrollPane();
+        subpanel_semana = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 0));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setLayout(null);
 
         label_titulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -71,7 +201,7 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
         label_titulo.setBounds(10, 20, 390, 50);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 520, 80);
+        jPanel2.setBounds(0, 0, 1000, 80);
 
         label_fecha_hoy.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         label_fecha_hoy.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,35 +215,63 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(20, 390, 480, 70);
 
+        scroll_pane_HOY.setBackground(new java.awt.Color(153, 153, 153));
+        scroll_pane_HOY.setForeground(new java.awt.Color(153, 153, 153));
+        scroll_pane_HOY.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll_pane_HOY.setAutoscrolls(true);
+
         subpanel_hoy.setBackground(new java.awt.Color(102, 102, 102));
+        subpanel_hoy.setForeground(new java.awt.Color(153, 153, 153));
+        subpanel_hoy.setPreferredSize(new java.awt.Dimension(960, 240));
 
         javax.swing.GroupLayout subpanel_hoyLayout = new javax.swing.GroupLayout(subpanel_hoy);
         subpanel_hoy.setLayout(subpanel_hoyLayout);
         subpanel_hoyLayout.setHorizontalGroup(
             subpanel_hoyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         subpanel_hoyLayout.setVerticalGroup(
             subpanel_hoyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(subpanel_hoy);
+        scroll_pane_HOY.setViewportView(subpanel_hoy);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 160, 480, 240);
+        jPanel1.add(scroll_pane_HOY);
+        scroll_pane_HOY.setBounds(20, 160, 960, 240);
+
+        scroll_pane_SEMANA.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll_pane_SEMANA.setAutoscrolls(true);
+
+        subpanel_semana.setBackground(new java.awt.Color(102, 102, 102));
+        subpanel_semana.setForeground(new java.awt.Color(153, 153, 153));
+        subpanel_semana.setPreferredSize(new java.awt.Dimension(960, 460));
+
+        javax.swing.GroupLayout subpanel_semanaLayout = new javax.swing.GroupLayout(subpanel_semana);
+        subpanel_semana.setLayout(subpanel_semanaLayout);
+        subpanel_semanaLayout.setHorizontalGroup(
+            subpanel_semanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 960, Short.MAX_VALUE)
+        );
+        subpanel_semanaLayout.setVerticalGroup(
+            subpanel_semanaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+
+        scroll_pane_SEMANA.setViewportView(subpanel_semana);
+
+        jPanel1.add(scroll_pane_SEMANA);
+        scroll_pane_SEMANA.setBounds(20, 460, 960, 310);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
         pack();
@@ -122,45 +280,24 @@ public class RecordatoriosPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RecordatoriosPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RecordatoriosPrincipal().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_fecha_hoy;
     private javax.swing.JLabel label_titulo;
+    public static javax.swing.JScrollPane scroll_pane_HOY;
+    private javax.swing.JScrollPane scroll_pane_SEMANA;
     private javax.swing.JPanel subpanel_hoy;
+    private javax.swing.JPanel subpanel_semana;
     // End of variables declaration//GEN-END:variables
+
+    void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            new RecordatoriosPrincipal(CP).setVisible(true);
+        });
+    }
+
 }

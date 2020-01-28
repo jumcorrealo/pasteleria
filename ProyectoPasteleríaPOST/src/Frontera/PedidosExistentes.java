@@ -366,7 +366,7 @@ public class PedidosExistentes extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField6KeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        upDatePedido = cp.getPedidos().get(jTable1.getSelectedRow());
+        upDatePedido = cp.getPedidosList().get(jTable1.getSelectedRow());
         postre = gp.findPostre(upDatePedido.getIdPostre());
         porciones = upDatePedido.getPorciones();
         precioAd = upDatePedido.getPrecioad();
@@ -467,7 +467,7 @@ public class PedidosExistentes extends javax.swing.JPanel {
         dtm.setRowCount(0);
         Cliente cliente; 
         Object[] objects = new Object[4];
-        for(Pedido p : cp.getPedidos()){
+        for(Pedido p : cp.getPedidosList()){
             cliente = gc.findCliente(p.getIdCliente());
             objects[0] = cliente.getNombre();
             objects[1] = format.format(p.getFechaE());

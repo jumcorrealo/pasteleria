@@ -33,7 +33,7 @@ public class ControlPedidos {
         pA.create(pedido);
     }
     
-    public ArrayList<Pedido> getPedidos() {
+    public ArrayList<Pedido> getPedidosList() {
         return lista_Pedido;
     }
     

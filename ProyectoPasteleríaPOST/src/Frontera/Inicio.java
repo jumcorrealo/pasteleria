@@ -5,19 +5,26 @@
  */
 package Frontera;
 
+import Control.ControlPedidos;
+
 /**
  *
  * @author Home
  */
 public class Inicio extends javax.swing.JFrame {
+    public static ControlPedidos control_pedidos=new ControlPedidos();
     private static final Administrativo adm = new Administrativo();
     private static final Ventas ventas = new Ventas();
-        
-    /**
+    private static final RecordatoriosPrincipal alarmas=new RecordatoriosPrincipal(control_pedidos);
+    
+    
+    
+    /**77
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -32,9 +39,10 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        button_ventas = new javax.swing.JButton();
+        button_close = new javax.swing.JButton();
+        button_admin = new javax.swing.JButton();
+        button_recordatorios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,46 +55,60 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(124, 198, 254));
-        jButton1.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Ventas");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_ventas.setBackground(new java.awt.Color(124, 198, 254));
+        button_ventas.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        button_ventas.setForeground(new java.awt.Color(255, 255, 255));
+        button_ventas.setText("Ventas");
+        button_ventas.setBorderPainted(false);
+        button_ventas.setContentAreaFilled(false);
+        button_ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_ventasActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
-        jButton1.setBounds(440, 340, 200, 30);
+        jPanel2.add(button_ventas);
+        button_ventas.setBounds(340, 340, 420, 30);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_Delete_1493279.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        button_close.setBackground(new java.awt.Color(255, 255, 255));
+        button_close.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
+        button_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/iconfinder_Delete_1493279.png"))); // NOI18N
+        button_close.setBorderPainted(false);
+        button_close.setContentAreaFilled(false);
+        button_close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                button_closeActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3);
-        jButton3.setBounds(1010, 10, 60, 50);
+        jPanel2.add(button_close);
+        button_close.setBounds(1010, 10, 60, 50);
 
-        jButton2.setBackground(new java.awt.Color(124, 198, 254));
-        jButton2.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Administrativo");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button_admin.setBackground(new java.awt.Color(124, 198, 254));
+        button_admin.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        button_admin.setForeground(new java.awt.Color(255, 255, 255));
+        button_admin.setText("Administrativo");
+        button_admin.setBorderPainted(false);
+        button_admin.setContentAreaFilled(false);
+        button_admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button_adminActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
-        jButton2.setBounds(440, 300, 200, 30);
+        jPanel2.add(button_admin);
+        button_admin.setBounds(340, 300, 420, 30);
+
+        button_recordatorios.setBackground(new java.awt.Color(124, 198, 254));
+        button_recordatorios.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
+        button_recordatorios.setForeground(new java.awt.Color(255, 255, 255));
+        button_recordatorios.setText("Recordatorios");
+        button_recordatorios.setBorderPainted(false);
+        button_recordatorios.setContentAreaFilled(false);
+        button_recordatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_recordatoriosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(button_recordatorios);
+        button_recordatorios.setBounds(340, 390, 420, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cake-1241413_1280.jpg"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -109,59 +131,39 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void button_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_adminActionPerformed
         adm.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_button_adminActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void button_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_closeActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_button_closeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_ventasActionPerformed
         ventas.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_button_ventasActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Inicio().setVisible(true);
-        });
-    }
+    private void button_recordatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_recordatoriosActionPerformed
+        alarmas.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_button_recordatoriosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton button_admin;
+    private javax.swing.JButton button_close;
+    private javax.swing.JButton button_recordatorios;
+    private javax.swing.JButton button_ventas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            Inicio init_frame;
+            init_frame = new Inicio();
+            init_frame.setVisible(true);
+        });
+    }
 }
